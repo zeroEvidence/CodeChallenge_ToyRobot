@@ -1,0 +1,6 @@
+{
+    "typescript.tsdk": "node_modules/typescript/lib/",
+    "runCurrentTest.run": "${workspaceRoot}/node_modules/.bin/jest ${relativeTestPath} --testNamePattern \"${fullTestName}\"",
+    "runCurrentTest.runAndUpdateSnapshots": "${workspaceRoot}/node_modules/.bin/jest -u ${relativeTestPath} --testNamePattern \"${fullTestName}\"",
+    "typescript.extension.sortImports.sortMethod": "path"
+}

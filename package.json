@@ -1,0 +1,70 @@
+{
+  "name": "toy-robot",
+  "version": "0.0.0",
+  "description": "toy-robot",
+  "license": "NO LICENSE",
+  "repository": "",
+  "author": {
+    "name": "Anonymous",
+    "email": "anonymous@anonymous.com.au",
+    "url": "anonymous.com.au"
+  },
+  "keywords": [
+    "toy",
+    "robot",
+    "game"
+  ],
+  "files": [
+    "build"
+  ],
+  "main": "build/index.js",
+  "typings": "build/index.d.ts",
+  "scripts": {
+    "clean": "rimraf build && rimraf coverage",
+    "format": "prettier --write \"src/**/*.ts\" --trailing-comma none",
+    "lint": "tslint --force --format stylish \"src/**/*.ts\"",
+    "prepublish": "npm run build",
+    "prebuild": "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
+    "build": "tsc --pretty",
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "watch": "npm run build -- --watch",
+    "watch:test": "jest --watch"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@types/jest": "^22.0.0",
+    "@types/node": "^8.0.0",
+    "coveralls": "^3.0.0",
+    "jest": "^22.0.0",
+    "prettier": "^1.5.2",
+    "rimraf": "^2.0.0",
+    "ts-jest": "^22.0.0",
+    "ts-node": "^3.2.0",
+    "tslint": "^5.0.0",
+    "tslint-config-prettier": "^1.1.0",
+    "typescript": "^2.9.0"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "jest": {
+    "verbose": true,
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ],
+    "testEnvironment": "node"
+  }
+}

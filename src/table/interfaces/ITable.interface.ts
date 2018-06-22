@@ -1,8 +1,8 @@
-import { IPosition } from "./IPosition.interface";
+import { ICoordinates } from "./ICoordinates.interface";
 
 export interface ITable {
   readonly length: number;
   readonly width: number;
 
-  hasSurfaceAtPos(position: IPosition): boolean;
+  hasSurfaceAtCoords(coordinates: ICoordinates): boolean;
 }

@@ -85,4 +85,38 @@ describe("Robot", () => {
       });
     });
   });
+
+    describe("Report", () => {
+      it("Should throw an error stating that the environment is unset", () => {
+        return expect(() => {
+          new Robot().report();
+        }).toThrowError("Environment is unset");
+      });
+
+      it(
+        "Should throw an error stating that the environment is unset if " +
+          "the toy had been placed in an invalid area",
+        () => {
+          const robot = new Robot();
+          robot.place({ x: -1, y: -1, orientation: -1 });
+
+          return expect(() => {
+            robot.report();
+          }).toThrowError("Environment is unset");
+        }
+      );
+
+      it("Should give back the current position of the robot", () => {
+        const robot = new Robot();
+        const southWestCorner: ICoordinates = {
+          x: 0,
+          y: 0,
+          orientation: Orientation.north
+        };
+
+        robot.place(southWestCorner);
+
+        return expect(robot.report()).toEqual(southWestCorner);
+      });
+    });
 });

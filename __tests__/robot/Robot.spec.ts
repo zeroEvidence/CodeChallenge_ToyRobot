@@ -13,15 +13,19 @@ describe("Robot", () => {
 
   describe("Behaviours", () => {
     let robot: IRobot;
-    let mockTable: any = {
+    let mockTruthyTable: any = {
       hasSurfaceAtCoords: () => true
     };
-
-    beforeEach(() => {
-      robot = new robot();
-    });
+    let mockFalseyTable: any = {
+      hasSurfaceAtCoords: () => false
+    };
 
     describe("place", () => {
+      describe("valid positions", () => {
+    beforeEach(() => {
+          robot = new robot(mockTruthyTable);
+    });
+
       it("Should be true at position 0,0 N", () => {
         return expect(
           robot.place({ x: 0, y: 0, orientation: Orientation.north })
@@ -45,6 +49,12 @@ describe("Robot", () => {
           robot.place({ x: 4, y: 4, orientation: Orientation.west })
         ).toEqual(true);
       });
+      });
+
+      describe("Invalid positions", () => {
+        beforeEach(() => {
+          robot = new robot(mockFalseyTable);
+        });
 
       it("Should be false at position -1,0 N", () => {
         return expect(

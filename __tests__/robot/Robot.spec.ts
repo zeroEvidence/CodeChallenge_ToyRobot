@@ -11,6 +11,10 @@ describe("Robot", () => {
     return expect(new Robot().environment).toEqual(Table);
   });
 
+  it("Should set the environment if given at instantiation", () => {
+    return expect(new Robot(new Table()).environment).toEqual(Table);
+  });
+
   describe("Behaviours", () => {
     let robot: IRobot;
     let mockTruthyTable: any = {

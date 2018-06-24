@@ -12,8 +12,8 @@ describe("Robot", () => {
     return expect(robot).toBeInstanceOf(Object);
   });
 
-  it("Should have an initial position of -1, -1", () => {
-    return expect(robot.position).toEqual({ x: -1, y: -1 });
+  it("Should have an initial position of -1, -1, -1", () => {
+    return expect(robot.position).toEqual({ x: -1, y: -1, orientation: -1 });
   });
 
   it("Should have an initial default environment of undefined", () => {
@@ -83,14 +83,16 @@ describe("Robot", () => {
         it("Should be invalid at position 1,1 -1", () => {
           return expect(robot.place(invalidPlaceC)).toEqual(false);
         });
+
+        it("Should be invalid at position 5,0 S", () => {
           return expect(
-            robot.place({ x: 4, y: 0, orientation: Orientation.south })
+            robot.place({ x: 5, y: 0, orientation: Orientation.south })
           ).toEqual(false);
         });
 
-        it("Should be invalid at position 0,4 W", () => {
+        it("Should be invalid at position 0,5 W", () => {
           return expect(
-            robot.place({ x: 0, y: 4, orientation: Orientation.west })
+            robot.place({ x: 0, y: 5, orientation: Orientation.west })
           ).toEqual(false);
         });
       });

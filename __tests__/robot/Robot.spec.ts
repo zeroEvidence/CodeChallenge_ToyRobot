@@ -250,8 +250,8 @@ describe("Robot", () => {
           });
         });
 
-        it("Should be at the same position when moved at position 4,4 W", () => {
-          northEastCorner.orientation = Orientation.west;
+        it("Should be at the same position when moved at position 4,4 E", () => {
+          northEastCorner.orientation = Orientation.east;
 
           robot.place(northEastCorner);
           robot.move();
@@ -259,7 +259,9 @@ describe("Robot", () => {
           return expect(robot.report()).toEqual({
             x: 4,
             y: 4,
-            orientation: Orientation.west
+            orientation: Orientation.east
+          });
+        });
           });
         });
       });

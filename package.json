@@ -25,7 +25,7 @@
     "lint": "tslint --force --format stylish \"src/**/*.ts\"",
     "prepublish": "npm run build",
     "prebuild": "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
-    "build": "tsc --pretty",
+    "build": "tsc --pretty -p ./src/",
     "test": "jest",
     "coverage": "jest --coverage",
     "watch": "npm run build -- --watch",

@@ -8,13 +8,23 @@ export abstract class Toy implements IToy {
 
   constructor() {
     this.position = {
+      orientation: -1,
       x: -1,
-      y: -1,
-      orientation: -1
+      y: -1
     };
   }
 
   public setEnvironment(environment: IEnvironment) {
     this.environment = environment;
+  }
+
+  public place(position: IPosition) {
+    const validPos = this.environment.hasSurfaceAtPos(position);
+
+    if (validPos) {
+      this.position = position;
+    }
+
+    return validPos;
   }
 }

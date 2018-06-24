@@ -1,6 +1,7 @@
 import { IRobot } from "../../src/robot/interfaces/Robot.interface";
 import { Robot } from "../../src/robot/Robot";
 import { CardinalDirections } from "../../src/toy/orientation/CardinalDirections";
+import { ToyStrings } from "../../src/toy/ToyStrings";
 import { InfiniteEnvironment } from "./mocks/InfinateEnvironment";
 import { RestrictedEnvironment } from "./mocks/RestrictedEnvironment";
 
@@ -50,7 +51,7 @@ describe("Robot", () => {
     describe("Method .place(...)", () => {
       describe("Valid positions", () => {
         beforeEach(() => {
-          robot.setEnvironment(mockInfiniteEnvironment);
+          return robot.setEnvironment(mockInfiniteEnvironment);
         });
 
         it("Should be valid at position 0,0 N", () => {
@@ -80,7 +81,7 @@ describe("Robot", () => {
 
       describe("Invalid positions", () => {
         beforeEach(() => {
-          robot = robot.setEnvironment(mockRestrictedEnvironment);
+          return robot.setEnvironment(mockRestrictedEnvironment);
         });
 
         it("Should be invalid at position -1,0 N", () => {
@@ -88,7 +89,7 @@ describe("Robot", () => {
         });
 
         it("Should be invalid at position 0,-1 E", () => {
-          return expect(robot.place(invalidPlaceB));
+          return expect(robot.place(invalidPlaceB)).toEqual(false);
         });
 
         it("Should be invalid at position 1,1 -1", () => {

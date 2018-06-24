@@ -32,31 +32,31 @@ describe("Robot", () => {
     const mockInfiniteEnvironment = new InfiniteEnvironment();
     const mockRestrictedEnvironment = new RestrictedEnvironment();
 
-    describe("place", () => {
-      describe("valid positions", () => {
+    describe("Method .place(...)", () => {
+      describe("Valid positions", () => {
         beforeEach(() => {
           robot.setEnvironment(mockInfiniteEnvironment);
         });
 
-        it("Should be true at position 0,0 N", () => {
+        it("Should be valid at position 0,0 N", () => {
           return expect(
             robot.place({ x: 0, y: 0, orientation: Orientation.north })
           ).toEqual(true);
         });
 
-        it("Should be true at position 0,4 E", () => {
+        it("Should be valid at position 0,4 E", () => {
           return expect(
             robot.place({ x: 0, y: 4, orientation: Orientation.east })
           ).toEqual(true);
         });
 
-        it("Should be true at position 4,0 S", () => {
+        it("Should be valid at position 4,0 S", () => {
           return expect(
             robot.place({ x: 4, y: 0, orientation: Orientation.south })
           ).toEqual(true);
         });
 
-        it("Should be true at position 4,4 W", () => {
+        it("Should be valid at position 4,4 W", () => {
           return expect(
             robot.place({ x: 4, y: 4, orientation: Orientation.west })
           ).toEqual(true);
@@ -68,25 +68,25 @@ describe("Robot", () => {
           robot = new robot(mockRestrictedEnvironment);
         });
 
-        it("Should be false at position -1,0 N", () => {
+        it("Should be invalid at position -1,0 N", () => {
           return expect(
             robot.place({ x: -1, y: 0, orientation: Orientation.north })
           ).toEqual(false);
         });
 
-        it("Should be false at position 0,-1 E", () => {
+        it("Should be invalid at position 0,-1 E", () => {
           return expect(
             robot.place({ x: 0, y: -1, orientation: Orientation.east })
           ).toEqual(false);
         });
 
-        it("Should be false at position 4,0 S", () => {
+        it("Should be invalid at position 4,0 S", () => {
           return expect(
             robot.place({ x: 4, y: 0, orientation: Orientation.south })
           ).toEqual(false);
         });
 
-        it("Should be false at position 0,4 W", () => {
+        it("Should be invalid at position 0,4 W", () => {
           return expect(
             robot.place({ x: 0, y: 4, orientation: Orientation.west })
           ).toEqual(false);
@@ -94,16 +94,16 @@ describe("Robot", () => {
       });
     });
 
-    describe("Report", () => {
-      it("Should throw an error stating that the environment is unset", () => {
+    describe("Method .report()", () => {
+      it("Should throw an error when unplaced", () => {
         return expect(() => {
           robot.report();
         }).toThrowError("Environment is unset");
       });
 
       it(
-        "Should throw an error stating that the environment is unset if " +
-          "the toy had been placed in an invalid area",
+        "Should throw an error if the toy had been placed in an " +
+          "invalid area",
         () => {
           robot.place({ x: -1, y: -1, orientation: -1 });
 
@@ -126,15 +126,19 @@ describe("Robot", () => {
       });
     });
 
-    describe("move", () => {
-      describe("valid movement", () => {
+    describe("Method .move()", () => {
+      describe("Without placing first", () => {
+        it("Should throw an error when moving without placing", () => {});
+      });
+
+      describe("A valid move in any direction", () => {
       let middleOfTableCoords = { x: 2, y: 2, orientation: -1 };
 
         beforeEach(() => {
           robot.setEnvironment(mockInfiniteEnvironment);
         });
 
-        it("Should be a valid movement", () => {
+        it("Should return true when given a valid move", () => {
           middleOfTableCoords.orientation = Orientation.north;
 
           robot.place(middleOfTableCoords);
@@ -195,7 +199,7 @@ describe("Robot", () => {
         });
       });
 
-      describe("invalid movement", () => {
+      describe("An invalid move in any direction", () => {
         const southWestCorner = { x: 0, y: 0, orientation: -1 };
         const northEastCorner = { x: 4, y: 4, orientation: -1 };
 
@@ -203,7 +207,7 @@ describe("Robot", () => {
           robot.setEnvironment(mockRestrictedEnvironment);
         });
 
-        it("Should be invalid to move at position 0,0 S", () => {
+        it("Should return false when given an invalid move", () => {
           southWestCorner.orientation = Orientation.south;
 
           robot.place(southWestCorner);
@@ -211,7 +215,7 @@ describe("Robot", () => {
           return expect(robot.move()).toEqual(false);
         });
 
-        it("Should be at the same position when moved at position 0,0 S", () => {
+        it("Should not move when moved at position 0,0 S", () => {
           southWestCorner.orientation = Orientation.south;
 
           robot.place(southWestCorner);
@@ -224,7 +228,7 @@ describe("Robot", () => {
           });
         });
 
-        it("Should be at the same position when moved at position 0,0 W", () => {
+        it("Should not move when moved at position 0,0 W", () => {
           southWestCorner.orientation = Orientation.west;
 
           robot.place(southWestCorner);
@@ -237,7 +241,7 @@ describe("Robot", () => {
           });
         });
 
-        it("Should be at the same position when moved at position 4,4 N", () => {
+        it("Should not move when moved at position 4,4 N", () => {
           northEastCorner.orientation = Orientation.north;
 
           robot.place(northEastCorner);
@@ -250,7 +254,7 @@ describe("Robot", () => {
           });
         });
 
-        it("Should be at the same position when moved at position 4,4 E", () => {
+        it("Should not move when moved at position 4,4 E", () => {
           northEastCorner.orientation = Orientation.east;
 
           robot.place(northEastCorner);

@@ -241,7 +241,7 @@ describe("Robot", () => {
         const northEastCorner = { x: 4, y: 4, orientation: -1 };
 
         beforeEach(() => {
-          robot.setEnvironment(mockRestrictedEnvironment);
+          return robot.setEnvironment(mockRestrictedEnvironment);
         });
 
         it("Should return false when given an invalid move", () => {

@@ -100,7 +100,7 @@ describe("Robot", () => {
       it("Should throw an error when unplaced", () => {
         return expect(() => {
           robot.report();
-        }).toThrowError("Environment is unset");
+        }).toThrowError(ToyStrings.unsetEnvironment);
       });
 
       it(
@@ -111,7 +111,7 @@ describe("Robot", () => {
 
           return expect(() => {
             robot.report();
-          }).toThrowError("Environment is unset");
+          }).toThrowError(ToyStrings.unsetEnvironment);
         }
       );
 

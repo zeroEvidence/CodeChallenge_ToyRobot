@@ -120,7 +120,7 @@ describe("Robot", () => {
       it("Should throw an error when unplaced", () => {
         return expect(() => {
           robot.report();
-        }).toThrowError(ToyStrings.unsetEnvironment);
+        }).toThrowError(ToyStrings.missingEnvironment);
       });
 
       it(
@@ -132,7 +132,7 @@ describe("Robot", () => {
 
           return expect(() => {
             robot.report();
-          }).toThrowError(ToyStrings.unsetEnvironment);
+          }).toThrowError(ToyStrings.missingEnvironment);
         }
       );
 
@@ -155,7 +155,7 @@ describe("Robot", () => {
           robot.setEnvironment(mockNoEnvironment);
           return expect(() => {
             robot.move();
-          }).toThrowError(ToyStrings.unsetEnvironment);
+          }).toThrowError(ToyStrings.missingEnvironment);
         });
       });
 
@@ -166,7 +166,7 @@ describe("Robot", () => {
 
           return expect(() => {
             robot.move();
-          }).toThrowError(ToyStrings.unsetEnvironment);
+          }).toThrowError(ToyStrings.missingEnvironment);
         });
       });
 
@@ -311,7 +311,7 @@ describe("Robot", () => {
         it("Should throw an error", () => {
           return expect(() => {
             robot.left();
-          }).toThrowError(ToyStrings.unsetEnvironment);
+          }).toThrowError(ToyStrings.missingEnvironment);
         });
       });
 
@@ -321,7 +321,7 @@ describe("Robot", () => {
 
           return expect(() => {
             robot.left();
-          }).toThrowError(ToyStrings.unsetEnvironment);
+          }).toThrowError(ToyStrings.missingEnvironment);
         });
       });
 
@@ -383,7 +383,7 @@ describe("Robot", () => {
         it("Should throw an error", () => {
           return expect(() => {
             robot.right();
-          }).toThrowError(ToyStrings.unsetEnvironment);
+          }).toThrowError(ToyStrings.missingEnvironment);
         });
       });
 
@@ -393,7 +393,7 @@ describe("Robot", () => {
 
           return expect(() => {
             robot.right();
-          }).toThrowError(ToyStrings.unsetEnvironment);
+          }).toThrowError(ToyStrings.missingEnvironment);
         });
       });
 

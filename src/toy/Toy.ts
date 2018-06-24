@@ -6,8 +6,10 @@ import { ToyStrings } from "./ToyStrings";
 export abstract class Toy implements IToy {
   public environment: IEnvironment;
   public position: IPosition;
+  public isPlacedFlag: boolean;
 
   constructor() {
+    this.isPlacedFlag = false;
     this.position = {
       orientation: -1,
       x: -1,
@@ -29,11 +31,11 @@ export abstract class Toy implements IToy {
     return validPos;
   }
 
-  public report() {
-    if (Object.values(this.position).some(coordinate => coordinate < 0)) {
-      throw new Error(ToyStrings.unsetEnvironment);
+  protected isPlaced(): boolean {
+    if (!this.isPlacedFlag) {
+      throw new Error(ToyStrings.missingEnvironment);
     }
 
-    return this.position;
+    return true;
   }
 }

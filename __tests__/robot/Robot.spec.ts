@@ -148,8 +148,6 @@ describe("Robot", () => {
       });
 
       describe("A valid move in any direction", () => {
-      let middleOfTableCoords = { x: 2, y: 2, orientation: -1 };
-
         beforeEach(() => {
           robot.setEnvironment(mockInfiniteEnvironment);
         });

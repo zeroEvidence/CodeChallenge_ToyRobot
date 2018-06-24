@@ -1,3 +1,6 @@
+import { InfiniteEnvironment } from "./mocks/InfinateEnvironment";
+import { RestrictedEnvironment } from "./mocks/RestrictedEnvironment";
+
 describe("Robot", () => {
   let robot: IToy;
 
@@ -17,23 +20,22 @@ describe("Robot", () => {
     return expect(robot.environment).toBeUndefined();
   });
 
-  it("Should set the environment if given at instantiation", () => {
-    return expect(new Robot(new Table()).environment).toEqual(Table);
+  it("Should set the environment", () => {
+    const environment = new InfiniteEnvironment();
+
+    robot.setEnvironment(environment);
+
+    return expect(robot().environment).toEqual(InfiniteEnvironment);
   });
 
   describe("Behaviours", () => {
-    let robot: IRobot;
-    let mockTruthyTable: any = {
-      hasSurfaceAtCoords: () => true
-    };
-    let mockFalseyTable: any = {
-      hasSurfaceAtCoords: () => false
-    };
+    const mockInfiniteEnvironment = new InfiniteEnvironment();
+    const mockRestrictedEnvironment = new RestrictedEnvironment();
 
     describe("place", () => {
       describe("valid positions", () => {
         beforeEach(() => {
-          robot = new robot(mockTruthyTable);
+          robot.setEnvironment(mockInfiniteEnvironment);
         });
 
         it("Should be true at position 0,0 N", () => {
@@ -63,7 +65,7 @@ describe("Robot", () => {
 
       describe("Invalid positions", () => {
         beforeEach(() => {
-          robot = new robot(mockFalseyTable);
+          robot = new robot(mockRestrictedEnvironment);
         });
 
         it("Should be false at position -1,0 N", () => {

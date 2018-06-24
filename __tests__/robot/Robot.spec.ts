@@ -268,6 +268,78 @@ describe("Robot", () => {
         });
           });
         });
+
+    describe("Method .left()", () => {
+      describe("Without placing", () => {
+        it("Should throw an error", () => {
+          return expect(() => {
+            robot.left();
+          }).toThrowError(ToyStrings.unsetEnvironment);
+        });
+      });
+
+      describe("Invalid placing", () => {
+        it("Should throw an error", () => {
+          robot.place(invalidPlaceB);
+
+          return expect(() => {
+            robot.left();
+          }).toThrowError(ToyStrings.unsetEnvironment);
+        });
+      });
+
+      it("Should orient to east", () => {
+        middleOfTableCoords.orientation = Orientation.north;
+
+        robot.place(middleOfTableCoords);
+        robot.left();
+
+        return expect(robot.report).toEqual({
+          x: 2,
+          y: 2,
+          orientation: Orientation.east
+        });
+      });
+
+      it("Should orient to south", () => {
+        middleOfTableCoords.orientation = Orientation.east;
+
+        robot.place(middleOfTableCoords);
+        robot.left();
+
+        return expect(robot.report).toEqual({
+          x: 2,
+          y: 2,
+          orientation: Orientation.south
+        });
+      });
+
+      it("Should orient to west", () => {
+        middleOfTableCoords.orientation = Orientation.south;
+
+        robot.place(middleOfTableCoords);
+        robot.left();
+
+        return expect(robot.report).toEqual({
+          x: 2,
+          y: 2,
+          orientation: Orientation.west
+        });
+      });
+
+      it("Should orient to north", () => {
+        middleOfTableCoords.orientation = Orientation.west;
+
+        robot.place(middleOfTableCoords);
+        robot.left();
+
+        return expect(robot.report).toEqual({
+          x: 2,
+          y: 2,
+          orientation: Orientation.north
+        });
+      });
+    });
       });
     });
   });

@@ -4,6 +4,7 @@ import { IPosition } from "../../src/toy/interfaces/Position.interface";
 import { CardinalDirections } from "../../src/toy/orientation/CardinalDirections";
 import { ToyStrings } from "../../src/toy/ToyStrings";
 import { InfiniteEnvironment } from "./mocks/InfinateEnvironment";
+import { NoEnvironment } from "./mocks/NoEnvironment";
 import { RestrictedEnvironment } from "./mocks/RestrictedEnvironment";
 
 describe("Robot", () => {
@@ -150,9 +151,14 @@ describe("Robot", () => {
     });
 
     describe("Method .move()", () => {
+      beforeEach(() => {
+        robot.setEnvironment(mockInfiniteEnvironment);
+      });
+
       describe("Without placing first", () => {
         it("Should throw an error when moving without placing", () => {
           robot.setEnvironment(mockNoEnvironment);
+
           return expect(() => {
             robot.move();
           }).toThrowError(ToyStrings.missingEnvironment);
@@ -173,6 +179,7 @@ describe("Robot", () => {
       describe("A valid move in any direction", () => {
         beforeEach(() => {
           robot.setEnvironment(mockInfiniteEnvironment);
+          middleOfTableCoords = { x: 2, y: 2, orientation: -1 };
         });
 
         it("Should return true when given a valid move", () => {
@@ -223,7 +230,7 @@ describe("Robot", () => {
         });
 
         it("Should report a move of +1 west", () => {
-          middleOfTableCoords.orientation = CardinalDirections.south;
+          middleOfTableCoords.orientation = CardinalDirections.west;
 
           robot.place(middleOfTableCoords);
           robot.move();
@@ -237,10 +244,13 @@ describe("Robot", () => {
       });
 
       describe("An invalid move in any direction", () => {
-        const southWestCorner = { x: 0, y: 0, orientation: -1 };
-        const northEastCorner = { x: 4, y: 4, orientation: -1 };
+        let southWestCorner: IPosition;
+        let northEastCorner: IPosition;
 
         beforeEach(() => {
+          southWestCorner = { x: 0, y: 0, orientation: -1 };
+          northEastCorner = { x: 4, y: 4, orientation: -1 };
+
           return robot.setEnvironment(mockRestrictedEnvironment);
         });
 

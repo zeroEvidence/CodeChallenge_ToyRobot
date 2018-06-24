@@ -1,6 +1,7 @@
 import { IEnvironment } from "./interfaces/Environment.interface";
 import { IPosition } from "./interfaces/Position.interface";
 import { IToy } from "./interfaces/Toy.interface";
+import { CardinalDirections } from "./orientation/CardinalDirections";
 import { ToyStrings } from "./ToyStrings";
 
 export abstract class Toy implements IToy {
@@ -22,13 +23,61 @@ export abstract class Toy implements IToy {
   }
 
   public place(position: IPosition) {
-    const validPos = this.environment.hasSurfaceAtPos(position);
+    const positionSet = this.setPosition(position);
 
-    if (validPos) {
+    if (positionSet) {
+      this.isPlacedFlag = true;
+    }
+
+    return positionSet;
+  }
+
+  public report() {
+    if (this.isPlaced()) {
+      return this.position;
+    }
+  }
+
+  public move() {
+    if (!this.isPlaced()) {
+      // noop
+    }
+
+    const newPosition = { ...this.position };
+
+    switch (this.position.orientation) {
+      case CardinalDirections.north:
+        newPosition.y++;
+        break;
+
+      case CardinalDirections.east:
+        newPosition.x++;
+        break;
+
+      case CardinalDirections.south:
+        newPosition.y--;
+        break;
+
+      case CardinalDirections.west:
+        newPosition.x--;
+        break;
+    }
+
+    return this.setPosition(newPosition);
+  }
+
+  protected validatePosition(position: IPosition): boolean {
+    return this.environment.hasSurfaceAtPos(position);
+  }
+
+  protected setPosition(position: IPosition): boolean {
+    const validPosition = this.validatePosition(position);
+
+    if (validPosition) {
       this.position = position;
     }
 
-    return validPos;
+    return validPosition;
   }
 
   protected isPlaced(): boolean {

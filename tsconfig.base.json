@@ -6,12 +6,12 @@
     "lib": ["es2018"],
     "target": "es2016",
     "noImplicitAny": true,
-    "rootDir": "src",
+    // "rootDir": "src",
     "outDir": "./build",
     "preserveConstEnums": true,
     "removeComments": true,
     "inlineSourceMap": true,
     "typeRoots": ["./node_modules/@types"]
   },
-  "exclude": ["node_modules", "build"]
+  "exclude": ["node_modules", "build", "__tests__"]
 }

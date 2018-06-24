@@ -1,14 +1,20 @@
 describe("Robot", () => {
+  let robot: IToy;
+
+  beforeEach(() => {
+    robot = new Robot();
+  });
+
   it("Should be able to be instantiated", () => {
-    return expect(new Robot()).toBeInstanceOf(Object);
+    return expect(robot).toBeInstanceOf(Object);
   });
 
   it("Should have an initial position of -1, -1", () => {
-    return expect(new Robot().position).toEqual({ x: -1, y: -1 });
+    return expect(robot.position).toEqual({ x: -1, y: -1 });
   });
 
-  it("Should have an initial default environment of Table", () => {
-    return expect(new Robot().environment).toEqual(Table);
+  it("Should have an initial default environment of undefined", () => {
+    return expect(robot.environment).toBeUndefined();
   });
 
   it("Should set the environment if given at instantiation", () => {

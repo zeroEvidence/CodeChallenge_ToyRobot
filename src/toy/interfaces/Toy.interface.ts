@@ -6,4 +6,5 @@ export interface IToy {
   environment: IEnvironment;
   setEnvironment(environment: IEnvironment): void;
   place(position: IPosition): boolean;
+  report(): IPosition;
 }

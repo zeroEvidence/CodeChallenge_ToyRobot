@@ -1,6 +1,7 @@
 import { IEnvironment } from "./interfaces/Environment.interface";
 import { IPosition } from "./interfaces/Position.interface";
 import { IToy } from "./interfaces/Toy.interface";
+import { ToyStrings } from "./ToyStrings";
 
 export abstract class Toy implements IToy {
   public environment: IEnvironment;
@@ -26,5 +27,13 @@ export abstract class Toy implements IToy {
     }
 
     return validPos;
+  }
+
+  public report() {
+    if (Object.values(this.position).some(coordinate => coordinate < 0)) {
+      throw new Error(ToyStrings.unsetEnvironment);
+    }
+
+    return this.position;
   }
 }

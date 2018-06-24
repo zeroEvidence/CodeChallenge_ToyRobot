@@ -1,5 +1,6 @@
 import { IRobot } from "../../src/robot/interfaces/Robot.interface";
 import { Robot } from "../../src/robot/Robot";
+import { IPosition } from "../../src/toy/interfaces/Position.interface";
 import { CardinalDirections } from "../../src/toy/orientation/CardinalDirections";
 import { ToyStrings } from "../../src/toy/ToyStrings";
 import { InfiniteEnvironment } from "./mocks/InfinateEnvironment";
@@ -111,6 +112,10 @@ describe("Robot", () => {
     });
 
     describe("Method .report()", () => {
+      beforeEach(() => {
+        return robot.setEnvironment(mockInfiniteEnvironment);
+      });
+
       it("Should throw an error when unplaced", () => {
         return expect(() => {
           robot.report();
@@ -121,6 +126,7 @@ describe("Robot", () => {
         "Should throw an error if the toy had been placed in an " +
           "invalid area",
         () => {
+          robot.setEnvironment(mockRestrictedEnvironment);
           robot.place({ x: -1, y: -1, orientation: -1 });
 
           return expect(() => {
@@ -130,7 +136,7 @@ describe("Robot", () => {
       );
 
       it("Should give back the current position of the robot", () => {
-        const southWestCorner: ICoordinates = {
+        const southWestCorner: IPosition = {
           x: 0,
           y: 0,
           orientation: CardinalDirections.north

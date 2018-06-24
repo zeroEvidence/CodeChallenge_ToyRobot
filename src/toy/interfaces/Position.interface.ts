@@ -1,7 +1,7 @@
-import { Orientation } from "../orientation/CardinalDirection.enum";
+import { CardinalDirections } from "../orientation/CardinalDirections";
 
 export interface IPosition {
   x: number;
   y: number;
-  orientation: Orientation;
+  orientation: CardinalDirections;
 }

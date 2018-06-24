@@ -69,7 +69,7 @@ describe("Robot", () => {
 
       describe("Invalid positions", () => {
         beforeEach(() => {
-          robot = new robot(mockRestrictedEnvironment);
+          robot = robot.setEnvironment(mockRestrictedEnvironment);
         });
 
         it("Should be invalid at position -1,0 N", () => {

@@ -127,12 +127,11 @@ describe("Robot", () => {
     });
 
     describe("move", () => {
-      let robot: IRobot;
+      describe("valid movement", () => {
       let middleOfTableCoords = { x: 2, y: 2, orientation: -1 };
 
-      describe("valid movement", () => {
         beforeEach(() => {
-          robot = new Robot(mockTruthyTable);
+          robot.setEnvironment(mockInfiniteEnvironment);
         });
 
         it("Should be a valid movement", () => {
@@ -199,6 +198,10 @@ describe("Robot", () => {
       describe("invalid movement", () => {
         const southWestCorner = { x: 0, y: 0, orientation: -1 };
         const northEastCorner = { x: 4, y: 4, orientation: -1 };
+
+        beforeEach(() => {
+          robot.setEnvironment(mockRestrictedEnvironment);
+        });
 
         it("Should be invalid to move at position 0,0 S", () => {
           southWestCorner.orientation = Orientation.south;

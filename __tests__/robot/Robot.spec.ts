@@ -31,6 +31,10 @@ describe("Robot", () => {
   describe("Behaviours", () => {
     const mockInfiniteEnvironment = new InfiniteEnvironment();
     const mockRestrictedEnvironment = new RestrictedEnvironment();
+    const invalidPlaceA = { x: -1, y: 1, orientation: Orientation.north };
+    const invalidPlaceB = { x: 1, y: -1, orientation: Orientation.north };
+    const invalidPlaceC = { x: 1, y: 1, orientation: -1 };
+    let middleOfTableCoords = { x: 2, y: 2, orientation: -1 };
 
     describe("Method .place(...)", () => {
       describe("Valid positions", () => {
@@ -69,18 +73,16 @@ describe("Robot", () => {
         });
 
         it("Should be invalid at position -1,0 N", () => {
-          return expect(
-            robot.place({ x: -1, y: 0, orientation: Orientation.north })
-          ).toEqual(false);
+          return expect(robot.place(invalidPlaceA)).toEqual(false);
         });
 
         it("Should be invalid at position 0,-1 E", () => {
-          return expect(
-            robot.place({ x: 0, y: -1, orientation: Orientation.east })
-          ).toEqual(false);
+          return expect(robot.place(invalidPlaceB));
         });
 
-        it("Should be invalid at position 4,0 S", () => {
+        it("Should be invalid at position 1,1 -1", () => {
+          return expect(robot.place(invalidPlaceC)).toEqual(false);
+        });
           return expect(
             robot.place({ x: 4, y: 0, orientation: Orientation.south })
           ).toEqual(false);

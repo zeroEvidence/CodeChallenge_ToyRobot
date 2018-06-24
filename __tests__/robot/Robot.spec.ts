@@ -130,7 +130,21 @@ describe("Robot", () => {
 
     describe("Method .move()", () => {
       describe("Without placing first", () => {
-        it("Should throw an error when moving without placing", () => {});
+        it("Should throw an error when moving without placing", () => {
+          return expect(() => {
+            robot.move();
+          }).toThrowError(ToyStrings.unsetEnvironment);
+        });
+      });
+
+      describe("Invalid placing", () => {
+        it("Should throw an error", () => {
+          robot.place(invalidPlaceA);
+
+          return expect(() => {
+            robot.move();
+          }).toThrowError(ToyStrings.unsetEnvironment);
+        });
       });
 
       describe("A valid move in any direction", () => {

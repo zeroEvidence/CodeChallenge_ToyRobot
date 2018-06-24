@@ -13,5 +13,6 @@
     "inlineSourceMap": true,
     "typeRoots": ["./node_modules/@types"]
   },
-  "exclude": ["node_modules", "build", "__tests__"]
+  "include": ["src/**/*", "__tests__/**/*"],
+  "exclude": ["node_modules", "build"]
 }

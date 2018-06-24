@@ -1,8 +1,10 @@
+import { IRobot } from "../../src/robot/interfaces/Robot.interface";
+import { Robot } from "../../src/robot/Robot";
 import { InfiniteEnvironment } from "./mocks/InfinateEnvironment";
 import { RestrictedEnvironment } from "./mocks/RestrictedEnvironment";
 
 describe("Robot", () => {
-  let robot: IToy;
+  let robot: IRobot;
 
   beforeEach(() => {
     robot = new Robot();
@@ -282,8 +284,8 @@ describe("Robot", () => {
             orientation: Orientation.east
           });
         });
-          });
-        });
+      });
+    });
 
     describe("Method .left()", () => {
       describe("Without placing", () => {

@@ -27,7 +27,7 @@ describe("Robot", () => {
 
     robot.setEnvironment(environment);
 
-    return expect(robot().environment).toEqual(InfiniteEnvironment);
+    return expect(robot.environment).toBeInstanceOf(InfiniteEnvironment);
   });
 
   describe("Behaviours", () => {

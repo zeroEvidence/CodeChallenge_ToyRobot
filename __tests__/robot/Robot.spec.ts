@@ -35,6 +35,7 @@ describe("Robot", () => {
 
   describe("Behaviours", () => {
     const mockInfiniteEnvironment = new InfiniteEnvironment();
+    const mockNoEnvironment = new NoEnvironment();
     const mockRestrictedEnvironment = new RestrictedEnvironment();
     const invalidPlaceA = {
       x: -1,
@@ -82,7 +83,7 @@ describe("Robot", () => {
 
       describe("Invalid positions", () => {
         beforeEach(() => {
-          return robot.setEnvironment(mockRestrictedEnvironment);
+          return robot.setEnvironment(mockNoEnvironment);
         });
 
         it("Should be invalid at position -1,0 N", () => {
@@ -126,7 +127,7 @@ describe("Robot", () => {
         "Should throw an error if the toy had been placed in an " +
           "invalid area",
         () => {
-          robot.setEnvironment(mockRestrictedEnvironment);
+          robot.setEnvironment(mockNoEnvironment);
           robot.place({ x: -1, y: -1, orientation: -1 });
 
           return expect(() => {
@@ -151,6 +152,7 @@ describe("Robot", () => {
     describe("Method .move()", () => {
       describe("Without placing first", () => {
         it("Should throw an error when moving without placing", () => {
+          robot.setEnvironment(mockNoEnvironment);
           return expect(() => {
             robot.move();
           }).toThrowError(ToyStrings.unsetEnvironment);
@@ -159,6 +161,7 @@ describe("Robot", () => {
 
       describe("Invalid placing", () => {
         it("Should throw an error", () => {
+          robot.setEnvironment(mockNoEnvironment);
           robot.place(invalidPlaceA);
 
           return expect(() => {

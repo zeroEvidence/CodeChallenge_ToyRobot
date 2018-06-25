@@ -1,5 +1,5 @@
 import { ISurface } from "../../src/surface/interfaces/Surface.interface";
-import { Table } from "../../src/table/Table";
+import { Table } from "../../src/surface/table/Table";
 
 describe("Table", () => {
   it("Should be able to be instantiated", () => {

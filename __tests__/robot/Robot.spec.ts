@@ -1,7 +1,7 @@
-import { IRobot } from "../../src/robot/interfaces/Robot.interface";
-import { Robot } from "../../src/robot/Robot";
-import { IPosition } from "../../src/toy/interfaces/Position.interface";
 import { CardinalDirections } from "../../src/toy/orientation/CardinalDirections";
+import { IPosition } from "../../src/toy/orientation/interfaces/Position.interface";
+import { IRobot } from "../../src/toy/robot/interfaces/Robot.interface";
+import { Robot } from "../../src/toy/robot/Robot";
 import { ToyStrings } from "../../src/toy/ToyStrings";
 import { InfiniteEnvironment } from "./mocks/InfiniteEnvironment";
 import { NoEnvironment } from "./mocks/NoEnvironment";

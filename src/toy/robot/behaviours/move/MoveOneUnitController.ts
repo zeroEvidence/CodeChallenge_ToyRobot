@@ -1,6 +1,7 @@
-import { IToy } from "../../interfaces/Toy.interface";
-import { IMoveController } from "./interfaces/MoveController.interface";
-import { MoveControllerBase } from "./MoveControllerBase";
+import { IMoveController } from "../../../behaviours/move/interfaces/MoveController.interface";
+import { MoveControllerBase } from "../../../behaviours/move/MoveControllerBase";
+import { CardinalDirections } from "../../../behaviours/orientation/CardinalDirections";
+import { IToy } from "../../../interfaces/Toy.interface";
 
 export class MoveOneUnitController extends MoveControllerBase
   implements IMoveController {

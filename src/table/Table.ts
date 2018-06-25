@@ -12,7 +12,7 @@ export class Table extends Surface {
     this.width = width;
   }
 
-  public hasSurfaceAtCoords(coordinates: ICoordinates) {
+  public hasSurfaceAtPos(coordinates: ICoordinates) {
     if (
       coordinates.x >= this.length ||
       coordinates.x < 0 ||

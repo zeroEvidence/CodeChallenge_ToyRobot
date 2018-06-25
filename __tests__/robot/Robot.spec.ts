@@ -317,6 +317,10 @@ describe("Robot", () => {
     });
 
     describe("Method .left()", () => {
+      beforeEach(() => {
+        return robot.setEnvironment(mockRestrictedEnvironment);
+      });
+
       describe("Without placing", () => {
         it("Should throw an error", () => {
           return expect(() => {
@@ -341,7 +345,7 @@ describe("Robot", () => {
         robot.place(middleOfTableCoords);
         robot.left();
 
-        return expect(robot.report).toEqual({
+        return expect(robot.report()).toEqual({
           x: 2,
           y: 2,
           orientation: CardinalDirections.east
@@ -354,7 +358,7 @@ describe("Robot", () => {
         robot.place(middleOfTableCoords);
         robot.left();
 
-        return expect(robot.report).toEqual({
+        return expect(robot.report()).toEqual({
           x: 2,
           y: 2,
           orientation: CardinalDirections.south
@@ -367,7 +371,7 @@ describe("Robot", () => {
         robot.place(middleOfTableCoords);
         robot.left();
 
-        return expect(robot.report).toEqual({
+        return expect(robot.report()).toEqual({
           x: 2,
           y: 2,
           orientation: CardinalDirections.west
@@ -380,7 +384,7 @@ describe("Robot", () => {
         robot.place(middleOfTableCoords);
         robot.left();
 
-        return expect(robot.report).toEqual({
+        return expect(robot.report()).toEqual({
           x: 2,
           y: 2,
           orientation: CardinalDirections.north

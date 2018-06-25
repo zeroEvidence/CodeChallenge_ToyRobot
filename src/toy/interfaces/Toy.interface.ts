@@ -8,4 +8,5 @@ export interface IToy {
   place(position: IPosition): boolean;
   report(): IPosition;
   move(): boolean;
+  left(): void;
 }

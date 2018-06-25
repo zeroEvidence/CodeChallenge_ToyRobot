@@ -1,11 +1,13 @@
+import { Surface } from "../surface/Surface";
 import { ICoordinates } from "./interfaces/ICoordinates.interface";
-import { ITable } from "./interfaces/ITable.interface";
 
-export class Table implements ITable {
+export class Table extends Surface {
   public readonly length: number;
   public readonly width: number;
 
   constructor(length = 5, width = 5) {
+    super();
+
     this.length = length;
     this.width = width;
   }

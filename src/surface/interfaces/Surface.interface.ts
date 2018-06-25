@@ -1,6 +1,6 @@
-import { IPosition } from "./Position.interface";
+import { IPosition } from "../../toy/interfaces/Position.interface";
 
-export interface IEnvironment {
+export interface ISurface {
   readonly length: number;
   readonly width: number;
 

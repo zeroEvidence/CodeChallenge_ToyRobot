@@ -1,11 +1,11 @@
-import { IEnvironment } from "./interfaces/Environment.interface";
+import { ISurface } from "../surface/interfaces/Surface.interface";
 import { IPosition } from "./interfaces/Position.interface";
 import { IToy } from "./interfaces/Toy.interface";
 import { CardinalDirections } from "./orientation/CardinalDirections";
 import { ToyStrings } from "./ToyStrings";
 
 export abstract class Toy implements IToy {
-  public environment: IEnvironment;
+  public surface: ISurface;
   public position: IPosition;
   public isPlacedFlag: boolean;
 
@@ -18,8 +18,8 @@ export abstract class Toy implements IToy {
     };
   }
 
-  public setEnvironment(environment: IEnvironment) {
-    this.environment = environment;
+  public setSurface(surface: ISurface) {
+    this.surface = surface;
   }
 
   public place(position: IPosition) {

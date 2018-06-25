@@ -1,10 +1,10 @@
-import { IEnvironment } from "./Environment.interface";
+import { ISurface } from "../../surface/interfaces/Surface.interface";
 import { IPosition } from "./Position.interface";
 
 export interface IToy {
   position: IPosition;
-  environment: IEnvironment;
-  setEnvironment(environment: IEnvironment): void;
+  surface: ISurface;
+  setSurface(environment: ISurface): void;
   place(position: IPosition): boolean;
   report(): IPosition;
   move(): boolean;

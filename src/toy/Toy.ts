@@ -1,7 +1,7 @@
 import { ISurface } from "../surface/interfaces/Surface.interface";
+import { CardinalDirections } from "./behaviours/orientation/CardinalDirections";
+import { IPosition } from "./behaviours/orientation/interfaces/Position.interface";
 import { IToy } from "./interfaces/Toy.interface";
-import { CardinalDirections } from "./orientation/CardinalDirections";
-import { IPosition } from "./orientation/interfaces/Position.interface";
 import { ToyStrings } from "./ToyStrings";
 
 export abstract class Toy implements IToy {

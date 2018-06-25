@@ -1,4 +1,4 @@
-import { IPosition } from "../toy/orientation/interfaces/Position.interface";
+import { IPosition } from "../toy/behaviours/orientation/interfaces/Position.interface";
 import { ISurface } from "./interfaces/Surface.interface";
 
 export abstract class Surface implements ISurface {

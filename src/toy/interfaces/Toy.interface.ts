@@ -1,5 +1,5 @@
 import { ISurface } from "../../surface/interfaces/Surface.interface";
-import { IPosition } from "../orientation/interfaces/Position.interface";
+import { IPosition } from "../behaviours/orientation/interfaces/Position.interface";
 
 export interface IToy {
   position: IPosition;

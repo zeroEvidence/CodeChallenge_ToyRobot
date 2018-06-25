@@ -1,10 +1,11 @@
-import { MoveOneUnitController } from "../../behaviours/move/MoveOneUnitController";
-import { BehavioursFactory } from "../../behaviours/ToyBehavioursFactory";
+import { BaseBehavioursFactory } from "../../behaviours/BehavioursFactory";
+import { IBehavioursFactory } from "../../behaviours/interfaces/BehavioursFactory.interface";
+import { MoveOneUnitController } from "./move/MoveOneUnitController";
 
-export class RobotBehavioursFactory extends BehavioursFactory {
+export class RobotBehavioursFactory extends BaseBehavioursFactory
+  implements IBehavioursFactory {
   constructor() {
     super();
-    //
   }
 
   public createMoveAbility() {

@@ -9,4 +9,5 @@ export interface IToy {
   report(): IPosition;
   move(): boolean;
   left(): void;
+  right(): void;
 }

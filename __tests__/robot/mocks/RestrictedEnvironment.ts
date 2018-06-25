@@ -9,7 +9,9 @@ export class RestrictedEnvironment extends Environment {
       position.x >= 0 &&
       position.x < 5 &&
       position.y >= 0 &&
-      position.y < 5
+      position.y < 5 &&
+      position.orientation >= 0 &&
+      position.orientation < 4
     ) {
       valid = true;
     }

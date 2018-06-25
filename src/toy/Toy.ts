@@ -74,7 +74,20 @@ export abstract class Toy implements IToy {
     this.position.orientation = ++this.position.orientation % 4;
   }
 
+  public right() {
+    if (!this.isPlaced()) {
+      // noop
+    }
+
+    this.position.orientation =
+      --this.position.orientation === -1 ? 3 : this.position.orientation % 4;
+  }
+
   protected validatePosition(position: IPosition): boolean {
+    if (!this.environment) {
+      return false;
+    }
+
     return this.environment.hasSurfaceAtPos(position);
   }
 

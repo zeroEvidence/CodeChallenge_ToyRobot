@@ -5,7 +5,5 @@ export abstract class Surface implements ISurface {
   public length: number;
   public width: number;
 
-  public hasSurfaceAtPos(position: IPosition): boolean {
-    throw Error("Method unimplemented.");
-  }
+  public abstract hasSurfaceAtPos(position: IPosition): boolean;
 }

@@ -1,5 +1,5 @@
-import { Surface } from "../surface/Surface";
-import { IPosition } from "../toy/orientation/interfaces/Position.interface";
+import { IPosition } from "../../toy/orientation/interfaces/Position.interface";
+import { Surface } from "../Surface";
 
 export class Table extends Surface {
   public readonly length: number;

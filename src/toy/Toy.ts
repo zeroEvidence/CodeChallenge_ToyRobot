@@ -84,29 +84,42 @@ export abstract class Toy implements IToy {
     this.position.orientation = amount % 4;
   }
 
-  protected validatePosition(position: IPosition): boolean {
-    if (!this.environment) {
-      return false;
-    }
-
-    return this.environment.hasSurfaceAtPos(position);
-  }
-
-  protected setPosition(position: IPosition): boolean {
-    const validPosition = this.validatePosition(position);
-
-    if (validPosition) {
-      this.position = position;
-    }
-
-    return validPosition;
-  }
-
   protected isPlaced(): boolean {
     if (!this.isPlacedFlag) {
       throw new Error(ToyStrings.missingEnvironment);
     }
 
     return true;
+  }
+
+  protected setPosition(position: IPosition): boolean {
+    const validPosition = this.validatePosition(position);
+    const validOrientation = this.validateOrientation(position);
+
+    if (validPosition && validOrientation) {
+      this.position = position;
+    }
+
+    return validPosition && validOrientation;
+  }
+
+  protected validatePosition(position: IPosition): boolean {
+    let isValid = false;
+
+    if (this.surface) {
+      isValid = true;
+    }
+
+    return isValid && this.surface.hasSurfaceAtPos(position);
+  }
+
+  protected validateOrientation(position: IPosition): boolean {
+    let isValid = false;
+
+    if (position.orientation >= 0 && position.orientation < 4) {
+      isValid = true;
+    }
+
+    return isValid;
   }
 }

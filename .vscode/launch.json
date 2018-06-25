@@ -8,14 +8,12 @@
       "type": "node",
       "request": "launch",
       "name": "Debug file",
-      "program": "${workspaceRoot}/lib/${fileBasenameNoExtension}.js",
+      "program": "${workspaceRoot}/build/${fileBasenameNoExtension}.js",
       "cwd": "${workspaceRoot}",
       "sourceMaps": true,
       "smartStep": true,
       "preLaunchTask": "build",
-      "outFiles": [
-        "${workspaceRoot}/lib/*.js"
-      ]
+      "outFiles": ["${workspaceRoot}/build/*.js"]
     },
     {
       "type": "node",
@@ -25,15 +23,12 @@
       "args": [
         "--findRelatedTests",
         "${relativeFile}",
-        "--env",
-        "jest-environment-node-debug",
+        // "--env",
+        // "jest-environment-node-debug",
         "--no-cache",
         "--runInBand"
       ],
-      "runtimeArgs": [
-        "--inspect-brk",
-        "--nolazy"
-      ],
+      "runtimeArgs": ["--inspect-brk", "--nolazy"],
       "cwd": "${workspaceRoot}",
       "sourceMaps": true,
       "smartStep": true,

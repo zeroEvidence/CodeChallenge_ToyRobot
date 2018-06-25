@@ -39,15 +39,9 @@ export abstract class Toy implements IToy {
 
   public move() {}
 
-  public left() {
-    this.changeOrientation(++this.position.orientation);
-  }
+  public left() {}
 
-  public right() {
-    this.changeOrientation(
-      --this.position.orientation === -1 ? 3 : this.position.orientation
-    );
-  }
+  public right() {}
 
   public isPlaced(): boolean {
     if (!this.isPlacedFlag) {
@@ -68,13 +62,7 @@ export abstract class Toy implements IToy {
     return validPosition && validOrientation;
   }
 
-  protected changeOrientation(amount: number) {
-    if (!this.isPlaced()) {
-      // noop
-    }
-
-    this.position.orientation = amount % 4;
-  }
+  protected changeOrientation(amount: number) {}
 
   protected validatePosition(position: IPosition): boolean {
     let isValid = false;

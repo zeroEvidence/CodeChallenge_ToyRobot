@@ -6,7 +6,9 @@ export interface IToy {
   surface: ISurface;
 
   setSurface(environment: ISurface): void;
+  setPosition(position: IPosition): boolean;
   place(position: IPosition): boolean;
+  isPlaced(): boolean;
   report(): IPosition;
   move(): boolean;
   left(): void;

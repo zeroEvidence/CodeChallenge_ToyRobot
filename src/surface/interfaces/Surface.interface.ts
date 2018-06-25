@@ -1,4 +1,4 @@
-import { IPosition } from "../../toy/behaviours/orientation/interfaces/Position.interface";
+import { IPosition } from "../../toy/interfaces/Position.interface";
 
 export interface ISurface {
   readonly length: number;

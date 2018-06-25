@@ -1,6 +1,6 @@
 import { ISurface } from "../surface/interfaces/Surface.interface";
 import { CardinalDirections } from "./behaviours/orientation/CardinalDirections";
-import { IPosition } from "./behaviours/orientation/interfaces/Position.interface";
+import { IPosition } from "./interfaces/Position.interface";
 import { IToy } from "./interfaces/Toy.interface";
 import { ToyStrings } from "./ToyStrings";
 

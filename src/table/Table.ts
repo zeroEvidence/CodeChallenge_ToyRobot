@@ -1,5 +1,5 @@
 import { Surface } from "../surface/Surface";
-import { ICoordinates } from "./interfaces/ICoordinates.interface";
+import { IPosition } from "../toy/orientation/interfaces/Position.interface";
 
 export class Table extends Surface {
   public readonly length: number;
@@ -12,7 +12,7 @@ export class Table extends Surface {
     this.width = width;
   }
 
-  public hasSurfaceAtPos(coordinates: ICoordinates) {
+  public hasSurfaceAtPos(coordinates: IPosition) {
     if (
       coordinates.x >= this.length ||
       coordinates.x < 0 ||

@@ -1,9 +1,11 @@
-export class ToyBehavioursFactory {
+import { MoveController } from "./move/MoveController";
+
+export abstract class BehavioursFactory {
   constructor() {
     //
   }
 
-  public createMove() {
-    return;
+  public createMoveAbility() {
+    return new MoveController();
   }
 }

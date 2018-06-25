@@ -1,5 +1,4 @@
 import { ISurface } from "../surface/interfaces/Surface.interface";
-import { CardinalDirections } from "./behaviours/orientation/CardinalDirections";
 import { IPosition } from "./interfaces/Position.interface";
 import { IToy } from "./interfaces/Toy.interface";
 import { ToyStrings } from "./ToyStrings";
@@ -38,33 +37,7 @@ export abstract class Toy implements IToy {
     }
   }
 
-  public move() {
-    if (!this.isPlaced()) {
-      // noop
-    }
-
-    const newPosition = { ...this.position };
-
-    switch (this.position.orientation) {
-      case CardinalDirections.north:
-        newPosition.y++;
-        break;
-
-      case CardinalDirections.east:
-        newPosition.x++;
-        break;
-
-      case CardinalDirections.south:
-        newPosition.y--;
-        break;
-
-      case CardinalDirections.west:
-        newPosition.x--;
-        break;
-    }
-
-    return this.setPosition(newPosition);
-  }
+  public move() {}
 
   public left() {
     this.changeOrientation(++this.position.orientation);
@@ -76,15 +49,7 @@ export abstract class Toy implements IToy {
     );
   }
 
-  protected changeOrientation(amount: number) {
-    if (!this.isPlaced()) {
-      // noop
-    }
-
-    this.position.orientation = amount % 4;
-  }
-
-  protected isPlaced(): boolean {
+  public isPlaced(): boolean {
     if (!this.isPlacedFlag) {
       throw new Error(ToyStrings.missingEnvironment);
     }
@@ -92,7 +57,7 @@ export abstract class Toy implements IToy {
     return true;
   }
 
-  protected setPosition(position: IPosition): boolean {
+  public setPosition(position: IPosition): boolean {
     const validPosition = this.validatePosition(position);
     const validOrientation = this.validateOrientation(position);
 
@@ -101,6 +66,14 @@ export abstract class Toy implements IToy {
     }
 
     return validPosition && validOrientation;
+  }
+
+  protected changeOrientation(amount: number) {
+    if (!this.isPlaced()) {
+      // noop
+    }
+
+    this.position.orientation = amount % 4;
   }
 
   protected validatePosition(position: IPosition): boolean {

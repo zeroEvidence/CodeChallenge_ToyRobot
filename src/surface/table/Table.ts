@@ -2,9 +2,6 @@ import { IPosition } from "../../toy/orientation/interfaces/Position.interface";
 import { Surface } from "../Surface";
 
 export class Table extends Surface {
-  public readonly length: number;
-  public readonly width: number;
-
   constructor(length = 5, width = 5) {
     super();
 

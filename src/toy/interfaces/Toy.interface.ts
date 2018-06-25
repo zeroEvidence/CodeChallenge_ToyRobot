@@ -4,6 +4,7 @@ import { IPosition } from "../orientation/interfaces/Position.interface";
 export interface IToy {
   position: IPosition;
   surface: ISurface;
+
   setSurface(environment: ISurface): void;
   place(position: IPosition): boolean;
   report(): IPosition;

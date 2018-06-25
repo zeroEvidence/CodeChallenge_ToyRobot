@@ -1,4 +1,4 @@
-import { ITable } from "../../src/table/interfaces/ITable.interface";
+import { ISurface } from "../../src/surface/interfaces/Surface.interface";
 import { Table } from "../../src/table/Table";
 
 describe("Table", () => {
@@ -23,7 +23,7 @@ describe("Table", () => {
   });
 
   describe("Behaviours", () => {
-    let table: ITable;
+    let table: ISurface;
 
     beforeEach(() => {
       table = new Table();
@@ -31,35 +31,51 @@ describe("Table", () => {
 
     describe("hasSurfaceAtPos", () => {
       it("Should be true at position 0,0", () => {
-        return expect(table.hasSurfaceAtCoords({ x: 0, y: 0 })).toEqual(true);
+        return expect(
+          table.hasSurfaceAtPos({ x: 0, y: 0, orientation: -1 })
+        ).toEqual(true);
       });
 
       it("Should be true at position 0,4", () => {
-        return expect(table.hasSurfaceAtCoords({ x: 0, y: 4 })).toEqual(true);
+        return expect(
+          table.hasSurfaceAtPos({ x: 0, y: 4, orientation: -1 })
+        ).toEqual(true);
       });
 
       it("Should be true at position 4,0", () => {
-        return expect(table.hasSurfaceAtCoords({ x: 4, y: 0 })).toEqual(true);
+        return expect(
+          table.hasSurfaceAtPos({ x: 4, y: 0, orientation: -1 })
+        ).toEqual(true);
       });
 
       it("Should be true at position 4,4", () => {
-        return expect(table.hasSurfaceAtCoords({ x: 4, y: 4 })).toEqual(true);
+        return expect(
+          table.hasSurfaceAtPos({ x: 4, y: 4, orientation: -1 })
+        ).toEqual(true);
       });
 
       it("Should be false at position -1,0", () => {
-        return expect(table.hasSurfaceAtCoords({ x: -1, y: 0 })).toEqual(false);
+        return expect(
+          table.hasSurfaceAtPos({ x: -1, y: 0, orientation: -1 })
+        ).toEqual(false);
       });
 
       it("Should be false at position 0,-1", () => {
-        return expect(table.hasSurfaceAtCoords({ x: 0, y: -1 })).toEqual(false);
+        return expect(
+          table.hasSurfaceAtPos({ x: 0, y: -1, orientation: -1 })
+        ).toEqual(false);
       });
 
       it("Should be false at position 5,0", () => {
-        return expect(table.hasSurfaceAtCoords({ x: 5, y: 0 })).toEqual(false);
+        return expect(
+          table.hasSurfaceAtPos({ x: 5, y: 0, orientation: -1 })
+        ).toEqual(false);
       });
 
       it("Should be false at position 0,5", () => {
-        return expect(table.hasSurfaceAtCoords({ x: 0, y: 5 })).toEqual(false);
+        return expect(
+          table.hasSurfaceAtPos({ x: 0, y: 5, orientation: -1 })
+        ).toEqual(false);
       });
     });
   });

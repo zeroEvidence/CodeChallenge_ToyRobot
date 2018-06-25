@@ -67,20 +67,21 @@ export abstract class Toy implements IToy {
   }
 
   public left() {
-    if (!this.isPlaced()) {
-      // noop
-    }
-
-    this.position.orientation = ++this.position.orientation % 4;
+    this.changeOrientation(++this.position.orientation);
   }
 
   public right() {
+    this.changeOrientation(
+      --this.position.orientation === -1 ? 3 : this.position.orientation
+    );
+  }
+
+  protected changeOrientation(amount: number) {
     if (!this.isPlaced()) {
       // noop
     }
 
-    this.position.orientation =
-      --this.position.orientation === -1 ? 3 : this.position.orientation % 4;
+    this.position.orientation = amount % 4;
   }
 
   protected validatePosition(position: IPosition): boolean {

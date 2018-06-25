@@ -1,7 +1,7 @@
-import { Environment } from "../../../src/environment/Environment";
+import { Surface } from "../../../src/surface/Surface";
 import { IPosition } from "../../../src/toy/interfaces/Position.interface";
 
-export class RestrictedEnvironment extends Environment {
+export class RestrictedEnvironment extends Surface {
   public hasSurfaceAtPos(position: IPosition) {
     let valid = false;
 
@@ -9,9 +9,7 @@ export class RestrictedEnvironment extends Environment {
       position.x >= 0 &&
       position.x < 5 &&
       position.y >= 0 &&
-      position.y < 5 &&
-      position.orientation >= 0 &&
-      position.orientation < 4
+      position.y < 5
     ) {
       valid = true;
     }

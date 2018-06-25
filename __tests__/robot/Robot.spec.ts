@@ -3,7 +3,7 @@ import { Robot } from "../../src/robot/Robot";
 import { IPosition } from "../../src/toy/interfaces/Position.interface";
 import { CardinalDirections } from "../../src/toy/orientation/CardinalDirections";
 import { ToyStrings } from "../../src/toy/ToyStrings";
-import { InfiniteEnvironment } from "./mocks/InfinateEnvironment";
+import { InfiniteEnvironment } from "./mocks/InfiniteEnvironment";
 import { NoEnvironment } from "./mocks/NoEnvironment";
 import { RestrictedEnvironment } from "./mocks/RestrictedEnvironment";
 
@@ -23,15 +23,15 @@ describe("Robot", () => {
   });
 
   it("Should have an initial default environment of undefined", () => {
-    return expect(robot.environment).toBeUndefined();
+    return expect(robot.surface).toBeUndefined();
   });
 
   it("Should set the environment", () => {
     const environment = new InfiniteEnvironment();
 
-    robot.setEnvironment(environment);
+    robot.setSurface(environment);
 
-    return expect(robot.environment).toBeInstanceOf(InfiniteEnvironment);
+    return expect(robot.surface).toBeInstanceOf(InfiniteEnvironment);
   });
 
   describe("Behaviours", () => {
@@ -54,7 +54,7 @@ describe("Robot", () => {
     describe("Method .place(...)", () => {
       describe("Valid positions", () => {
         beforeEach(() => {
-          return robot.setEnvironment(mockInfiniteEnvironment);
+          return robot.setSurface(mockInfiniteEnvironment);
         });
 
         it("Should be valid at position 0,0 N", () => {
@@ -84,7 +84,7 @@ describe("Robot", () => {
 
       describe("Invalid positions", () => {
         beforeEach(() => {
-          return robot.setEnvironment(mockNoEnvironment);
+          return robot.setSurface(mockNoEnvironment);
         });
 
         it("Should be invalid at position -1,0 N", () => {
@@ -115,7 +115,7 @@ describe("Robot", () => {
 
     describe("Method .report()", () => {
       beforeEach(() => {
-        return robot.setEnvironment(mockInfiniteEnvironment);
+        return robot.setSurface(mockInfiniteEnvironment);
       });
 
       it("Should throw an error when unplaced", () => {
@@ -128,7 +128,7 @@ describe("Robot", () => {
         "Should throw an error if the toy had been placed in an " +
           "invalid area",
         () => {
-          robot.setEnvironment(mockNoEnvironment);
+          robot.setSurface(mockNoEnvironment);
           robot.place({ x: -1, y: -1, orientation: -1 });
 
           return expect(() => {
@@ -152,12 +152,12 @@ describe("Robot", () => {
 
     describe("Method .move()", () => {
       beforeEach(() => {
-        robot.setEnvironment(mockInfiniteEnvironment);
+        robot.setSurface(mockInfiniteEnvironment);
       });
 
       describe("Without placing first", () => {
         it("Should throw an error when moving without placing", () => {
-          robot.setEnvironment(mockNoEnvironment);
+          robot.setSurface(mockNoEnvironment);
 
           return expect(() => {
             robot.move();
@@ -167,7 +167,7 @@ describe("Robot", () => {
 
       describe("Invalid placing", () => {
         it("Should throw an error", () => {
-          robot.setEnvironment(mockNoEnvironment);
+          robot.setSurface(mockNoEnvironment);
           robot.place(invalidPlaceA);
 
           return expect(() => {
@@ -178,7 +178,7 @@ describe("Robot", () => {
 
       describe("A valid move in any direction", () => {
         beforeEach(() => {
-          robot.setEnvironment(mockInfiniteEnvironment);
+          robot.setSurface(mockInfiniteEnvironment);
           middleOfTableCoords = { x: 2, y: 2, orientation: -1 };
         });
 
@@ -251,7 +251,7 @@ describe("Robot", () => {
           southWestCorner = { x: 0, y: 0, orientation: -1 };
           northEastCorner = { x: 4, y: 4, orientation: -1 };
 
-          return robot.setEnvironment(mockRestrictedEnvironment);
+          return robot.setSurface(mockRestrictedEnvironment);
         });
 
         it("Should return false when given an invalid move", () => {
@@ -318,7 +318,7 @@ describe("Robot", () => {
 
     describe("Method .left()", () => {
       beforeEach(() => {
-        return robot.setEnvironment(mockRestrictedEnvironment);
+        return robot.setSurface(mockRestrictedEnvironment);
       });
 
       describe("Without placing", () => {
@@ -394,7 +394,7 @@ describe("Robot", () => {
 
     describe("Method .right()", () => {
       beforeEach(() => {
-        return robot.setEnvironment(mockRestrictedEnvironment);
+        return robot.setSurface(mockRestrictedEnvironment);
       });
 
       describe("Without placing", () => {

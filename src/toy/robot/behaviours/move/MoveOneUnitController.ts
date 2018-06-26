@@ -1,7 +1,7 @@
 import { BaseController } from "../../../behaviours/BaseController";
 import { IMoveController } from "../../../behaviours/move/interfaces/MoveController.interface";
-import { CardinalDirections } from "../../../behaviours/orientation/CardinalDirections";
 import { IToyPositional } from "../../../interfaces/ToyPositional.interface";
+import { CardinalDirections } from "../orientation/CardinalDirections";
 
 export class MoveOneUnitController extends BaseController<IToyPositional>
   implements IMoveController {

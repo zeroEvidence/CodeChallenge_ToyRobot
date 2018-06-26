@@ -1,5 +1,6 @@
 import { BaseController } from "../../../behaviours/BaseController";
 import { IOrientationController } from "../../../behaviours/orientation/interfaces/OrientationController.interface";
+import { IPosition } from "../../../behaviours/position/interfaces/Position.interface";
 import { IToyPositional } from "../../../interfaces/ToyPositional.interface";
 
 export class NESWOrientationController extends BaseController<IToyPositional>
@@ -18,13 +19,10 @@ export class NESWOrientationController extends BaseController<IToyPositional>
     );
   }
 
-  public validateOrientation() {
+  public validateOrientation(position: IPosition) {
     let isValid = false;
 
-    if (
-      this.toy.position.orientation >= 0 &&
-      this.toy.position.orientation < 4
-    ) {
+    if (position.orientation >= 0 && position.orientation < 4) {
       isValid = true;
     }
 

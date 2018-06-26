@@ -36,8 +36,4 @@ export class OrientationController extends BaseController
   public validateOrientation() {
     return true;
   }
-
-  protected changeOrientation(amount: number) {
-    throw Error("Method not implemented.");
-  }
 }

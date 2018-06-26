@@ -1,23 +1,41 @@
 import { IToy } from "../../interfaces/Toy.interface";
-import { OrientationControllerBase } from "./OrientationControllerBase";
+import { ControllerBase } from "../BaseController";
 
 /**
- * Default orientation controller for toys.
+ * OrientationController gives a toy the ability to reorient themselves.
  *
- * Methods are noops as toys do not orient themselves.
+ * OrientationController is toy specific implementation of this class WILL
+ * throw errors.
+ *
+ * OrientationController is here for posterity, in the future we may want to
+ * define default behaviours or apply this behaviour on a large subset of toys,
+ * but for now this OrientationController exists to prevent future developers
+ * from rewriting an OrientationController. OrientationController was first
+ * written for the Robot toy.
  *
  * @export
  * @class OrientationController
- * @extends {OrientationControllerBase}
+ * @extends {ControllerBase}
  */
-export class OrientationController extends OrientationControllerBase {
+export class OrientationController extends ControllerBase {
   constructor(toy: IToy) {
     super(toy);
   }
 
-  public left() {}
+  public left() {
+    throw Error("Method not implemented.");
+  }
 
-  public right() {}
+  public right() {
+    throw Error("Method not implemented.");
+  }
 
-  protected changeOrientation(amount: number) {}
+  // The default is all toys can have any orientation
+  public validateOrientation() {
+    return true;
+  }
+
+  protected changeOrientation(amount: number) {
+    throw Error("Method not implemented.");
+  }
 }

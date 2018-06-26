@@ -1,4 +1,4 @@
-import { ControllerBase } from "../../../behaviours/BaseController";
+import { BaseController } from "../../../behaviours/BaseController";
 import { IOrientationController } from "../../../behaviours/orientation/interfaces/OrientationController.interface";
 import { IToy } from "../../../interfaces/Toy.interface";
 

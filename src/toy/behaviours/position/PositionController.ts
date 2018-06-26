@@ -1,7 +1,7 @@
 import { ISurface } from "../../../surface/interfaces/Surface.interface";
 import { IToyManipulatable } from "../../interfaces/ToyManipulatable.interface";
 import { ToyStrings } from "../../ToyStrings";
-import { ControllerBase } from "../BaseController";
+import { BaseController } from "../BaseController";
 import { IPosition } from "./interfaces/Position.interface";
 import { IPositionController } from "./interfaces/PositionController.interface";
 
@@ -10,12 +10,12 @@ import { IPositionController } from "./interfaces/PositionController.interface";
  *
  * @export
  * @class PositionController
- * @extends {ControllerBase}
+ * @extends {BaseController}
  */
 export class PositionController<
   P extends IPosition = IPosition,
   S extends ISurface = ISurface
-> extends ControllerBase implements IPositionController<P> {
+> extends BaseController implements IPositionController<P> {
   constructor(protected toy: IToyManipulatable) {
     super(toy);
   }

@@ -1,5 +1,6 @@
 import { IToy } from "../../interfaces/Toy.interface";
 import { ControllerBase } from "../BaseController";
+import { BaseController } from "../BaseController";
 import { IMoveController } from "./interfaces/MoveController.interface";
 
 /**
@@ -16,10 +17,10 @@ import { IMoveController } from "./interfaces/MoveController.interface";
  *
  * @export
  * @class MoveController
- * @extends {ControllerBase}
+ * @extends {BaseController}
  */
-export class MoveController extends ControllerBase implements IMoveController {
-  constructor(protected toy: IToy) {
+export class MoveController extends BaseController implements IMoveController {
+  constructor(protected toy: IToyPositional) {
     super(toy);
   }
 

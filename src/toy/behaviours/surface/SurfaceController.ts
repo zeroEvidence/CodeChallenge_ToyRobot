@@ -1,6 +1,6 @@
 import { ISurface } from "../../../surface/interfaces/Surface.interface";
 import { IToySurfaceMountable } from "../../interfaces/ToySurfaceMountable.interface";
-import { ControllerBase } from "../BaseController";
+import { BaseController } from "../BaseController";
 import { ISurfaceController } from "./interfaces/SurfaceController.interface";
 
 /**
@@ -8,10 +8,10 @@ import { ISurfaceController } from "./interfaces/SurfaceController.interface";
  *
  * @export
  * @class SurfaceController
- * @extends {ControllerBase}
+ * @extends {BaseController}
  */
 export class SurfaceController<T extends ISurface = ISurface>
-  extends ControllerBase
+  extends BaseController
   implements ISurfaceController<T> {
   constructor(protected toy: IToySurfaceMountable<T>) {
     super(toy);

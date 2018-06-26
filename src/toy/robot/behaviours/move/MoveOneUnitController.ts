@@ -1,9 +1,9 @@
-import { ControllerBase } from "../../../behaviours/BaseController";
+import { BaseController } from "../../../behaviours/BaseController";
 import { IMoveController } from "../../../behaviours/move/interfaces/MoveController.interface";
 import { CardinalDirections } from "../../../behaviours/orientation/CardinalDirections";
 import { IToy } from "../../../interfaces/Toy.interface";
 
-export class MoveOneUnitController extends ControllerBase
+export class MoveOneUnitController extends BaseController<IToyPositional>
   implements IMoveController {
   constructor(protected toy: IToy) {
     super(toy);

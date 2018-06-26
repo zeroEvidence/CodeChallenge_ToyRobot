@@ -1,5 +1,5 @@
 import { IToy } from "../../interfaces/Toy.interface";
-import { ControllerBase } from "../BaseController";
+import { BaseController } from "../BaseController";
 import { IReportController } from "./interfaces/ReportController.interface";
 
 /**
@@ -16,9 +16,9 @@ import { IReportController } from "./interfaces/ReportController.interface";
  *
  * @export
  * @class ReportController
- * @extends {ControllerBase}
+ * @extends {BaseController}
  */
-export class ReportController<T> extends ControllerBase
+export class ReportController<T> extends BaseController
   implements IReportController<T> {
   constructor(protected toy: IToy) {
     super(toy);

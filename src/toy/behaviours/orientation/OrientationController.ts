@@ -1,5 +1,6 @@
 import { IToy } from "../../interfaces/Toy.interface";
 import { ControllerBase } from "../BaseController";
+import { IOrientationController } from "./interfaces/OrientationController.interface";
 
 /**
  * OrientationController gives a toy the ability to reorient themselves.
@@ -17,7 +18,8 @@ import { ControllerBase } from "../BaseController";
  * @class OrientationController
  * @extends {ControllerBase}
  */
-export class OrientationController extends ControllerBase {
+export class OrientationController extends ControllerBase
+  implements IOrientationController {
   constructor(toy: IToy) {
     super(toy);
   }

@@ -8,7 +8,8 @@ import { IToy } from "./Toy.interface";
  * @interface IToySurfaceMountable
  * @extends {IToy}
  */
-export interface IToySurfaceMountable<T extends ISurface> extends IToy {
+export interface IToySurfaceMountable<T extends ISurface = ISurface>
+  extends IToy {
   surface: T;
   setSurface(environment: T): void;
 }

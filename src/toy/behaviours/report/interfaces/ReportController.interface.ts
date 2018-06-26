@@ -1,3 +1,3 @@
-export interface IReportController<T> {
+export interface IReportController<T = any> {
   report(): T;
 }

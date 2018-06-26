@@ -1,3 +1,4 @@
+import { ISurface } from "../../../surface/interfaces/Surface.interface";
 import { IToyManipulatable } from "../../interfaces/ToyManipulatable.interface";
 import { ToyStrings } from "../../ToyStrings";
 import { ControllerBase } from "../BaseController";
@@ -11,11 +12,15 @@ import { IPositionController } from "./interfaces/PositionController.interface";
  * @class PositionController
  * @extends {ControllerBase}
  */
+export class PositionController<
+  P extends IPosition = IPosition,
+  S extends ISurface = ISurface
+> extends ControllerBase implements IPositionController<P> {
   constructor(protected toy: IToyManipulatable) {
     super(toy);
   }
 
-  public place(position: IPosition) {
+  public place(position: P) {
     const positionSet = this.setPosition(position);
 
     if (positionSet) {
@@ -33,7 +38,7 @@ import { IPositionController } from "./interfaces/PositionController.interface";
     return true;
   }
 
-  public setPosition(position: IPosition): boolean {
+  public setPosition(position: P): boolean {
     const validPosition = this.validatePosition(position);
     const validOrientation = this.toy.validateOrientation(position);
 
@@ -44,7 +49,7 @@ import { IPositionController } from "./interfaces/PositionController.interface";
     return validPosition && validOrientation;
   }
 
-  public validatePosition(position: IPosition): boolean {
+  public validatePosition(position: P): boolean {
     let isValid = false;
 
     if (this.toy.surface) {

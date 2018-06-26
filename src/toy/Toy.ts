@@ -31,11 +31,7 @@ export abstract class Toy implements IToy {
     return positionSet;
   }
 
-  public report() {
-    if (this.isPlaced()) {
-      return this.position;
-    }
-  }
+  public report() {}
 
   public move() {}
 
@@ -74,13 +70,5 @@ export abstract class Toy implements IToy {
     return isValid && this.surface.hasSurfaceAtPos(position);
   }
 
-  protected validateOrientation(position: IPosition): boolean {
-    let isValid = false;
-
-    if (position.orientation >= 0 && position.orientation < 4) {
-      isValid = true;
-    }
-
-    return isValid;
-  }
+  protected validateOrientation(position: IPosition): boolean {}
 }

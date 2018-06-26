@@ -15,26 +15,4 @@ export abstract class Toy implements IToy {
       y: -1
     };
   }
-
-  public setSurface(surface: ISurface) {}
-
-  public place(position: IPosition) {}
-
-  public report() {}
-
-  public move() {}
-
-  public left() {}
-
-  public right() {}
-
-  public isPlaced(): boolean {}
-
-  public setPosition(position: IPosition): boolean {}
-
-  protected changeOrientation(amount: number) {}
-
-  protected validatePosition(position: IPosition): boolean {}
-
-  protected validateOrientation(position: IPosition): boolean {}
 }

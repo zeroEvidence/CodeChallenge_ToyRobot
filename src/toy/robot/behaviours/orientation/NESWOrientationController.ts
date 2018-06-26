@@ -1,7 +1,7 @@
 import { BaseController } from "../../../behaviours/BaseController";
 import { IOrientationController } from "../../../behaviours/orientation/interfaces/OrientationController.interface";
-import { IPosition } from "../../../behaviours/position/interfaces/Position.interface";
 import { IToyPositional } from "../../../interfaces/ToyPositional.interface";
+import { IPosition } from "../../../position/interfaces/Position.interface";
 
 export class NESWOrientationController extends BaseController<IToyPositional>
   implements IOrientationController {

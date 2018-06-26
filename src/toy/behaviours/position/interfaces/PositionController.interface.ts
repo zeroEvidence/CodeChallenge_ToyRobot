@@ -1,5 +1,5 @@
+import { IPosition } from "../../../position/interfaces/Position.interface";
 import { BaseController } from "../../BaseController";
-import { IPosition } from "./Position.interface";
 
 export interface IPositionController<T extends IPosition = IPosition>
   extends BaseController {

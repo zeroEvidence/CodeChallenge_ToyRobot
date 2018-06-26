@@ -1,4 +1,4 @@
-import { IPosition } from "../behaviours/position/interfaces/Position.interface";
+import { IPosition } from "../position/interfaces/Position.interface";
 import { IToy } from "./Toy.interface";
 
 /**

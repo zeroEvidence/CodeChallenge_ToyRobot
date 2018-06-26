@@ -1,8 +1,8 @@
 import { ISurface } from "../../../surface/interfaces/Surface.interface";
 import { IToyManipulatable } from "../../interfaces/ToyManipulatable.interface";
+import { IPosition } from "../../position/interfaces/Position.interface";
 import { ToyStrings } from "../../ToyStrings";
 import { BaseController } from "../BaseController";
-import { IPosition } from "./interfaces/Position.interface";
 import { IPositionController } from "./interfaces/PositionController.interface";
 
 /**

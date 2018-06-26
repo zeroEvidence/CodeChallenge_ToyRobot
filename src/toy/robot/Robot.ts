@@ -1,10 +1,10 @@
 import { ISurface } from "../../surface/interfaces/Surface.interface";
 import { IMoveController } from "../behaviours/move/interfaces/MoveController.interface";
 import { IOrientationController } from "../behaviours/orientation/interfaces/OrientationController.interface";
-import { IPosition } from "../behaviours/position/interfaces/Position.interface";
 import { IPositionController } from "../behaviours/position/interfaces/PositionController.interface";
 import { IReportController } from "../behaviours/report/interfaces/ReportController.interface";
 import { ISurfaceController } from "../behaviours/surface/interfaces/SurfaceController.interface";
+import { IPosition } from "../position/interfaces/Position.interface";
 import { Toy } from "../Toy";
 import { RobotBehavioursFactory } from "./behaviours/RobotBehaviorsFactory";
 import { IRobot } from "./interfaces/Robot.interface";

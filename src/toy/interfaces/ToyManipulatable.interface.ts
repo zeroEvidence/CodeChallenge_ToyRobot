@@ -1,5 +1,5 @@
 import { ISurface } from "../../surface/interfaces/Surface.interface";
-import { IPosition } from "../behaviours/position/interfaces/Position.interface";
+import { IPosition } from "../position/interfaces/Position.interface";
 import { IToyOrientable } from "./ToyOrientable.interface";
 import { IToyPositional } from "./ToyPositional.interface";
 import { IToySurfaceMountable } from "./ToySurfaceMountable.interface";

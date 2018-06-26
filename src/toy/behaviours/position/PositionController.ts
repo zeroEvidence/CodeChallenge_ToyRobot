@@ -15,8 +15,8 @@ import { IPositionController } from "./interfaces/PositionController.interface";
 export class PositionController<
   P extends IPosition = IPosition,
   S extends ISurface = ISurface
-> extends BaseController implements IPositionController<P> {
-  constructor(protected toy: IToyManipulatable) {
+> extends BaseController<IToyManipulatable> implements IPositionController<P> {
+  constructor(toy: IToyManipulatable) {
     super(toy);
   }
 

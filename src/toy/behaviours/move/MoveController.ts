@@ -19,7 +19,7 @@ import { IMoveController } from "./interfaces/MoveController.interface";
  * @extends {BaseController}
  */
 export class MoveController extends BaseController implements IMoveController {
-  constructor(protected toy: IToyPositional) {
+  constructor(toy: IToyPositional) {
     super(toy);
   }
 

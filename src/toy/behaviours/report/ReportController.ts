@@ -20,7 +20,7 @@ import { IReportController } from "./interfaces/ReportController.interface";
  */
 export class ReportController<T> extends BaseController
   implements IReportController<T> {
-  constructor(protected toy: IToy) {
+  constructor(toy: IToy) {
     super(toy);
   }
 

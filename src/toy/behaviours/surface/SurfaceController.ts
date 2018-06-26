@@ -11,9 +11,9 @@ import { ISurfaceController } from "./interfaces/SurfaceController.interface";
  * @extends {BaseController}
  */
 export class SurfaceController<T extends ISurface = ISurface>
-  extends BaseController
+  extends BaseController<IToySurfaceMountable>
   implements ISurfaceController<T> {
-  constructor(protected toy: IToySurfaceMountable<T>) {
+  constructor(toy: IToySurfaceMountable<T>) {
     super(toy);
   }
 

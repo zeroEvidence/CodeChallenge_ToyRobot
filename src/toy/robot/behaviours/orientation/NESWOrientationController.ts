@@ -1,10 +1,10 @@
 import { BaseController } from "../../../behaviours/BaseController";
 import { IOrientationController } from "../../../behaviours/orientation/interfaces/OrientationController.interface";
-import { IToy } from "../../../interfaces/Toy.interface";
+import { IToyPositional } from "../../../interfaces/ToyPositional.interface";
 
-export class NESWOrientationController extends ControllerBase
+export class NESWOrientationController extends BaseController<IToyPositional>
   implements IOrientationController {
-  constructor(toy: IToy) {
+  constructor(toy: IToyPositional) {
     super(toy);
   }
 

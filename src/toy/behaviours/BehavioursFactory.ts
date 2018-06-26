@@ -1,5 +1,6 @@
 import { IToy } from "../interfaces/Toy.interface";
 import { IToyManipulatable } from "../interfaces/ToyManipulatable.interface";
+import { IToyPositional } from "../interfaces/ToyPositional.interface";
 import { IToySurfaceMountable } from "../interfaces/ToySurfaceMountable.interface";
 import { IBehavioursFactory } from "./interfaces/BehavioursFactory.interface";
 import { MoveController } from "./move/MoveController";
@@ -13,11 +14,11 @@ export abstract class BaseBehavioursFactory implements IBehavioursFactory {
     //
   }
 
-  public createMoveController(toy: IToy) {
+  public createMoveController(toy: IToyPositional) {
     return new MoveController(toy);
   }
 
-  public createOrientationController(toy: IToy) {
+  public createOrientationController(toy: IToyPositional) {
     return new OrientationController(toy);
   }
 

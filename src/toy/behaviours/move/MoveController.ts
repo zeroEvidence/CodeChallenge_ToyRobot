@@ -1,5 +1,4 @@
-import { IToy } from "../../interfaces/Toy.interface";
-import { ControllerBase } from "../BaseController";
+import { IToyPositional } from "../../interfaces/ToyPositional.interface";
 import { BaseController } from "../BaseController";
 import { IMoveController } from "./interfaces/MoveController.interface";
 

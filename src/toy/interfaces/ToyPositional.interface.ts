@@ -7,7 +7,7 @@ import { IToy } from "./Toy.interface";
  * @export
  * @interface IToyPositional
  */
-export interface IToyPositional<T extends IPosition> extends IToy {
+export interface IToyPositional<T extends IPosition = IPosition> extends IToy {
   position: T;
   isPlacedFlag: boolean;
   setPosition(position: T): boolean;

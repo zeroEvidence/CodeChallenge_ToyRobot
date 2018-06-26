@@ -1,11 +1,11 @@
 import { BaseController } from "../../../behaviours/BaseController";
 import { IMoveController } from "../../../behaviours/move/interfaces/MoveController.interface";
 import { CardinalDirections } from "../../../behaviours/orientation/CardinalDirections";
-import { IToy } from "../../../interfaces/Toy.interface";
+import { IToyPositional } from "../../../interfaces/ToyPositional.interface";
 
 export class MoveOneUnitController extends BaseController<IToyPositional>
   implements IMoveController {
-  constructor(protected toy: IToy) {
+  constructor(toy: IToyPositional) {
     super(toy);
   }
 

@@ -8,6 +8,6 @@ import { IToy } from "./Toy.interface";
  * @extends {IToy}
  * @template T
  */
-export interface IToyReportable<T> extends IToy {
+export interface IToyReportable<T = any> extends IToy {
   report(): T;
 }

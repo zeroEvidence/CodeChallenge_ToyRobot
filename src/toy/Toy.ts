@@ -1,5 +1,5 @@
 import { ISurface } from "../surface/interfaces/Surface.interface";
-import { IPosition } from "./interfaces/Position.interface";
+import { IPosition } from "./behaviours/position/interfaces/Position.interface";
 import { IToy } from "./interfaces/Toy.interface";
 import { ToyStrings } from "./ToyStrings";
 

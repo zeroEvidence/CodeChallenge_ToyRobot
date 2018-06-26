@@ -1,4 +1,4 @@
-import { IPosition } from "../../toy/interfaces/Position.interface";
+import { IPosition } from "../../toy/behaviours/position/interfaces/Position.interface";
 import { Surface } from "../Surface";
 
 export class Table extends Surface {

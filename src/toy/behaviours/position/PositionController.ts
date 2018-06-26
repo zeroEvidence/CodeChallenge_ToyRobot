@@ -1,4 +1,4 @@
-import { IToy } from "../../interfaces/Toy.interface";
+import { IToyManipulatable } from "../../interfaces/ToyManipulatable.interface";
 import { ToyStrings } from "../../ToyStrings";
 import { ControllerBase } from "../BaseController";
 import { IPosition } from "./interfaces/Position.interface";
@@ -11,9 +11,7 @@ import { IPositionController } from "./interfaces/PositionController.interface";
  * @class PositionController
  * @extends {ControllerBase}
  */
-export class PositionController<T extends IPosition> extends ControllerBase
-  implements IPositionController<T> {
-  constructor(protected toy: IToy) {
+  constructor(protected toy: IToyManipulatable) {
     super(toy);
   }
 

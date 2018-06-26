@@ -4,16 +4,7 @@ import { ControllerBase } from "../BaseController";
 import { ISurfaceController } from "./interfaces/SurfaceController.interface";
 
 /**
- * SurfaceController gives a toy the ability to move themselves.
- *
- * SurfaceController is toy specific implementation of this class WILL
- * throw errors.
- *
- * SurfaceController is here for posterity, in the future we may want to
- * define default behaviours or apply this behaviour on a large subset of toys,
- * but for now this SurfaceController exists to prevent future developers
- * from rewriting an SurfaceController. SurfaceController was first written for
- * the Robot toy.
+ * SurfaceController gives a toy the ability to be applied to a surface.
  *
  * @export
  * @class SurfaceController

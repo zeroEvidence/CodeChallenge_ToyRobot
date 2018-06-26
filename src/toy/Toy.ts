@@ -17,9 +17,7 @@ export abstract class Toy implements IToy {
     };
   }
 
-  public setSurface(surface: ISurface) {
-    this.surface = surface;
-  }
+  public setSurface(surface: ISurface) {}
 
   public place(position: IPosition) {
     const positionSet = this.setPosition(position);

@@ -1,31 +1,58 @@
-import { ISurface } from "../../../surface/interfaces/Surface.interface";
 import { IToy } from "../../interfaces/Toy.interface";
+import { ToyStrings } from "../../ToyStrings";
 import { ControllerBase } from "../BaseController";
-import { ISurfaceController } from "./interfaces/PositionController.interface";
+import { IPosition } from "./interfaces/Position.interface";
+import { IPositionController } from "./interfaces/PositionController.interface";
 
 /**
- * SurfaceController gives a toy the ability to move themselves.
- *
- * SurfaceController is toy specific implementation of this class WILL
- * throw errors.
- *
- * SurfaceController is here for posterity, in the future we may want to
- * define default behaviours or apply this behaviour on a large subset of toys,
- * but for now this SurfaceController exists to prevent future developers
- * from rewriting an SurfaceController. SurfaceController was first written for
- * the Robot toy.
+ * PositionController gives a toy the ability to change positions.
  *
  * @export
- * @class SurfaceController
+ * @class PositionController
  * @extends {ControllerBase}
  */
-export class SurfaceController<T extends ISurface> extends ControllerBase
-  implements ISurfaceController<T> {
+export class PositionController<T extends IPosition> extends ControllerBase
+  implements IPositionController<T> {
   constructor(protected toy: IToy) {
     super(toy);
   }
 
-  public setSurface(surface: T): void {
-    this.toy.surface = surface;
+  public place(position: IPosition) {
+    const positionSet = this.setPosition(position);
+
+    if (positionSet) {
+      this.toy.isPlacedFlag = true;
+    }
+
+    return positionSet;
+  }
+
+  public isPlaced(): boolean {
+    if (!this.toy.isPlacedFlag) {
+      throw new Error(ToyStrings.missingEnvironment);
+    }
+
+    return true;
+  }
+
+  public setPosition(position: IPosition): boolean {
+    const validPosition = this.validatePosition(position);
+    const validOrientation = this.toy.validateOrientation(position);
+
+    if (validPosition && validOrientation) {
+      this.toy.position = position;
+    }
+
+    return validPosition && validOrientation;
+  }
+
+  public validatePosition(position: IPosition): boolean {
+    let isValid = false;
+
+    if (this.toy.surface) {
+      isValid = true;
+    }
+
+    return isValid && this.toy.surface.hasSurfaceAtPos(position);
   }
 }

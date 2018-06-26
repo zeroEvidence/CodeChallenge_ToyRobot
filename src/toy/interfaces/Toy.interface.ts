@@ -4,6 +4,7 @@ import { IPosition } from "../behaviours/position/interfaces/Position.interface"
 export interface IToy {
   position: IPosition;
   surface: ISurface;
+  isPlacedFlag: boolean;
 
   setSurface(environment: ISurface): void;
   setPosition(position: IPosition): boolean;
@@ -13,4 +14,5 @@ export interface IToy {
   move(): boolean;
   left(): void;
   right(): void;
+  validateOrientation(position: IPosition): boolean;
 }

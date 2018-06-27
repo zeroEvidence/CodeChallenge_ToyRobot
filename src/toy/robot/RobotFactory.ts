@@ -1,57 +1,49 @@
 import { IToyConfig } from "../interfaces/ToyConfig.interface";
-import { ToyFactory } from "../interfaces/ToyFactory.interface";
+import { IToyFactory } from "../interfaces/ToyFactory.interface";
 import { ToyRules } from "../ToyRules";
 import { RobotBehavioursFactory } from "./behaviours/RobotBehaviorsFactory";
 import { IRobot } from "./interfaces/Robot.interface";
+import { Robot } from "./Robot";
 
-export class RobotFactory implements ToyFactory<IRobot> {
+export class RobotFactory implements IToyFactory<IRobot> {
   constructor(private toyBehaviours = new RobotBehavioursFactory()) {
     //
   }
 
   public createToy(toyConfig: IToyConfig) {
-    const newToy = {} as IRobot;
+    const toy = new Robot();
     let i = toyConfig.length;
 
     while (i--) {
       switch (toyConfig[i]) {
         case ToyRules.isMoveable:
           const moveController = this.toyBehaviours.createMoveController();
-          newToy.move = moveController.move;
+          toy.move = moveController.move;
           break;
 
         case ToyRules.isOrientable:
           const orientationController = this.toyBehaviours.createOrientationController();
-          newToy.left = orientationController.left;
-          newToy.right = orientationController.right;
-          newToy.validateOrientation =
-            orientationController.validateOrientation;
+          toy.left = orientationController.left;
+          toy.right = orientationController.right;
+          toy.validateOrientation = orientationController.validateOrientation;
+          toy.changeOrientation = orientationController.changeOrientation;
           break;
 
         case ToyRules.isPositionable:
           const positionController = this.toyBehaviours.createPositionController();
-          newToy.isPlacedFlag = false;
-          newToy.position = {
-            orientation: -1,
-            x: -1,
-            y: -1
-          };
-          newToy.place = positionController.place;
-          newToy.isPlaced = positionController.isPlaced;
-          newToy.setPosition = positionController.setPosition;
-          newToy.validatePosition = positionController.validatePosition;
-          newToy.validateOrientation = positionController.validatePosition;
+          toy.place = positionController.place;
+          toy.setPosition = positionController.setPosition;
+          toy.validatePosition = positionController.validatePosition;
           break;
 
         case ToyRules.isReportable:
           const reportController = this.toyBehaviours.createReportController();
-          newToy.report = reportController.report;
+          toy.report = reportController.report;
           break;
 
         case ToyRules.isSurfaceMountable:
           const surfaceController = this.toyBehaviours.createSurfaceController();
-          newToy.surface = undefined;
-          newToy.setSurface = surfaceController.setSurface;
+          toy.setSurface = surfaceController.setSurface;
           break;
 
         default:
@@ -59,6 +51,6 @@ export class RobotFactory implements ToyFactory<IRobot> {
       }
     }
 
-    return newToy;
+    return toy;
   }
 }

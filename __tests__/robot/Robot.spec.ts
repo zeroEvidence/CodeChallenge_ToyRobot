@@ -1,7 +1,8 @@
-import { IPosition } from "../../src/position/interfaces/Position.interface";
+import { IPosition } from "../../src/toy/position/interfaces/Position.interface";
 import { CardinalDirections } from "../../src/toy/robot/behaviours/orientation/CardinalDirections";
 import { IRobot } from "../../src/toy/robot/interfaces/Robot.interface";
-import { Robot } from "../../src/toy/robot/Robot";
+import { RobotConfigStandard } from "../../src/toy/robot/RobotConfigStandard";
+import { RobotFactory } from "../../src/toy/robot/RobotFactory";
 import { ToyStrings } from "../../src/toy/ToyStrings";
 import { InfiniteEnvironment } from "./mocks/InfiniteEnvironment";
 import { NoEnvironment } from "./mocks/NoEnvironment";
@@ -11,7 +12,8 @@ describe("Robot", () => {
   let robot: IRobot;
 
   beforeEach(() => {
-    robot = new Robot();
+    // robot = new Robot();
+    robot = new RobotFactory().createToy(RobotConfigStandard);
   });
 
   it("Should be able to be instantiated", () => {

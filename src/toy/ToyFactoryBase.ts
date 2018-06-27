@@ -3,10 +3,18 @@ export abstract class ToyFactoryBase {
     //
   }
 
-  protected applyBehaviours(derived: any, baseClass: any) {
+  /**
+   * applyBehaviours copies the methods of a baseClass to the derivedClass
+   *
+   * @protected
+   * @param {*} derivedClass
+   * @param {*} baseClass
+   * @memberof ToyFactoryBase
+   */
+  protected applyBehaviours(derivedClass: any, baseClass: any) {
     Object.getOwnPropertyNames(baseClass.__proto__).forEach(name => {
       if (name !== "constructor") {
-        derived.__proto__[name] = baseClass.__proto__[name];
+        derivedClass.__proto__[name] = baseClass.__proto__[name];
       }
     });
   }

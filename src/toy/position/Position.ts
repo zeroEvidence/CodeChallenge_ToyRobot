@@ -1,7 +1,5 @@
 import { IPosition } from "./interfaces/Position.interface";
 
 export class Position implements IPosition {
-  public x: number;
-  public y: number;
-  public orientation: number;
+  constructor(public x = -1, public y = -1) {}
 }

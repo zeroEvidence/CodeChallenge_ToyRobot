@@ -1,7 +1,7 @@
 import { ISurface } from "../../../surface/interfaces/Surface.interface";
+import { IOrientation } from "../../orientation/interfaces/Orientation";
 import { IPosition } from "../../position/interfaces/Position.interface";
 import { Toy } from "../../Toy";
-import { ToyStrings } from "../../ToyStrings";
 import { IPositionController } from "./interfaces/PositionController.interface";
 
 /**
@@ -13,8 +13,9 @@ import { IPositionController } from "./interfaces/PositionController.interface";
  */
 export class PositionController<
   P extends IPosition = IPosition,
+  O extends IOrientation = IOrientation,
   S extends ISurface = ISurface
-> extends Toy implements IPositionController<P> {
+> extends Toy implements IPositionController<P, O, S> {
   constructor() {
     super();
   }

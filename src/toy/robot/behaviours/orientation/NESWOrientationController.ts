@@ -1,5 +1,5 @@
 import { IOrientationController } from "../../../behaviours/orientation/interfaces/OrientationController.interface";
-import { IPosition } from "../../../position/interfaces/Position.interface";
+import { IOrientation } from "../../../orientation/interfaces/Orientation";
 import { Toy } from "../../../Toy";
 
 export class NESWOrientationController extends Toy
@@ -18,7 +18,7 @@ export class NESWOrientationController extends Toy
     );
   }
 
-  public validateOrientation(position: IPosition) {
+  public validateOrientation(orientation: IOrientation) {
     let isValid = false;
 
     if (position.orientation >= 0 && position.orientation < 4) {

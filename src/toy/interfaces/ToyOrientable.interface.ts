@@ -1,4 +1,3 @@
-import { IPosition } from "../position/interfaces/Position.interface";
 import { IToy } from "./Toy.interface";
 
 /**
@@ -10,5 +9,5 @@ import { IToy } from "./Toy.interface";
 export interface IToyOrientable extends IToy {
   left(): void;
   right(): void;
-  validateOrientation(position: IPosition): boolean;
+  changeOrientation?(amount: number): void;
 }

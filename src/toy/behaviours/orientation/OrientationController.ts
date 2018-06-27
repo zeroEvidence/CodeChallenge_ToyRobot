@@ -1,4 +1,4 @@
-import { IPosition } from "../../position/interfaces/Position.interface";
+import { IOrientation } from "../../orientation/interfaces/Orientation";
 import { Toy } from "../../Toy";
 import { IOrientationController } from "./interfaces/OrientationController.interface";
 
@@ -18,7 +18,8 @@ import { IOrientationController } from "./interfaces/OrientationController.inter
  * @class OrientationController
  * @extends {BaseController}
  */
-export class OrientationController<T extends IPosition = IPosition> extends Toy
+export class OrientationController<T extends IOrientation = IOrientation>
+  extends Toy
   implements IOrientationController {
   constructor() {
     super();

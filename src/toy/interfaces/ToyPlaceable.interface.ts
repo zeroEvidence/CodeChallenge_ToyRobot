@@ -1,19 +1,18 @@
 import { ISurface } from "../../surface/interfaces/Surface.interface";
 import { IOrientation } from "../orientation/interfaces/Orientation";
 import { IPosition } from "../position/interfaces/Position.interface";
+import { IToy } from "./Toy.interface";
 
 /**
- * IToy is the interface for all generic toys
- *
- * intentionally left blank as to provide default properties or methods for
- * future modifications
+ * IToyPositional is an interface for toys that are positional
  *
  * @export
- * @interface IToy
+ * @interface IToyPositional
  */
-export interface IToy<
+export interface IToyPlaceable<
   P extends IPosition = IPosition,
   O extends IOrientation = IOrientation,
   S extends ISurface = ISurface
-> {
+> extends IToy {
+  place(position: P, orientation: O, surface?: S): boolean;
 }

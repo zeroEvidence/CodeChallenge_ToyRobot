@@ -32,9 +32,4 @@ export class OrientationController<T extends IOrientation = IOrientation>
   public right() {
     throw Error("Method not implemented.");
   }
-
-  // The default is all toys can have any orientation
-  public validateOrientation(position: T) {
-    return true;
-  }
 }

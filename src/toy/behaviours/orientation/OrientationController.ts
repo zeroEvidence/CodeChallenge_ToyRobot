@@ -1,4 +1,5 @@
 import { IToyPositional } from "../../interfaces/ToyPositional.interface";
+import { IPosition } from "../../position/interfaces/Position.interface";
 import { BaseController } from "../BaseController";
 import { IOrientationController } from "./interfaces/OrientationController.interface";
 
@@ -18,7 +19,8 @@ import { IOrientationController } from "./interfaces/OrientationController.inter
  * @class OrientationController
  * @extends {BaseController}
  */
-export class OrientationController extends BaseController
+export class OrientationController<T extends IPosition = IPosition>
+  extends BaseController
   implements IOrientationController {
   constructor(toy: IToyPositional) {
     super(toy);
@@ -33,7 +35,7 @@ export class OrientationController extends BaseController
   }
 
   // The default is all toys can have any orientation
-  public validateOrientation() {
+  public validateOrientation(position: T) {
     return true;
   }
 }

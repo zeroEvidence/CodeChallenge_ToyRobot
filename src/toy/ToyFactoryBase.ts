@@ -11,11 +11,13 @@ export abstract class ToyFactoryBase {
    * @param {*} baseClass
    * @memberof ToyFactoryBase
    */
-  protected applyBehaviours(derivedClass: any, baseClass: any) {
-    Object.getOwnPropertyNames(baseClass.__proto__).forEach(name => {
-      if (name !== "constructor") {
-        derivedClass.__proto__[name] = baseClass.__proto__[name];
-      }
+  protected applyBehaviours(derivedClass: any, baseClasses: any[]) {
+    baseClasses.forEach(baseClass => {
+      Object.getOwnPropertyNames(baseClass.__proto__).forEach(name => {
+        if (name !== "constructor") {
+          derivedClass.__proto__[name] = baseClass.__proto__[name];
+        }
+      });
     });
   }
 }

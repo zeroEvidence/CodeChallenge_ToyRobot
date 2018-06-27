@@ -15,42 +15,33 @@ export class RobotFactory extends ToyFactoryBase
   public createToy(toyConfig: IToyConfig) {
     let toy = new Robot();
     let i = toyConfig.length;
+    let behaviours = [];
 
     while (i--) {
       switch (toyConfig[i]) {
         case ToyRules.isMoveable:
-          this.applyBehaviours(toy, this.toyBehaviours.createMoveController());
+          behaviours.push(this.toyBehaviours.createMoveController());
           break;
 
         case ToyRules.isOrientable:
-          this.applyBehaviours(
-            toy,
-            this.toyBehaviours.createOrientationController()
-          );
+          behaviours.push(this.toyBehaviours.createOrientationController());
           break;
 
         case ToyRules.isPositionable:
-          this.applyBehaviours(
-            toy,
-            this.toyBehaviours.createPositionController()
-          );
+          behaviours.push(this.toyBehaviours.createPositionController());
           break;
 
         case ToyRules.isReportable:
-          this.applyBehaviours(
-            toy,
-            this.toyBehaviours.createReportController()
-          );
+          behaviours.push(this.toyBehaviours.createReportController());
           break;
 
         case ToyRules.isSurfaceMountable:
-          this.applyBehaviours(
-            toy,
-            this.toyBehaviours.createSurfaceController()
-          );
+          behaviours.push(this.toyBehaviours.createSurfaceController());
           break;
       }
     }
+
+    this.applyBehaviours(toy, behaviours);
 
     return toy;
   }

@@ -1,0 +1,5 @@
+Move CardinalDirections
+Move IPosition
+
+Add comments to everything
+Remove yarn and package lock

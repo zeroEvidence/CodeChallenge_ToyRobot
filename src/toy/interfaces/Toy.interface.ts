@@ -1,14 +1,10 @@
-import { ISurface } from "../../surface/interfaces/Surface.interface";
-import { IPosition } from "../orientation/interfaces/Position.interface";
-
-export interface IToy {
-  position: IPosition;
-  surface: ISurface;
-
-  setSurface(environment: ISurface): void;
-  place(position: IPosition): boolean;
-  report(): IPosition;
-  move(): boolean;
-  left(): void;
-  right(): void;
-}
+/**
+ * IToy is the interface for all generic toys
+ *
+ * intentionally left blank as to provide default properties or methods for
+ * future modifications
+ *
+ * @export
+ * @interface IToy
+ */
+export interface IToy {}

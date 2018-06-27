@@ -1,5 +1,5 @@
-import { CardinalDirections } from "../../src/toy/orientation/CardinalDirections";
-import { IPosition } from "../../src/toy/orientation/interfaces/Position.interface";
+import { IPosition } from "../../src/position/interfaces/Position.interface";
+import { CardinalDirections } from "../../src/toy/robot/behaviours/orientation/CardinalDirections";
 import { IRobot } from "../../src/toy/robot/interfaces/Robot.interface";
 import { Robot } from "../../src/toy/robot/Robot";
 import { ToyStrings } from "../../src/toy/ToyStrings";

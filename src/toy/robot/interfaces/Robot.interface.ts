@@ -6,5 +6,5 @@ export interface IRobot
   extends IToyManipulatable,
     IToyReportable,
     IToyMoveable {
-  //
+  changeOrientation(amount: number): void;
 }

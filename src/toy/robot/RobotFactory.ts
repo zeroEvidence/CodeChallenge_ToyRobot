@@ -1,52 +1,53 @@
 import { IToyConfig } from "../interfaces/ToyConfig.interface";
 import { IToyFactory } from "../interfaces/ToyFactory.interface";
+import { ToyFactoryBase } from "../ToyFactoryBase";
 import { ToyRules } from "../ToyRules";
 import { RobotBehavioursFactory } from "./behaviours/RobotBehaviorsFactory";
 import { IRobot } from "./interfaces/Robot.interface";
 import { Robot } from "./Robot";
 
-export class RobotFactory implements IToyFactory<IRobot> {
+export class RobotFactory extends ToyFactoryBase
+  implements IToyFactory<IRobot> {
   constructor(private toyBehaviours = new RobotBehavioursFactory()) {
-    //
+    super();
   }
 
   public createToy(toyConfig: IToyConfig) {
-    const toy = new Robot();
+    let toy = new Robot();
     let i = toyConfig.length;
 
     while (i--) {
       switch (toyConfig[i]) {
         case ToyRules.isMoveable:
-          const moveController = this.toyBehaviours.createMoveController();
-          toy.move = moveController.move;
+          this.applyBehaviours(toy, this.toyBehaviours.createMoveController());
           break;
 
         case ToyRules.isOrientable:
-          const orientationController = this.toyBehaviours.createOrientationController();
-          toy.left = orientationController.left;
-          toy.right = orientationController.right;
-          toy.validateOrientation = orientationController.validateOrientation;
-          toy.changeOrientation = orientationController.changeOrientation;
+          this.applyBehaviours(
+            toy,
+            this.toyBehaviours.createOrientationController()
+          );
           break;
 
         case ToyRules.isPositionable:
-          const positionController = this.toyBehaviours.createPositionController();
-          toy.place = positionController.place;
-          toy.setPosition = positionController.setPosition;
-          toy.validatePosition = positionController.validatePosition;
+          this.applyBehaviours(
+            toy,
+            this.toyBehaviours.createPositionController()
+          );
           break;
 
         case ToyRules.isReportable:
-          const reportController = this.toyBehaviours.createReportController();
-          toy.report = reportController.report;
+          this.applyBehaviours(
+            toy,
+            this.toyBehaviours.createReportController()
+          );
           break;
 
         case ToyRules.isSurfaceMountable:
-          const surfaceController = this.toyBehaviours.createSurfaceController();
-          toy.setSurface = surfaceController.setSurface;
-          break;
-
-        default:
+          this.applyBehaviours(
+            toy,
+            this.toyBehaviours.createSurfaceController()
+          );
           break;
       }
     }

@@ -8,13 +8,13 @@ export class MoveOneUnitController extends Toy implements IMoveController {
   }
 
   public move() {
-    if (!this.isPlaced()) {
+    if (this.validatePlacement()) {
       // noop
     }
 
     const newPosition = { ...this.position };
 
-    switch (this.position.orientation) {
+    switch (this.orientation.orientation) {
       case CardinalDirections.north:
         newPosition.y++;
         break;

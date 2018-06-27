@@ -1,21 +1,20 @@
-import { BaseController } from "../../../behaviours/BaseController";
 import { IOrientationController } from "../../../behaviours/orientation/interfaces/OrientationController.interface";
-import { IToyPositional } from "../../../interfaces/ToyPositional.interface";
 import { IPosition } from "../../../position/interfaces/Position.interface";
+import { Toy } from "../../../Toy";
 
-export class NESWOrientationController extends BaseController<IToyPositional>
+export class NESWOrientationController extends Toy
   implements IOrientationController {
-  constructor(toy: IToyPositional) {
-    super(toy);
+  constructor() {
+    super();
   }
 
   public left() {
-    this.changeOrientation(++this.toy.position.orientation);
+    this.changeOrientation(++this.position.orientation);
   }
 
   public right() {
     this.changeOrientation(
-      --this.toy.position.orientation === -1 ? 3 : this.toy.position.orientation
+      --this.position.orientation === -1 ? 3 : this.position.orientation
     );
   }
 
@@ -30,10 +29,10 @@ export class NESWOrientationController extends BaseController<IToyPositional>
   }
 
   protected changeOrientation(amount: number) {
-    if (!this.toy.isPlaced()) {
+    if (!this.isPlaced()) {
       // noop
     }
 
-    this.toy.position.orientation = amount % 4;
+    this.position.orientation = amount % 4;
   }
 }

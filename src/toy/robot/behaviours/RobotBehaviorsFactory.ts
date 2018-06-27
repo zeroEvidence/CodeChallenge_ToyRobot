@@ -1,6 +1,5 @@
 import { BaseBehavioursFactory } from "../../behaviours/BehavioursFactory";
 import { IBehavioursFactory } from "../../behaviours/interfaces/BehavioursFactory.interface";
-import { IToyPositional } from "../../interfaces/ToyPositional.interface";
 import { MoveOneUnitController } from "./move/MoveOneUnitController";
 import { NESWOrientationController } from "./orientation/NESWOrientationController";
 import { ReportPositionController } from "./report/ReportPositionController";
@@ -11,15 +10,15 @@ export class RobotBehavioursFactory extends BaseBehavioursFactory
     super();
   }
 
-  public createMoveController(toy: IToyPositional) {
-    return new MoveOneUnitController(toy);
+  public createMoveController() {
+    return new MoveOneUnitController();
   }
 
-  public createOrientationController(toy: IToyPositional) {
-    return new NESWOrientationController(toy);
+  public createOrientationController() {
+    return new NESWOrientationController();
   }
 
-  public createReportController(toy: IToyPositional) {
-    return new ReportPositionController(toy);
+  public createReportController() {
+    return new ReportPositionController();
   }
 }

@@ -19,13 +19,11 @@ export class Robot extends Toy implements IRobot {
   constructor(private behaviourFactory = new RobotBehavioursFactory()) {
     super();
 
-    this.moveController = behaviourFactory.createMoveController(this);
-    this.orientationController = behaviourFactory.createOrientationController(
-      this
-    );
-    this.positionController = behaviourFactory.createPositionController(this);
-    this.reportController = behaviourFactory.createReportController(this);
-    this.surfaceController = behaviourFactory.createSurfaceController(this);
+    this.moveController = behaviourFactory.createMoveController();
+    this.orientationController = behaviourFactory.createOrientationController();
+    this.positionController = behaviourFactory.createPositionController();
+    this.reportController = behaviourFactory.createReportController();
+    this.surfaceController = behaviourFactory.createSurfaceController();
   }
 
   public setSurface(surface: ISurface) {

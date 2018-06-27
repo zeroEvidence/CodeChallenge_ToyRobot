@@ -1,17 +1,16 @@
-import { BaseController } from "../../../behaviours/BaseController";
 import { IReportController } from "../../../behaviours/report/interfaces/ReportController.interface";
-import { IToyPositional } from "../../../interfaces/ToyPositional.interface";
 import { IPosition } from "../../../position/interfaces/Position.interface";
+import { Toy } from "../../../Toy";
 
-export class ReportPositionController extends BaseController<IToyPositional>
+export class ReportPositionController extends Toy
   implements IReportController<IPosition> {
-  constructor(toy: IToyPositional) {
-    super(toy);
+  constructor() {
+    super();
   }
 
   public report() {
-    if (this.toy.isPlaced()) {
-      return this.toy.position;
+    if (this.isPlaced()) {
+      return this.position;
     }
   }
 }

@@ -1,8 +1,7 @@
 import { ISurface } from "../../../surface/interfaces/Surface.interface";
-import { IToyManipulatable } from "../../interfaces/ToyManipulatable.interface";
 import { IPosition } from "../../position/interfaces/Position.interface";
+import { Toy } from "../../Toy";
 import { ToyStrings } from "../../ToyStrings";
-import { BaseController } from "../BaseController";
 import { IPositionController } from "./interfaces/PositionController.interface";
 
 /**
@@ -15,23 +14,23 @@ import { IPositionController } from "./interfaces/PositionController.interface";
 export class PositionController<
   P extends IPosition = IPosition,
   S extends ISurface = ISurface
-> extends BaseController<IToyManipulatable> implements IPositionController<P> {
-  constructor(toy: IToyManipulatable) {
-    super(toy);
+> extends Toy implements IPositionController<P> {
+  constructor() {
+    super();
   }
 
   public place(position: P) {
     const positionSet = this.setPosition(position);
 
     if (positionSet) {
-      this.toy.isPlacedFlag = true;
+      this.isPlacedFlag = true;
     }
 
     return positionSet;
   }
 
   public isPlaced(): boolean {
-    if (!this.toy.isPlacedFlag) {
+    if (!this.isPlacedFlag) {
       throw new Error(ToyStrings.missingEnvironment);
     }
 
@@ -40,10 +39,10 @@ export class PositionController<
 
   public setPosition(position: P): boolean {
     const validPosition = this.validatePosition(position);
-    const validOrientation = this.toy.validateOrientation(position);
+    const validOrientation = this.validateOrientation(position);
 
     if (validPosition && validOrientation) {
-      this.toy.position = position;
+      this.position = position;
     }
 
     return validPosition && validOrientation;
@@ -52,10 +51,10 @@ export class PositionController<
   public validatePosition(position: P): boolean {
     let isValid = false;
 
-    if (this.toy.surface) {
+    if (this.surface) {
       isValid = true;
     }
 
-    return isValid && this.toy.surface.hasSurfaceAtPos(position);
+    return isValid && this.surface.hasSurfaceAtPos(position);
   }
 }

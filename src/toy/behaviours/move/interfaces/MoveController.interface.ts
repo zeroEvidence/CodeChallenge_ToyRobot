@@ -1,5 +1,3 @@
-import { IBaseController } from "../../interfaces/BaseController.interface";
-
-export interface IMoveController extends IBaseController {
+export interface IMoveController {
   move(): boolean;
 }

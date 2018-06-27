@@ -9,8 +9,9 @@ export class ReportPositionController extends Toy
   }
 
   public report() {
-    if (this.isPlaced()) {
-      return this.position;
+    if (this.validatePlacement()) {
+      // return Object.assign(this.position, this.orientation);
+      return { ...this.position, ...this.orientation };
     }
   }
 }

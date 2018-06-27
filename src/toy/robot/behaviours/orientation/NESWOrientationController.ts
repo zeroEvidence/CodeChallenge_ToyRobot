@@ -9,30 +9,28 @@ export class NESWOrientationController extends Toy
   }
 
   public left() {
-    this.changeOrientation(++this.position.orientation);
+    const newOrientation = this.orientation.orientation - 1;
+
+    this.changeOrientation(newOrientation === -1 ? 3 : newOrientation);
   }
 
   public right() {
-    this.changeOrientation(
-      --this.position.orientation === -1 ? 3 : this.position.orientation
-    );
+    this.changeOrientation(this.orientation.orientation + 1);
   }
 
   public validateOrientation(orientation: IOrientation) {
     let isValid = false;
 
-    if (position.orientation >= 0 && position.orientation < 4) {
+    if (orientation.orientation >= 0 && orientation.orientation < 4) {
       isValid = true;
     }
 
     return isValid;
   }
 
-  protected changeOrientation(amount: number) {
-    if (!this.isPlaced()) {
-      // noop
+  public changeOrientation(amount: number) {
+    if (this.validatePlacement()) {
+      this.orientation.orientation = amount % 4;
     }
-
-    this.position.orientation = amount % 4;
   }
 }

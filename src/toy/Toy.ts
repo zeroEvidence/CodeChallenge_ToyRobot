@@ -8,6 +8,7 @@ import { ToyStrings } from "./ToyStrings";
 
 export abstract class Toy implements IToy {
   constructor(
+    private toyStrings = ToyStrings,
     public surface: ISurface = void 0,
     public position: IPosition = new Position(),
     public orientation: IOrientation = new Orientation()
@@ -44,7 +45,7 @@ export abstract class Toy implements IToy {
       this.position.y < 0 ||
       this.orientation.orientation < 0
     ) {
-      throw new Error(ToyStrings.missingEnvironment);
+      throw new Error(this.toyStrings.missingEnvironment);
     }
 
     return true;

@@ -1,3 +1,4 @@
+import { IOrientation } from "../../src/toy/orientation/interfaces/Orientation";
 import { IPosition } from "../../src/toy/position/interfaces/Position.interface";
 import { CardinalDirections } from "../../src/toy/robot/behaviours/orientation/CardinalDirections";
 import { IRobot } from "../../src/toy/robot/interfaces/Robot.interface";
@@ -20,8 +21,12 @@ describe("Robot", () => {
     return expect(robot).toBeInstanceOf(Object);
   });
 
-  it("Should have an initial position of -1, -1, -1", () => {
-    return expect(robot.position).toEqual({ x: -1, y: -1, orientation: -1 });
+  it("Should have an initial position of -1, -1", () => {
+    return expect(robot.position).toEqual({ x: -1, y: -1 });
+  });
+
+  it("Should have an initial orientation of -1", () => {
+    return expect(robot.orientation).toEqual({ orientation: -1 });
   });
 
   it("Should have an initial default environment of undefined", () => {
@@ -42,16 +47,28 @@ describe("Robot", () => {
     const mockRestrictedEnvironment = new RestrictedEnvironment();
     const invalidPlaceA = {
       x: -1,
-      y: 1,
-      orientation: CardinalDirections.north
+      y: 1
     };
     const invalidPlaceB = {
       x: 1,
-      y: -1,
+      y: -1
+    };
+    const northOrientation = {
       orientation: CardinalDirections.north
     };
-    const invalidPlaceC = { x: 1, y: 1, orientation: -1 };
-    let middleOfTableCoords = { x: 2, y: 2, orientation: -1 };
+    const eastOrientation = {
+      orientation: CardinalDirections.east
+    };
+    const southOrientation = {
+      orientation: CardinalDirections.south
+    };
+    const westOrientation = {
+      orientation: CardinalDirections.west
+    };
+    const invalidOrientation = {
+      orientation: -1
+    };
+    let middleOfTableCoords = { x: 2, y: 2 };
 
     describe("Method .place(...)", () => {
       describe("Valid positions", () => {
@@ -61,25 +78,37 @@ describe("Robot", () => {
 
         it("Should be valid at position 0,0 N", () => {
           return expect(
-            robot.place({ x: 0, y: 0, orientation: CardinalDirections.north })
+            robot.place(
+              { x: 0, y: 0 },
+              { orientation: CardinalDirections.north }
+            )
           ).toEqual(true);
         });
 
         it("Should be valid at position 0,4 E", () => {
           return expect(
-            robot.place({ x: 0, y: 4, orientation: CardinalDirections.east })
+            robot.place(
+              { x: 0, y: 4 },
+              { orientation: CardinalDirections.east }
+            )
           ).toEqual(true);
         });
 
         it("Should be valid at position 4,0 S", () => {
           return expect(
-            robot.place({ x: 4, y: 0, orientation: CardinalDirections.south })
+            robot.place(
+              { x: 4, y: 0 },
+              { orientation: CardinalDirections.south }
+            )
           ).toEqual(true);
         });
 
         it("Should be valid at position 4,4 W", () => {
           return expect(
-            robot.place({ x: 4, y: 4, orientation: CardinalDirections.west })
+            robot.place(
+              { x: 4, y: 4 },
+              { orientation: CardinalDirections.west }
+            )
           ).toEqual(true);
         });
       });
@@ -90,26 +119,38 @@ describe("Robot", () => {
         });
 
         it("Should be invalid at position -1,0 N", () => {
-          return expect(robot.place(invalidPlaceA)).toEqual(false);
+          return expect(robot.place(invalidPlaceA, northOrientation)).toEqual(
+            false
+          );
         });
 
-        it("Should be invalid at position 0,-1 E", () => {
-          return expect(robot.place(invalidPlaceB)).toEqual(false);
+        it("Should be invalid at position 0,-1 N", () => {
+          return expect(robot.place(invalidPlaceB, northOrientation)).toEqual(
+            false
+          );
         });
 
         it("Should be invalid at position 1,1 -1", () => {
-          return expect(robot.place(invalidPlaceC)).toEqual(false);
+          return expect(
+            robot.place({ x: 1, y: 1 }, invalidOrientation)
+          ).toEqual(false);
         });
 
         it("Should be invalid at position 5,0 S", () => {
           return expect(
-            robot.place({ x: 5, y: 0, orientation: CardinalDirections.south })
+            robot.place(
+              { x: 5, y: 0 },
+              { orientation: CardinalDirections.south }
+            )
           ).toEqual(false);
         });
 
         it("Should be invalid at position 0,5 W", () => {
           return expect(
-            robot.place({ x: 0, y: 5, orientation: CardinalDirections.west })
+            robot.place(
+              { x: 0, y: 5 },
+              { orientation: CardinalDirections.west }
+            )
           ).toEqual(false);
         });
       });
@@ -131,7 +172,7 @@ describe("Robot", () => {
           "invalid area",
         () => {
           robot.setSurface(mockNoEnvironment);
-          robot.place({ x: -1, y: -1, orientation: -1 });
+          robot.place({ x: -1, y: -1 }, { orientation: -1 });
 
           return expect(() => {
             robot.report();
@@ -140,13 +181,13 @@ describe("Robot", () => {
       );
 
       it("Should give back the current position of the robot", () => {
-        const southWestCorner: IPosition = {
+        const southWestCorner: IPosition & IOrientation = {
           x: 0,
           y: 0,
           orientation: CardinalDirections.north
         };
 
-        robot.place(southWestCorner);
+        robot.place(southWestCorner, northOrientation);
 
         return expect(robot.report()).toEqual(southWestCorner);
       });
@@ -170,7 +211,7 @@ describe("Robot", () => {
       describe("Invalid placing", () => {
         it("Should throw an error", () => {
           robot.setSurface(mockNoEnvironment);
-          robot.place(invalidPlaceA);
+          robot.place(invalidPlaceA, northOrientation);
 
           return expect(() => {
             robot.move();
@@ -181,21 +222,17 @@ describe("Robot", () => {
       describe("A valid move in any direction", () => {
         beforeEach(() => {
           robot.setSurface(mockInfiniteEnvironment);
-          middleOfTableCoords = { x: 2, y: 2, orientation: -1 };
+          middleOfTableCoords = { x: 2, y: 2 };
         });
 
         it("Should return true when given a valid move", () => {
-          middleOfTableCoords.orientation = CardinalDirections.north;
-
-          robot.place(middleOfTableCoords);
+          robot.place(middleOfTableCoords, northOrientation);
 
           return expect(robot.move()).toEqual(true);
         });
 
         it("Should report a move of +1 north", () => {
-          middleOfTableCoords.orientation = CardinalDirections.north;
-
-          robot.place(middleOfTableCoords);
+          robot.place(middleOfTableCoords, northOrientation);
           robot.move();
 
           return expect(robot.report()).toEqual({
@@ -206,9 +243,7 @@ describe("Robot", () => {
         });
 
         it("Should report a move of +1 east", () => {
-          middleOfTableCoords.orientation = CardinalDirections.east;
-
-          robot.place(middleOfTableCoords);
+          robot.place(middleOfTableCoords, eastOrientation);
           robot.move();
 
           return expect(robot.report()).toEqual({
@@ -219,9 +254,7 @@ describe("Robot", () => {
         });
 
         it("Should report a move of +1 south", () => {
-          middleOfTableCoords.orientation = CardinalDirections.south;
-
-          robot.place(middleOfTableCoords);
+          robot.place(middleOfTableCoords, southOrientation);
           robot.move();
 
           return expect(robot.report()).toEqual({
@@ -232,9 +265,7 @@ describe("Robot", () => {
         });
 
         it("Should report a move of +1 west", () => {
-          middleOfTableCoords.orientation = CardinalDirections.west;
-
-          robot.place(middleOfTableCoords);
+          robot.place(middleOfTableCoords, westOrientation);
           robot.move();
 
           return expect(robot.report()).toEqual({
@@ -250,24 +281,20 @@ describe("Robot", () => {
         let northEastCorner: IPosition;
 
         beforeEach(() => {
-          southWestCorner = { x: 0, y: 0, orientation: -1 };
-          northEastCorner = { x: 4, y: 4, orientation: -1 };
+          southWestCorner = { x: 0, y: 0 };
+          northEastCorner = { x: 4, y: 4 };
 
           return robot.setSurface(mockRestrictedEnvironment);
         });
 
         it("Should return false when given an invalid move", () => {
-          southWestCorner.orientation = CardinalDirections.south;
-
-          robot.place(southWestCorner);
+          robot.place(southWestCorner, southOrientation);
 
           return expect(robot.move()).toEqual(false);
         });
 
         it("Should not move when moved at position 0,0 S", () => {
-          southWestCorner.orientation = CardinalDirections.south;
-
-          robot.place(southWestCorner);
+          robot.place(southWestCorner, southOrientation);
           robot.move();
 
           return expect(robot.report()).toEqual({
@@ -278,9 +305,7 @@ describe("Robot", () => {
         });
 
         it("Should not move when moved at position 0,0 W", () => {
-          southWestCorner.orientation = CardinalDirections.west;
-
-          robot.place(southWestCorner);
+          robot.place(southWestCorner, westOrientation);
           robot.move();
 
           return expect(robot.report()).toEqual({
@@ -291,9 +316,7 @@ describe("Robot", () => {
         });
 
         it("Should not move when moved at position 4,4 N", () => {
-          northEastCorner.orientation = CardinalDirections.north;
-
-          robot.place(northEastCorner);
+          robot.place(northEastCorner, northOrientation);
           robot.move();
 
           return expect(robot.report()).toEqual({
@@ -304,9 +327,7 @@ describe("Robot", () => {
         });
 
         it("Should not move when moved at position 4,4 E", () => {
-          northEastCorner.orientation = CardinalDirections.east;
-
-          robot.place(northEastCorner);
+          robot.place(northEastCorner, eastOrientation);
           robot.move();
 
           return expect(robot.report()).toEqual({
@@ -333,7 +354,7 @@ describe("Robot", () => {
 
       describe("Invalid placing", () => {
         it("Should throw an error", () => {
-          robot.place(invalidPlaceB);
+          robot.place(invalidPlaceB, northOrientation);
 
           return expect(() => {
             robot.left();
@@ -341,36 +362,8 @@ describe("Robot", () => {
         });
       });
 
-      it("Should orient to east", () => {
-        middleOfTableCoords.orientation = CardinalDirections.north;
-
-        robot.place(middleOfTableCoords);
-        robot.left();
-
-        return expect(robot.report()).toEqual({
-          x: 2,
-          y: 2,
-          orientation: CardinalDirections.east
-        });
-      });
-
-      it("Should orient to south", () => {
-        middleOfTableCoords.orientation = CardinalDirections.east;
-
-        robot.place(middleOfTableCoords);
-        robot.left();
-
-        return expect(robot.report()).toEqual({
-          x: 2,
-          y: 2,
-          orientation: CardinalDirections.south
-        });
-      });
-
       it("Should orient to west", () => {
-        middleOfTableCoords.orientation = CardinalDirections.south;
-
-        robot.place(middleOfTableCoords);
+        robot.place(middleOfTableCoords, Object.assign(northOrientation));
         robot.left();
 
         return expect(robot.report()).toEqual({
@@ -381,15 +374,35 @@ describe("Robot", () => {
       });
 
       it("Should orient to north", () => {
-        middleOfTableCoords.orientation = CardinalDirections.west;
-
-        robot.place(middleOfTableCoords);
+        robot.place(middleOfTableCoords, eastOrientation);
         robot.left();
 
         return expect(robot.report()).toEqual({
           x: 2,
           y: 2,
           orientation: CardinalDirections.north
+        });
+      });
+
+      it("Should orient to east", () => {
+        robot.place(middleOfTableCoords, southOrientation);
+        robot.left();
+
+        return expect(robot.report()).toEqual({
+          x: 2,
+          y: 2,
+          orientation: CardinalDirections.east
+        });
+      });
+
+      it("Should orient to north", () => {
+        robot.place(middleOfTableCoords, westOrientation);
+        robot.left();
+
+        return expect(robot.report()).toEqual({
+          x: 2,
+          y: 2,
+          orientation: CardinalDirections.south
         });
       });
     });
@@ -409,7 +422,7 @@ describe("Robot", () => {
 
       describe("Invalid placing", () => {
         it("Should throw an error", () => {
-          robot.place(invalidPlaceC);
+          robot.place(middleOfTableCoords, invalidOrientation);
 
           return expect(() => {
             robot.right();
@@ -417,10 +430,32 @@ describe("Robot", () => {
         });
       });
 
-      it("Should orient to west", () => {
-        middleOfTableCoords.orientation = CardinalDirections.north;
+      it("Should orient to east B", () => {
+        const robotA = new RobotFactory().createToy(RobotConfigStandard);
+        robotA.setSurface(mockRestrictedEnvironment);
+        robotA.place(middleOfTableCoords, Object.assign(northOrientation));
+        robotA.right();
 
-        robot.place(middleOfTableCoords);
+        return expect(robotA.report()).toEqual({
+          x: 2,
+          y: 2,
+          orientation: CardinalDirections.east
+        });
+      });
+
+      it("Should orient to north B", () => {
+        robot.place(middleOfTableCoords, westOrientation);
+        robot.right();
+
+        return expect(robot.report()).toEqual({
+          x: 2,
+          y: 2,
+          orientation: CardinalDirections.north
+        });
+      });
+
+      it("Should orient to west B", () => {
+        robot.place(middleOfTableCoords, southOrientation);
         robot.right();
 
         return expect(robot.report()).toEqual({
@@ -430,42 +465,14 @@ describe("Robot", () => {
         });
       });
 
-      it("Should orient to south", () => {
-        middleOfTableCoords.orientation = CardinalDirections.west;
-
-        robot.place(middleOfTableCoords);
+      it("Should orient to south B", () => {
+        robot.place(middleOfTableCoords, eastOrientation);
         robot.right();
 
         return expect(robot.report()).toEqual({
           x: 2,
           y: 2,
           orientation: CardinalDirections.south
-        });
-      });
-
-      it("Should orient to east", () => {
-        middleOfTableCoords.orientation = CardinalDirections.south;
-
-        robot.place(middleOfTableCoords);
-        robot.right();
-
-        return expect(robot.report()).toEqual({
-          x: 2,
-          y: 2,
-          orientation: CardinalDirections.east
-        });
-      });
-
-      it("Should orient to north", () => {
-        middleOfTableCoords.orientation = CardinalDirections.east;
-
-        robot.place(middleOfTableCoords);
-        robot.right();
-
-        return expect(robot.report()).toEqual({
-          x: 2,
-          y: 2,
-          orientation: CardinalDirections.north
         });
       });
     });

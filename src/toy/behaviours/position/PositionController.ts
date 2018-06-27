@@ -20,42 +20,29 @@ export class PositionController<
     super();
   }
 
-  public place(position: P) {
-    const positionSet = this.setPosition(position);
+  public place(position: P, orientation: O, surface?: S) {
+    const validPlace =
+      this.setOrientation(orientation) && this.setPosition(position, surface);
 
-    if (positionSet) {
-      this.isPlacedFlag = true;
+    if (validPlace && surface) {
+      this.setSurface(surface);
     }
 
-    return positionSet;
+    return validPlace;
   }
 
-  public isPlaced(): boolean {
-    if (!this.isPlacedFlag) {
-      throw new Error(ToyStrings.missingEnvironment);
-    }
+  public setPosition(position: P, surface?: S): boolean {
+    const validPosition = this.validatePosition(position, surface);
 
-    return true;
-  }
-
-  public setPosition(position: P): boolean {
-    const validPosition = this.validatePosition(position);
-    const validOrientation = this.validateOrientation(position);
-
-    if (validPosition && validOrientation) {
+    if (validPosition) {
       this.position = position;
     }
 
-    return validPosition && validOrientation;
+    return validPosition;
   }
 
-  public validatePosition(position: P): boolean {
-    let isValid = false;
-
-    if (this.surface) {
-      isValid = true;
-    }
-
-    return isValid && this.surface.hasSurfaceAtPos(position);
+  public validatePosition(position: P, surface?: S): boolean {
+    const relativeSurface = surface || this.surface;
+    return relativeSurface && relativeSurface.hasSurfaceAtPos(position);
   }
 }

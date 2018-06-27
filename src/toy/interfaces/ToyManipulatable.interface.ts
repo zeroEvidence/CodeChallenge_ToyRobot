@@ -1,16 +1,14 @@
 import { ISurface } from "../../surface/interfaces/Surface.interface";
 import { IPosition } from "../position/interfaces/Position.interface";
 import { IToyOrientable } from "./ToyOrientable.interface";
-import { IToyPositional } from "./ToyPositional.interface";
-import { IToySurfaceMountable } from "./ToySurfaceMountable.interface";
+import { IToyPlaceable } from "./ToyPlaceable.interface";
 
 /**
- * IToyManipulate is an union interface of IToyPositional, IToySurfacemountable,
- * and IToyOrientable
+ * IToyManipulate is an union interface of IToyPlaceable, and IToyOrientable
  *
  * @export
  * @interface IToyManipulatable
- * @extends {IToyPositional<P>}
+ * @extends {IToyPlaceable<P>}
  * @extends {IToySurfaceMountable<S>}
  * @extends {IToyOrientable}
  * @template P
@@ -19,6 +17,6 @@ import { IToySurfaceMountable } from "./ToySurfaceMountable.interface";
 export interface IToyManipulatable<
   P extends IPosition = IPosition,
   S extends ISurface = ISurface
-> extends IToyPositional<P>, IToySurfaceMountable<S>, IToyOrientable {
+> extends IToyPlaceable<P>, IToyOrientable {
   //
 }

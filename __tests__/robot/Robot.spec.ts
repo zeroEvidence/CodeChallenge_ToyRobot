@@ -4,7 +4,7 @@ import { CardinalDirections } from "../../src/toy/robot/behaviours/orientation/C
 import { IRobot } from "../../src/toy/robot/interfaces/Robot.interface";
 import { RobotConfigStandard } from "../../src/toy/robot/RobotConfigStandard";
 import { RobotFactory } from "../../src/toy/robot/RobotFactory";
-import { ToyStrings } from "../../src/toy/ToyStrings";
+import { RobotStrings } from "../../src/toy/robot/RobotStrings";
 import { InfiniteEnvironment } from "./mocks/InfiniteEnvironment";
 import { NoEnvironment } from "./mocks/NoEnvironment";
 import { RestrictedEnvironment } from "./mocks/RestrictedEnvironment";
@@ -68,6 +68,7 @@ describe("Robot", () => {
     const invalidOrientation = {
       orientation: -1
     };
+    const missingEnvironment = RobotStrings.missingEnvironment;
     let middleOfTableCoords = { x: 2, y: 2 };
 
     describe("Method .place(...)", () => {
@@ -164,7 +165,7 @@ describe("Robot", () => {
       it("Should throw an error when unplaced", () => {
         return expect(() => {
           robot.report();
-        }).toThrowError(ToyStrings.missingEnvironment);
+        }).toThrowError(missingEnvironment);
       });
 
       it(
@@ -176,7 +177,7 @@ describe("Robot", () => {
 
           return expect(() => {
             robot.report();
-          }).toThrowError(ToyStrings.missingEnvironment);
+          }).toThrowError(missingEnvironment);
         }
       );
 
@@ -204,7 +205,7 @@ describe("Robot", () => {
 
           return expect(() => {
             robot.move();
-          }).toThrowError(ToyStrings.missingEnvironment);
+          }).toThrowError(missingEnvironment);
         });
       });
 
@@ -215,7 +216,7 @@ describe("Robot", () => {
 
           return expect(() => {
             robot.move();
-          }).toThrowError(ToyStrings.missingEnvironment);
+          }).toThrowError(missingEnvironment);
         });
       });
 
@@ -348,7 +349,7 @@ describe("Robot", () => {
         it("Should throw an error", () => {
           return expect(() => {
             robot.left();
-          }).toThrowError(ToyStrings.missingEnvironment);
+          }).toThrowError(missingEnvironment);
         });
       });
 
@@ -358,7 +359,7 @@ describe("Robot", () => {
 
           return expect(() => {
             robot.left();
-          }).toThrowError(ToyStrings.missingEnvironment);
+          }).toThrowError(missingEnvironment);
         });
       });
 
@@ -416,7 +417,7 @@ describe("Robot", () => {
         it("Should throw an error", () => {
           return expect(() => {
             robot.right();
-          }).toThrowError(ToyStrings.missingEnvironment);
+          }).toThrowError(missingEnvironment);
         });
       });
 
@@ -426,11 +427,11 @@ describe("Robot", () => {
 
           return expect(() => {
             robot.right();
-          }).toThrowError(ToyStrings.missingEnvironment);
+          }).toThrowError(missingEnvironment);
         });
       });
 
-      it("Should orient to east B", () => {
+      it("Should orient to east", () => {
         const robotA = new RobotFactory().createToy(RobotConfigStandard);
         robotA.setSurface(mockRestrictedEnvironment);
         robotA.place(middleOfTableCoords, Object.assign(northOrientation));
@@ -443,7 +444,7 @@ describe("Robot", () => {
         });
       });
 
-      it("Should orient to north B", () => {
+      it("Should orient to north", () => {
         robot.place(middleOfTableCoords, westOrientation);
         robot.right();
 
@@ -454,7 +455,7 @@ describe("Robot", () => {
         });
       });
 
-      it("Should orient to west B", () => {
+      it("Should orient to west", () => {
         robot.place(middleOfTableCoords, southOrientation);
         robot.right();
 
@@ -465,7 +466,7 @@ describe("Robot", () => {
         });
       });
 
-      it("Should orient to south B", () => {
+      it("Should orient to south", () => {
         robot.place(middleOfTableCoords, eastOrientation);
         robot.right();
 

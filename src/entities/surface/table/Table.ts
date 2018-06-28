@@ -2,19 +2,18 @@ import { IPosition } from "../../toy/position/interfaces/Position.interface";
 import { Surface } from "../Surface";
 
 export class Table extends Surface {
-  constructor(length = 5, width = 5) {
-    super();
-
-    this.length = length;
-    this.width = width;
+  constructor(length: number, width: number) {
+    super(length, width);
   }
 
-  public hasSurfaceAtPos(coordinates: IPosition) {
+  public hasSurfaceAtPos(position: IPosition) {
     if (
-      coordinates.x >= this.length ||
-      coordinates.x < 0 ||
-      coordinates.y >= this.width ||
-      coordinates.y < 0
+      position.x >= this.length ||
+      position.x < 0 ||
+      position.y >= this.width ||
+      position.y < 0 ||
+      this.length === 0 ||
+      this.width === 0
     ) {
       return false;
     }

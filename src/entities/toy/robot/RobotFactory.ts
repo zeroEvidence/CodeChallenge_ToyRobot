@@ -13,12 +13,12 @@ export class RobotFactory extends ToyFactoryBase
   }
 
   public createToy(toyConfig: IToyConfig) {
-    let toy = new Robot();
-    let i = toyConfig.length;
+    let toy = new Robot(toyConfig.strings);
+    let i = toyConfig.rules.length;
     let behaviours = [];
 
     while (i--) {
-      switch (toyConfig[i]) {
+      switch (toyConfig.rules[i]) {
         case ToyRules.isMoveable:
           behaviours.push(this.toyBehaviours.createMoveController());
           break;

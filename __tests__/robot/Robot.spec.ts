@@ -1,10 +1,9 @@
-import { IOrientation } from "../../src/toy/orientation/interfaces/Orientation";
-import { IPosition } from "../../src/toy/position/interfaces/Position.interface";
-import { CardinalDirections } from "../../src/toy/robot/behaviours/orientation/CardinalDirections";
-import { IRobot } from "../../src/toy/robot/interfaces/Robot.interface";
-import { RobotConfigStandard } from "../../src/toy/robot/RobotConfigStandard";
-import { RobotFactory } from "../../src/toy/robot/RobotFactory";
-import { RobotStrings } from "../../src/toy/robot/RobotStrings";
+import { RobotConfigStandard } from "../../src/entities/configs/RobotConfigStandard";
+import { IOrientation } from "../../src/entities/toy/orientation/interfaces/Orientation";
+import { IPosition } from "../../src/entities/toy/position/interfaces/Position.interface";
+import { CardinalDirections } from "../../src/entities/toy/robot/behaviours/orientation/CardinalDirections";
+import { IRobot } from "../../src/entities/toy/robot/interfaces/Robot.interface";
+import { RobotFactory } from "../../src/entities/toy/robot/RobotFactory";
 import { InfiniteEnvironment } from "./mocks/InfiniteEnvironment";
 import { NoEnvironment } from "./mocks/NoEnvironment";
 import { RestrictedEnvironment } from "./mocks/RestrictedEnvironment";
@@ -68,7 +67,7 @@ describe("Robot", () => {
     const invalidOrientation = {
       orientation: -1
     };
-    const missingEnvironment = RobotStrings.missingEnvironment;
+    const missingEnvironment = RobotConfigStandard.strings.missingEnvironment;
     let middleOfTableCoords = { x: 2, y: 2 };
 
     describe("Method .place(...)", () => {

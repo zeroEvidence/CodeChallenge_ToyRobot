@@ -15,11 +15,11 @@ export class EntityFactory {
     //
   }
 
-  public createFiveByFiveTable() {
+  public createFiveByFiveTable(): ISurface {
     return this.tableFactory.createSurface(TableFiveByFiveConfig);
   }
 
-  public createStandardRobot() {
+  public createStandardRobot(): IRobot {
     return this.robotFactory.createToy(RobotConfigStandard);
   }
 }

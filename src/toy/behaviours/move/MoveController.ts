@@ -1,5 +1,4 @@
-import { IToyPositional } from "../../interfaces/ToyPositional.interface";
-import { BaseController } from "../BaseController";
+import { Toy } from "../../Toy";
 import { IMoveController } from "./interfaces/MoveController.interface";
 
 /**
@@ -18,9 +17,9 @@ import { IMoveController } from "./interfaces/MoveController.interface";
  * @class MoveController
  * @extends {BaseController}
  */
-export class MoveController extends BaseController implements IMoveController {
-  constructor(toy: IToyPositional) {
-    super(toy);
+export class MoveController extends Toy implements IMoveController {
+  constructor() {
+    super();
   }
 
   // By default toys do not move by themselves

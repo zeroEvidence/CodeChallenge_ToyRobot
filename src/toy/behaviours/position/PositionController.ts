@@ -1,8 +1,7 @@
 import { ISurface } from "../../../surface/interfaces/Surface.interface";
-import { IToyManipulatable } from "../../interfaces/ToyManipulatable.interface";
+import { IOrientation } from "../../orientation/interfaces/Orientation";
 import { IPosition } from "../../position/interfaces/Position.interface";
-import { ToyStrings } from "../../ToyStrings";
-import { BaseController } from "../BaseController";
+import { Toy } from "../../Toy";
 import { IPositionController } from "./interfaces/PositionController.interface";
 
 /**
@@ -14,48 +13,36 @@ import { IPositionController } from "./interfaces/PositionController.interface";
  */
 export class PositionController<
   P extends IPosition = IPosition,
+  O extends IOrientation = IOrientation,
   S extends ISurface = ISurface
-> extends BaseController<IToyManipulatable> implements IPositionController<P> {
-  constructor(toy: IToyManipulatable) {
-    super(toy);
+> extends Toy implements IPositionController<P, O, S> {
+  constructor() {
+    super();
   }
 
-  public place(position: P) {
-    const positionSet = this.setPosition(position);
+  public place(position: P, orientation: O, surface?: S) {
+    const validPlace =
+      this.setOrientation(orientation) && this.setPosition(position, surface);
 
-    if (positionSet) {
-      this.toy.isPlacedFlag = true;
+    if (validPlace && surface) {
+      this.setSurface(surface);
     }
 
-    return positionSet;
+    return validPlace;
   }
 
-  public isPlaced(): boolean {
-    if (!this.toy.isPlacedFlag) {
-      throw new Error(ToyStrings.missingEnvironment);
+  public setPosition(position: P, surface?: S): boolean {
+    const validPosition = this.validatePosition(position, surface);
+
+    if (validPosition) {
+      this.position = position;
     }
 
-    return true;
+    return validPosition;
   }
 
-  public setPosition(position: P): boolean {
-    const validPosition = this.validatePosition(position);
-    const validOrientation = this.toy.validateOrientation(position);
-
-    if (validPosition && validOrientation) {
-      this.toy.position = position;
-    }
-
-    return validPosition && validOrientation;
-  }
-
-  public validatePosition(position: P): boolean {
-    let isValid = false;
-
-    if (this.toy.surface) {
-      isValid = true;
-    }
-
-    return isValid && this.toy.surface.hasSurfaceAtPos(position);
+  public validatePosition(position: P, surface?: S): boolean {
+    const relativeSurface = surface || this.surface;
+    return relativeSurface && relativeSurface.hasSurfaceAtPos(position);
   }
 }

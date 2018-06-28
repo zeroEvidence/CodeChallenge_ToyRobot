@@ -1,6 +1,5 @@
 import { ISurface } from "../../../surface/interfaces/Surface.interface";
-import { IToySurfaceMountable } from "../../interfaces/ToySurfaceMountable.interface";
-import { BaseController } from "../BaseController";
+import { Toy } from "../../Toy";
 import { ISurfaceController } from "./interfaces/SurfaceController.interface";
 
 /**
@@ -10,14 +9,13 @@ import { ISurfaceController } from "./interfaces/SurfaceController.interface";
  * @class SurfaceController
  * @extends {BaseController}
  */
-export class SurfaceController<T extends ISurface = ISurface>
-  extends BaseController<IToySurfaceMountable>
+export class SurfaceController<T extends ISurface = ISurface> extends Toy
   implements ISurfaceController<T> {
-  constructor(toy: IToySurfaceMountable<T>) {
-    super(toy);
+  constructor() {
+    super();
   }
 
   public setSurface(surface: T): void {
-    this.toy.surface = surface;
+    this.surface = surface;
   }
 }

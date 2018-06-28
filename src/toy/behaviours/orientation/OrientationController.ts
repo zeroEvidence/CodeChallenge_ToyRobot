@@ -1,6 +1,5 @@
-import { IToyPositional } from "../../interfaces/ToyPositional.interface";
-import { IPosition } from "../../position/interfaces/Position.interface";
-import { BaseController } from "../BaseController";
+import { IOrientation } from "../../orientation/interfaces/Orientation";
+import { Toy } from "../../Toy";
 import { IOrientationController } from "./interfaces/OrientationController.interface";
 
 /**
@@ -19,11 +18,11 @@ import { IOrientationController } from "./interfaces/OrientationController.inter
  * @class OrientationController
  * @extends {BaseController}
  */
-export class OrientationController<T extends IPosition = IPosition>
-  extends BaseController
+export class OrientationController<T extends IOrientation = IOrientation>
+  extends Toy
   implements IOrientationController {
-  constructor(toy: IToyPositional) {
-    super(toy);
+  constructor() {
+    super();
   }
 
   public left() {
@@ -32,10 +31,5 @@ export class OrientationController<T extends IPosition = IPosition>
 
   public right() {
     throw Error("Method not implemented.");
-  }
-
-  // The default is all toys can have any orientation
-  public validateOrientation(position: T) {
-    return true;
   }
 }

@@ -1,22 +1,20 @@
-import { BaseController } from "../../../behaviours/BaseController";
 import { IMoveController } from "../../../behaviours/move/interfaces/MoveController.interface";
-import { IToyPositional } from "../../../interfaces/ToyPositional.interface";
+import { Toy } from "../../../Toy";
 import { CardinalDirections } from "../orientation/CardinalDirections";
 
-export class MoveOneUnitController extends BaseController<IToyPositional>
-  implements IMoveController {
-  constructor(toy: IToyPositional) {
-    super(toy);
+export class MoveOneUnitController extends Toy implements IMoveController {
+  constructor() {
+    super();
   }
 
   public move() {
-    if (!this.toy.isPlaced()) {
+    if (this.validatePlacement()) {
       // noop
     }
 
-    const newPosition = { ...this.toy.position };
+    const newPosition = { ...this.position };
 
-    switch (this.toy.position.orientation) {
+    switch (this.orientation.orientation) {
       case CardinalDirections.north:
         newPosition.y++;
         break;
@@ -34,6 +32,6 @@ export class MoveOneUnitController extends BaseController<IToyPositional>
         break;
     }
 
-    return this.toy.setPosition(newPosition);
+    return this.setPosition(newPosition);
   }
 }

@@ -1,7 +1,7 @@
+import { ToyRules } from "../../configs/rules/ToyRules";
 import { IToyConfig } from "../interfaces/ToyConfig.interface";
 import { IToyFactory } from "../interfaces/ToyFactory.interface";
 import { ToyFactoryBase } from "../ToyFactoryBase";
-import { ToyRules } from "../ToyRules";
 import { RobotBehavioursFactory } from "./behaviours/RobotBehaviorsFactory";
 import { IRobot } from "./interfaces/Robot.interface";
 import { Robot } from "./Robot";

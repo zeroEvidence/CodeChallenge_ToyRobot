@@ -30,7 +30,11 @@ export class PositionController<
       this.setSurface(surface);
     }
 
-    return validPlace;
+    if (validPlace) {
+      return true;
+    }
+
+    throw Error(this.toyStrings.invalidPosition);
   }
 
   public setPosition(position: P, surface?: S): boolean {

@@ -1,4 +1,5 @@
 import { RobotConfigStandard } from "../../src/entities/configs/RobotConfigStandard";
+import { EntityFactory } from "../../src/entities/EntityFactory";
 import { IOrientation } from "../../src/entities/toy/orientation/interfaces/Orientation";
 import { IPosition } from "../../src/entities/toy/position/interfaces/Position.interface";
 import { CardinalDirections } from "../../src/entities/toy/robot/behaviours/orientation/CardinalDirections";
@@ -13,7 +14,7 @@ describe("Robot", () => {
 
   beforeEach(() => {
     // robot = new Robot();
-    robot = new RobotFactory().createToy(RobotConfigStandard);
+    robot = new EntityFactory().createStandardRobot();
   });
 
   it("Should be able to be instantiated", () => {
@@ -133,6 +134,16 @@ describe("Robot", () => {
         it("Should be invalid at position 1,1 -1", () => {
           return expect(
             robot.place({ x: 1, y: 1 }, invalidOrientation)
+          ).toEqual(false);
+        });
+
+        it("Should be invalid at position 1,1 -1 with table", () => {
+          return expect(
+            robot.place(
+              { x: 1, y: 1 },
+              invalidOrientation,
+              new EntityFactory().createFiveByFiveTable()
+            )
           ).toEqual(false);
         });
 

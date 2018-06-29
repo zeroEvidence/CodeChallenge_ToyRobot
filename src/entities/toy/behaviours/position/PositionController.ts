@@ -22,7 +22,9 @@ export class PositionController<
 
   public place(position: P, orientation: O, surface?: S) {
     const validPlace =
-      this.setOrientation(orientation) && this.setPosition(position, surface);
+      this.validateOrientation(orientation) &&
+      this.setOrientation(orientation) &&
+      this.setPosition(position, surface);
 
     if (validPlace && surface) {
       this.setSurface(surface);

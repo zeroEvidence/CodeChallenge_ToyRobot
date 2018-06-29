@@ -6,7 +6,6 @@
     "lib": ["es2018"],
     "target": "es2016",
     "noImplicitAny": true,
-    // "rootDir": "src",
     "outDir": "./build",
     "preserveConstEnums": true,
     "removeComments": true,

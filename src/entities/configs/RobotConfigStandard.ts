@@ -10,6 +10,6 @@ export const RobotConfigStandard: IToyConfig = {
     ToyRules.isMoveable
   ],
   strings: {
-    missingEnvironment: "Please place me first. Beep boop!"
+    missingEnvironment: "Boop! boop! Error: place me first."
   }
 };

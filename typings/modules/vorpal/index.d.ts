@@ -23,7 +23,7 @@ declare module "vorpal" {
     help(fn: (cmd: string) => string): void;
     pipe(fn: (stdout: string) => string): this;
     use(commands: string | Object | Function): this;
-    catch(commandName: string, commandDescription?: string): this;
+    catch(commandName: string, commandDescription?: string): ICommand;
     command(commandName: string, commandDescription?: string): ICommand;
     mode(type: string, description: string): mode;
     on(event: events, fn: (data: any) => void): this;
@@ -71,7 +71,7 @@ declare module "vorpal" {
     allowUnknownOptions(): ICommand;
   }
 
-  interface args {
+  export interface args {
     [index: string]: string | number | (string & number)[] | object;
     options?: {
       [namedOptions: string]: string | number;

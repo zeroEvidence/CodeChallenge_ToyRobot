@@ -1,8 +1,8 @@
 import { RobotApplicationStrings } from "../../../../../src/ui/cli/strings/RobotApplicationStrings";
 import { RobotCommandsAdapter } from "../../../../../src/ui/cli/toyAdapters/robot/RobotCommandsAdapter";
 import { InfiniteEnvironment } from "../../../../mockObjects/InfiniteEnvironment";
-import { MockRobot } from "../../../../mockObjects/Robot";
-import { MockVorpal } from "../../../../mockObjects/Vorpal";
+import { MockRobot } from "../../../../mockObjects/MockRobot";
+import { MockVorpal } from "../../../../mockObjects/MockVorpal";
 
 describe("RobotCommandsAdapter", () => {
   describe("beforeExec", () => {

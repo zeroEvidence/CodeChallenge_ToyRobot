@@ -1,6 +1,6 @@
 import { InfiniteEnvironment } from "../../../mockObjects/InfiniteEnvironment";
-import { MockRobot } from "../../../mockObjects/Robot";
-import { MockVorpal } from "../../../mockObjects/Vorpal";
+import { MockRobot } from "../../../mockObjects/MockRobot";
+import { MockVorpal } from "../../../mockObjects/MockVorpal";
 import { TestToyCommandBase } from "./TestToyCommandBase";
 
 describe("ToyCommandsAdapterBase", () => {

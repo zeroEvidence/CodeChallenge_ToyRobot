@@ -30,7 +30,8 @@
     "test": "jest",
     "coverage": "jest --coverage",
     "watch": "npm run build -- --watch",
-    "watch:test": "jest --watch"
+    "watch:test": "jest --watch",
+    "start": "node ./build/index.js"
   },
   "dependencies": {
     "lodash": "^4.17.10",

@@ -1,5 +1,5 @@
 export class ArgumentValidator {
   public static argumentsXYF(args: string) {
-    return /(?:neg)?\d,(?:neg)?\d,\w/.test(args);
+    return /^\d+,\d+,(?:north|south|east|west)$/i.test(args);
   }
 }

@@ -8,28 +8,18 @@ import { IRobot } from "./interfaces/Robot.interface";
 
 /* tslint:disable:no-empty */
 export class Robot extends Toy implements IRobot {
-  constructor(toyStrings: IToyStrings, type: ToyType) {
-    super(toyStrings, type);
-  }
-
-  public place(
+  public place: (
     position: IPosition,
     orientation: IOrientation,
     surface?: ISurface
-  ): boolean {
-    return;
+  ) => boolean;
+  public report: () => void;
+  public move: () => boolean;
+  public left: () => void;
+  public right: () => void;
+  public changeOrientation: () => void;
+
+  constructor(toyStrings: IToyStrings, type: ToyType) {
+    super(toyStrings, type);
   }
-
-  // ts-
-  public report() {}
-
-  public move(): boolean {
-    return;
-  }
-
-  public left() {}
-
-  public right() {}
-
-  public changeOrientation(amount: number) {}
 }

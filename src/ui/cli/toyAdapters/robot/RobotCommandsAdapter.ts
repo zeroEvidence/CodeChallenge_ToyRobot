@@ -10,7 +10,7 @@ import { ParseXYF } from "../../../parsers/ParseXYF";
 import { ArgumentAugmenter } from "../../helpers/ArgumentAugmenter";
 import { IApplicationStrings } from "../../strings/interfaces/ApplicationStrings.interface";
 import { IToyCommandsAdapter } from "../interfaces/ToyCommandsAdapter";
-import { ToyCommandsBase } from "../ToyCommandsAdapterBase";
+import { ToyCommandsBase } from "../ToyCommandsBase";
 import { ArgumentValidator } from "./helpers/ArgumentValidator";
 
 export class RobotCommandsAdapter extends ToyCommandsBase

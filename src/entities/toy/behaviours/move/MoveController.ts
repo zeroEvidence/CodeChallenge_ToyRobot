@@ -1,4 +1,3 @@
-import { Toy } from "../../Toy";
 import { IMoveController } from "./interfaces/MoveController.interface";
 
 /**
@@ -17,10 +16,8 @@ import { IMoveController } from "./interfaces/MoveController.interface";
  * @class MoveController
  * @extends {BaseController}
  */
-export class MoveController extends Toy implements IMoveController {
-  constructor() {
-    super();
-  }
+export class MoveController implements IMoveController {
+  constructor() {}
 
   // By default toys do not move by themselves
   public move(): boolean {

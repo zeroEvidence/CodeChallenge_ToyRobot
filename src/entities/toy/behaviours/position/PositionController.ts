@@ -1,7 +1,7 @@
 import { ISurface } from "../../../surface/interfaces/Surface.interface";
+import { IToy } from "../../interfaces/Toy.interface";
 import { IOrientation } from "../../orientation/interfaces/Orientation";
 import { IPosition } from "../../position/interfaces/Position.interface";
-import { Toy } from "../../Toy";
 import { IPositionController } from "./interfaces/PositionController.interface";
 
 /**
@@ -12,15 +12,14 @@ import { IPositionController } from "./interfaces/PositionController.interface";
  * @extends {BaseController}
  */
 export class PositionController<
+  T extends IToy = IToy,
   P extends IPosition = IPosition,
   O extends IOrientation = IOrientation,
   S extends ISurface = ISurface
-> extends Toy implements IPositionController<P, O, S> {
-  constructor() {
-    super();
-  }
+> implements IPositionController<P, O, S> {
+  constructor() {}
 
-  public place(position: P, orientation: O, surface?: S) {
+  public place(this: T, position: P, orientation: O, surface?: S) {
     const validPlace =
       this.validateOrientation(orientation) &&
       this.setOrientation(orientation) &&
@@ -37,7 +36,7 @@ export class PositionController<
     throw Error(this.toyStrings.invalidPlace);
   }
 
-  public setPosition(position: P, surface?: S): boolean {
+  public setPosition(this: T, position: P, surface?: S): boolean {
     const validPosition = this.validatePosition(position, surface);
 
     if (validPosition) {
@@ -47,7 +46,7 @@ export class PositionController<
     return validPosition;
   }
 
-  public validatePosition(position: P, surface?: S): boolean {
+  public validatePosition(this: T, position: P, surface?: S): boolean {
     const relativeSurface = surface || this.surface;
     return relativeSurface && relativeSurface.hasSurfaceAtPos(position);
   }

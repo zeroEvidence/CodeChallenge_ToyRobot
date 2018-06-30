@@ -1,20 +1,18 @@
 import { IOrientationController } from "../../../behaviours/orientation/interfaces/OrientationController.interface";
 import { IOrientation } from "../../../orientation/interfaces/Orientation";
-import { Toy } from "../../../Toy";
+import { IRobot } from "../../interfaces/Robot.interface";
 
-export class NESWOrientationController extends Toy
+export class NESWOrientationController<T extends IRobot = IRobot>
   implements IOrientationController {
-  constructor() {
-    super();
-  }
+  constructor() {}
 
-  public left() {
+  public left(this: T) {
     const newOrientation = this.orientation.orientation - 1;
 
     this.changeOrientation(newOrientation === -1 ? 3 : newOrientation);
   }
 
-  public right() {
+  public right(this: T) {
     this.changeOrientation(this.orientation.orientation + 1);
   }
 
@@ -28,7 +26,7 @@ export class NESWOrientationController extends Toy
     return isValid;
   }
 
-  public changeOrientation(amount: number) {
+  public changeOrientation(this: T, amount: number) {
     if (this.validatePlacement()) {
       this.orientation.orientation = amount % 4;
     }

@@ -1,13 +1,12 @@
 import { IMoveController } from "../../../behaviours/move/interfaces/MoveController.interface";
-import { Toy } from "../../../Toy";
+import { IToy } from "../../../interfaces/Toy.interface";
 import { CardinalDirection } from "../orientation/CardinalDirections";
 
-export class MoveOneUnitController extends Toy implements IMoveController {
-  constructor() {
-    super();
-  }
+export class MoveOneUnitController<T extends IToy = IToy>
+  implements IMoveController {
+  constructor() {}
 
-  public move() {
+  public move(this: T) {
     if (this.validatePlacement()) {
       // noop
     }

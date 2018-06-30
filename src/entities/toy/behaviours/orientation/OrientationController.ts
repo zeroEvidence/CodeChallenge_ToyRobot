@@ -1,5 +1,4 @@
 import { IOrientation } from "../../orientation/interfaces/Orientation";
-import { Toy } from "../../Toy";
 import { IOrientationController } from "./interfaces/OrientationController.interface";
 
 /**
@@ -19,11 +18,8 @@ import { IOrientationController } from "./interfaces/OrientationController.inter
  * @extends {BaseController}
  */
 export class OrientationController<T extends IOrientation = IOrientation>
-  extends Toy
   implements IOrientationController {
-  constructor() {
-    super();
-  }
+  constructor() {}
 
   public left() {
     throw Error("Method not implemented.");

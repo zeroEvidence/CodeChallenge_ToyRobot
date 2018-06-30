@@ -21,11 +21,9 @@ export abstract class ToyCommandsBase {
     this.vorpal
       .command(`${commandName.toUpperCase()} [arguments]`)
       .alias(`${commandName.toLowerCase()}`)
-      .validate(args => {
-        return this.noArgumentsAllowed(args);
-      })
+      .validate(this.noArgumentsAllowed)
       .action((args, cb) => {
-        this.commandToy(toyMethodName, resultPipe);
+        this.commandToy(args, cb, toyMethodName, resultPipe);
         cb();
       });
   }
@@ -39,6 +37,8 @@ export abstract class ToyCommandsBase {
   }
 
   protected commandToy(
+    vorpalArgs: Vorpal.args,
+    cb: () => void,
     toyMethodName: string,
     resultPipe?: (result: any) => void,
     ...args: any[]
@@ -51,12 +51,14 @@ export abstract class ToyCommandsBase {
           resultPipe(result);
         }
 
+        cb();
         return result;
       } else {
         throw new Error(`Method '${toyMethodName}' does not exist on toy.`);
       }
     } catch (e) {
       this.vorpal.activeCommand.log(e.message);
+      cb();
       return false;
     }
   }

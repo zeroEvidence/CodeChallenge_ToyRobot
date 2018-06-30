@@ -1,13 +1,13 @@
-import { CardinalDirections } from "../../entities/toy/robot/behaviours/orientation/CardinalDirections";
+import { CardinalDirection } from "../../entities/toy/robot/behaviours/orientation/CardinalDirections";
 
-export class ParseCardinalDirections {
+export class ParseCardinalDirection {
   public static numberToString(cardinalIndex: number): string {
-    return CardinalDirections[cardinalIndex];
+    return CardinalDirection[cardinalIndex];
   }
 
   public static stringToNumber(cardinalDirection: string): number {
-    return CardinalDirections[
-      cardinalDirection.toLowerCase() as keyof typeof CardinalDirections
+    return CardinalDirection[
+      cardinalDirection.toLowerCase() as keyof typeof CardinalDirection
     ];
   }
 }

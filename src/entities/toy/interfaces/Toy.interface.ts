@@ -1,6 +1,7 @@
 import { ISurface } from "../../surface/interfaces/Surface.interface";
 import { IOrientation } from "../orientation/interfaces/Orientation";
 import { IPosition } from "../position/interfaces/Position.interface";
+import { IToyStrings } from "./ToyStrings.interface";
 
 /**
  * IToy is the interface for all generic toys
@@ -17,7 +18,7 @@ export interface IToy<
   S extends ISurface = ISurface
 > {
   type: number;
-
+  toyStrings: IToyStrings;
   // All toys can be placed on a surface
   surface: S;
   // All toys can have a position
@@ -26,10 +27,10 @@ export interface IToy<
   orientation: O;
 
   setSurface(surface: S): void;
-  setPosition(position: P): boolean;
+  setPosition(position: P, surface?: S): boolean;
   setOrientation(IOrientation: O): boolean;
 
   validateOrientation(orientation: O): boolean;
-  validatePosition(position: P): boolean;
+  validatePosition(position: P, surface?: S): boolean;
   validatePlacement(): boolean;
 }

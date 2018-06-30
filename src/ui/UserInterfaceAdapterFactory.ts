@@ -24,7 +24,7 @@ export class UserInterfaceAdapterFactory
         break;
 
       default:
-        break;
+        throw new Error(`Unknown user interface type: '${UIType}'.`);
     }
 
     return uiAdapter;

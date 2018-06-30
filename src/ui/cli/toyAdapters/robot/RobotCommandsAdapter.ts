@@ -5,15 +5,15 @@ import { ISurface } from "../../../../entities/surface/interfaces/Surface.interf
 import { IOrientation } from "../../../../entities/toy/orientation/interfaces/Orientation";
 import { IPosition } from "../../../../entities/toy/position/interfaces/Position.interface";
 import { IRobot } from "../../../../entities/toy/robot/interfaces/Robot.interface";
-import { ParseCardinalDirections } from "../../../parsers/ParseCardinalDirection";
+import { ParseCardinalDirection } from "../../../parsers/ParseCardinalDirection";
 import { ParseXYF } from "../../../parsers/ParseXYF";
 import { ArgumentAugmenter } from "../../helpers/ArgumentAugmenter";
 import { IApplicationStrings } from "../../strings/interfaces/ApplicationStrings.interface";
 import { IToyCommandsAdapter } from "../interfaces/ToyCommandsAdapter";
-import { ToyCommandsBase } from "../ToyCommandsAdapterBase";
+import { ToyCommandsBase } from "../ToyCommandsBase";
 import { ArgumentValidator } from "./helpers/ArgumentValidator";
 
-export class ToyRobotCommandsAdapter extends ToyCommandsBase
+export class RobotCommandsAdapter extends ToyCommandsBase
   implements IToyCommandsAdapter {
   constructor(
     vorpal: Vorpal,
@@ -35,25 +35,17 @@ export class ToyRobotCommandsAdapter extends ToyCommandsBase
 
   private addCommands() {
     this.placeCommand();
+
     this.defineHelpCommand("place", this.appStrings.commandHelp.place);
     this.defineHelpCommand("move", this.appStrings.commandHelp.move);
     this.defineHelpCommand("left", this.appStrings.commandHelp.left);
     this.defineHelpCommand("right", this.appStrings.commandHelp.right);
     this.defineHelpCommand("report", this.appStrings.commandHelp.report);
+
     this.defineNoArgsCommand("move", "move");
     this.defineNoArgsCommand("left", "left");
     this.defineNoArgsCommand("right", "right");
-    this.defineNoArgsCommand(
-      "report",
-      "report",
-      (result: IPosition & IOrientation) => {
-        this.vorpal.log(
-          `${result.x},${result.y},${ParseCardinalDirections.numberToString(
-            result.orientation
-          ).toUpperCase()}`
-        );
-      }
-    );
+    this.defineNoArgsCommand("report", "report", this.resultPipe);
   }
 
   private welcomeMessage() {
@@ -65,40 +57,52 @@ export class ToyRobotCommandsAdapter extends ToyCommandsBase
       .command("PLACE <x,y,f>")
       .allowUnknownOptions()
       .alias("place")
-      .parse((command, args: Vorpal.args) => {
-        if (!isString(args)) {
-          return `${command}`;
-        }
+      .parse(this.parsePlaceArguments)
+      .validate(this.placeValidate)
+      .action(this.placeAction);
+  }
 
-        return `${command} ${ArgumentAugmenter.encode(args)}`;
-      })
-      .validate(args => {
-        const validArgs = ArgumentValidator.argumentsXYF(args[
-          "x,y,f"
-        ] as string);
+  private parsePlaceArguments(command: string, args: Vorpal.args) {
+    if (!isString(args)) {
+      return `${command}`;
+    }
 
-        if (!validArgs) {
-          this.vorpal.log(
-            this.appStrings.invalidArgument(
-              ArgumentAugmenter.decode(args["x,y,f"] as string)
-            )
-          );
-        }
+    return `${command} ${ArgumentAugmenter.encode(args)}`;
+  }
 
-        return validArgs;
-      })
-      .action((args, cb) => {
-        const xyf = ArgumentAugmenter.decode(args["x,y,f"] as string);
+  private placeValidate(args: Vorpal.args) {
+    const validArgs = ArgumentValidator.argumentsXYF(args["x,y,f"] as string);
 
-        this.commandToy(
-          "place",
-          void 0,
-          ParseXYF.toPositionObject(xyf),
-          ParseXYF.toOrientationObject(xyf),
-          this.surface
-        );
+    if (!validArgs) {
+      this.vorpal.log(
+        this.appStrings.invalidArgument(
+          ArgumentAugmenter.decode(args["x,y,f"] as string)
+        )
+      );
+    }
 
-        cb();
-      });
+    return validArgs;
+  }
+
+  private placeAction(args: Vorpal.args, cb: () => void) {
+    const xyf = ArgumentAugmenter.decode(args["x,y,f"] as string);
+
+    this.commandToy(
+      args,
+      cb,
+      "place",
+      void 0,
+      ParseXYF.toPositionObject(xyf),
+      ParseXYF.toOrientationObject(xyf),
+      this.surface
+    );
+  }
+
+  private resultPipe(result: IPosition & IOrientation) {
+    this.vorpal.log(
+      `${result.x},${result.y},${ParseCardinalDirection.numberToString(
+        result.orientation
+      ).toUpperCase()}`
+    );
   }
 }

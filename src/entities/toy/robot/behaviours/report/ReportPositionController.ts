@@ -1,16 +1,15 @@
 import { IReportController } from "../../../behaviours/report/interfaces/ReportController.interface";
+import { IToy } from "../../../interfaces/Toy.interface";
 import { IPosition } from "../../../position/interfaces/Position.interface";
-import { Toy } from "../../../Toy";
 
-export class ReportPositionController extends Toy
+export class ReportPositionController<T extends IToy = IToy>
   implements IReportController<IPosition> {
   constructor() {
-    super();
+    //
   }
 
-  public report() {
+  public report(this: T) {
     if (this.validatePlacement()) {
-      // return Object.assign(this.position, this.orientation);
       return { ...this.position, ...this.orientation };
     }
   }

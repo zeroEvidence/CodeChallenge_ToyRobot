@@ -1,13 +1,14 @@
 import { IMoveController } from "../../../behaviours/move/interfaces/MoveController.interface";
-import { Toy } from "../../../Toy";
-import { CardinalDirections } from "../orientation/CardinalDirections";
+import { IToy } from "../../../interfaces/Toy.interface";
+import { CardinalDirection } from "../orientation/CardinalDirections";
 
-export class MoveOneUnitController extends Toy implements IMoveController {
+export class MoveOneUnitController<T extends IToy = IToy>
+  implements IMoveController {
   constructor() {
-    super();
+    //
   }
 
-  public move() {
+  public move(this: T) {
     if (this.validatePlacement()) {
       // noop
     }
@@ -15,19 +16,19 @@ export class MoveOneUnitController extends Toy implements IMoveController {
     const newPosition = { ...this.position };
 
     switch (this.orientation.orientation) {
-      case CardinalDirections.north:
+      case CardinalDirection.north:
         newPosition.y++;
         break;
 
-      case CardinalDirections.east:
+      case CardinalDirection.east:
         newPosition.x++;
         break;
 
-      case CardinalDirections.south:
+      case CardinalDirection.south:
         newPosition.y--;
         break;
 
-      case CardinalDirections.west:
+      case CardinalDirection.west:
         newPosition.x--;
         break;
     }

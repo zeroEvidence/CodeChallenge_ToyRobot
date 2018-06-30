@@ -5,7 +5,7 @@ import { IToy } from "../../../entities/toy/interfaces/Toy.interface";
 import { IRobot } from "../../../entities/toy/robot/interfaces/Robot.interface";
 import { IApplicationStrings } from "../strings/interfaces/ApplicationStrings.interface";
 import { IToyCommandsAdapter } from "./interfaces/ToyCommandsAdapter";
-import { ToyRobotCommandsAdapter } from "./robot/RobotCommandsAdapter";
+import { RobotCommandsAdapter } from "./robot/RobotCommandsAdapter";
 
 export class ToyAdapterFactory {
   constructor() {
@@ -22,7 +22,7 @@ export class ToyAdapterFactory {
 
     switch (toy.type) {
       case ToyType.StandardRobotV1:
-        toyAdapter = new ToyRobotCommandsAdapter(
+        toyAdapter = new RobotCommandsAdapter(
           vorpal,
           toy as IRobot,
           surface,

@@ -1,13 +1,13 @@
-import { RobotConfigStandard } from "../../src/entities/configs/RobotConfigStandard";
-import { EntityFactory } from "../../src/entities/EntityFactory";
-import { IOrientation } from "../../src/entities/toy/orientation/interfaces/Orientation";
-import { IPosition } from "../../src/entities/toy/position/interfaces/Position.interface";
-import { CardinalDirections } from "../../src/entities/toy/robot/behaviours/orientation/CardinalDirections";
-import { IRobot } from "../../src/entities/toy/robot/interfaces/Robot.interface";
-import { RobotFactory } from "../../src/entities/toy/robot/RobotFactory";
-import { InfiniteEnvironment } from "./mocks/InfiniteEnvironment";
-import { NoEnvironment } from "./mocks/NoEnvironment";
-import { RestrictedEnvironment } from "./mocks/RestrictedEnvironment";
+import { RobotConfigStandard } from "../../../src/entities/configs/RobotConfigStandard";
+import { EntityFactory } from "../../../src/entities/EntityFactory";
+import { IOrientation } from "../../../src/entities/toy/orientation/interfaces/Orientation";
+import { IPosition } from "../../../src/entities/toy/position/interfaces/Position.interface";
+import { CardinalDirection } from "../../../src/entities/toy/robot/behaviours/orientation/CardinalDirections";
+import { IRobot } from "../../../src/entities/toy/robot/interfaces/Robot.interface";
+import { RobotFactory } from "../../../src/entities/toy/robot/RobotFactory";
+import { InfiniteEnvironment } from "../../mockObjects/InfiniteEnvironment";
+import { NoEnvironment } from "../../mockObjects/NoEnvironment";
+import { RestrictedEnvironment } from "../../mockObjects/RestrictedEnvironment";
 
 describe("Robot", () => {
   let robot: IRobot;
@@ -54,16 +54,16 @@ describe("Robot", () => {
       y: -1
     };
     const northOrientation = {
-      orientation: CardinalDirections.north
+      orientation: CardinalDirection.north
     };
     const eastOrientation = {
-      orientation: CardinalDirections.east
+      orientation: CardinalDirection.east
     };
     const southOrientation = {
-      orientation: CardinalDirections.south
+      orientation: CardinalDirection.south
     };
     const westOrientation = {
-      orientation: CardinalDirections.west
+      orientation: CardinalDirection.west
     };
     const invalidOrientation = {
       orientation: -1
@@ -82,17 +82,14 @@ describe("Robot", () => {
           return expect(
             robot.place(
               { x: 0, y: 0 },
-              { orientation: CardinalDirections.north }
+              { orientation: CardinalDirection.north }
             )
           ).toEqual(true);
         });
 
         it("Should be valid at position 0,4 E", () => {
           return expect(
-            robot.place(
-              { x: 0, y: 4 },
-              { orientation: CardinalDirections.east }
-            )
+            robot.place({ x: 0, y: 4 }, { orientation: CardinalDirection.east })
           ).toEqual(true);
         });
 
@@ -100,16 +97,23 @@ describe("Robot", () => {
           return expect(
             robot.place(
               { x: 4, y: 0 },
-              { orientation: CardinalDirections.south }
+              { orientation: CardinalDirection.south }
             )
           ).toEqual(true);
         });
 
         it("Should be valid at position 4,4 W", () => {
           return expect(
+            robot.place({ x: 4, y: 4 }, { orientation: CardinalDirection.west })
+          ).toEqual(true);
+        });
+
+        it("Should be valid at position 1,1,0 with table", () => {
+          return expect(
             robot.place(
-              { x: 4, y: 4 },
-              { orientation: CardinalDirections.west }
+              { x: 1, y: 1 },
+              northOrientation,
+              new InfiniteEnvironment()
             )
           ).toEqual(true);
         });
@@ -143,7 +147,7 @@ describe("Robot", () => {
             robot.place(
               { x: 1, y: 1 },
               invalidOrientation,
-              new EntityFactory().createFiveByFiveTable()
+              new InfiniteEnvironment()
             );
           }).toThrowError(invalidPlace);
         });
@@ -152,7 +156,7 @@ describe("Robot", () => {
           return expect(() => {
             robot.place(
               { x: 5, y: 0 },
-              { orientation: CardinalDirections.south }
+              { orientation: CardinalDirection.south }
             );
           }).toThrowError(invalidPlace);
         });
@@ -161,7 +165,7 @@ describe("Robot", () => {
           return expect(() => {
             robot.place(
               { x: 0, y: 5 },
-              { orientation: CardinalDirections.west }
+              { orientation: CardinalDirection.west }
             );
           }).toThrowError(invalidPlace);
         });
@@ -183,7 +187,7 @@ describe("Robot", () => {
         const southWestCorner: IPosition & IOrientation = {
           x: 0,
           y: 0,
-          orientation: CardinalDirections.north
+          orientation: CardinalDirection.north
         };
 
         robot.place(southWestCorner, northOrientation);
@@ -226,7 +230,7 @@ describe("Robot", () => {
           return expect(robot.report()).toEqual({
             x: 2,
             y: 3,
-            orientation: CardinalDirections.north
+            orientation: CardinalDirection.north
           });
         });
 
@@ -237,7 +241,7 @@ describe("Robot", () => {
           return expect(robot.report()).toEqual({
             x: 3,
             y: 2,
-            orientation: CardinalDirections.east
+            orientation: CardinalDirection.east
           });
         });
 
@@ -248,7 +252,7 @@ describe("Robot", () => {
           return expect(robot.report()).toEqual({
             x: 2,
             y: 1,
-            orientation: CardinalDirections.south
+            orientation: CardinalDirection.south
           });
         });
 
@@ -259,7 +263,7 @@ describe("Robot", () => {
           return expect(robot.report()).toEqual({
             x: 1,
             y: 2,
-            orientation: CardinalDirections.west
+            orientation: CardinalDirection.west
           });
         });
       });
@@ -288,7 +292,7 @@ describe("Robot", () => {
           return expect(robot.report()).toEqual({
             x: 0,
             y: 0,
-            orientation: CardinalDirections.south
+            orientation: CardinalDirection.south
           });
         });
 
@@ -299,7 +303,7 @@ describe("Robot", () => {
           return expect(robot.report()).toEqual({
             x: 0,
             y: 0,
-            orientation: CardinalDirections.west
+            orientation: CardinalDirection.west
           });
         });
 
@@ -310,7 +314,7 @@ describe("Robot", () => {
           return expect(robot.report()).toEqual({
             x: 4,
             y: 4,
-            orientation: CardinalDirections.north
+            orientation: CardinalDirection.north
           });
         });
 
@@ -321,7 +325,7 @@ describe("Robot", () => {
           return expect(robot.report()).toEqual({
             x: 4,
             y: 4,
-            orientation: CardinalDirections.east
+            orientation: CardinalDirection.east
           });
         });
       });
@@ -347,7 +351,7 @@ describe("Robot", () => {
         return expect(robot.report()).toEqual({
           x: 2,
           y: 2,
-          orientation: CardinalDirections.west
+          orientation: CardinalDirection.west
         });
       });
 
@@ -358,7 +362,7 @@ describe("Robot", () => {
         return expect(robot.report()).toEqual({
           x: 2,
           y: 2,
-          orientation: CardinalDirections.north
+          orientation: CardinalDirection.north
         });
       });
 
@@ -369,7 +373,7 @@ describe("Robot", () => {
         return expect(robot.report()).toEqual({
           x: 2,
           y: 2,
-          orientation: CardinalDirections.east
+          orientation: CardinalDirection.east
         });
       });
 
@@ -380,7 +384,7 @@ describe("Robot", () => {
         return expect(robot.report()).toEqual({
           x: 2,
           y: 2,
-          orientation: CardinalDirections.south
+          orientation: CardinalDirection.south
         });
       });
     });
@@ -407,7 +411,7 @@ describe("Robot", () => {
         return expect(robotA.report()).toEqual({
           x: 2,
           y: 2,
-          orientation: CardinalDirections.east
+          orientation: CardinalDirection.east
         });
       });
 
@@ -418,7 +422,7 @@ describe("Robot", () => {
         return expect(robot.report()).toEqual({
           x: 2,
           y: 2,
-          orientation: CardinalDirections.north
+          orientation: CardinalDirection.north
         });
       });
 
@@ -429,7 +433,7 @@ describe("Robot", () => {
         return expect(robot.report()).toEqual({
           x: 2,
           y: 2,
-          orientation: CardinalDirections.west
+          orientation: CardinalDirection.west
         });
       });
 
@@ -440,7 +444,7 @@ describe("Robot", () => {
         return expect(robot.report()).toEqual({
           x: 2,
           y: 2,
-          orientation: CardinalDirections.south
+          orientation: CardinalDirection.south
         });
       });
     });

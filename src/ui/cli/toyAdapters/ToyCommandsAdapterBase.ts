@@ -1,8 +1,8 @@
-/// <reference path="../../../typings/modules/vorpal/index.d.ts" />
+/// <reference path="../../../../typings/modules/vorpal/index.d.ts" />
 import Vorpal = require("vorpal");
 import { isEmpty, isFunction } from "lodash";
-import { ISurface } from "../../entities/surface/interfaces/Surface.interface";
-import { IToy } from "../../entities/toy/interfaces/Toy.interface";
+import { ISurface } from "../../../entities/surface/interfaces/Surface.interface";
+import { IToy } from "../../../entities/toy/interfaces/Toy.interface";
 
 export abstract class ToyCommandsBase {
   constructor(

@@ -1,4 +1,4 @@
-/// <reference path="../../../typings/modules/vorpal/index.d.ts" />
+/// <reference path="../../../../typings/modules/vorpal/index.d.ts" />
 import Vorpal = require("vorpal");
 
 export class ApplicationConfig {

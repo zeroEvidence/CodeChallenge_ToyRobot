@@ -1,10 +1,13 @@
 /// <reference path="../../../typings/modules/vorpal/index.d.ts" />
 import Vorpal = require("vorpal");
-import { ApplicationConfig } from "../strings/ApplicationStrings";
-import { IToyCommands } from "./interfaces/ToyCommands";
+import { ApplicationConfig } from "./strings/ApplicationStrings";
+import { IToyCommandsAdapter } from "./toyAdapters/interfaces/ToyCommandsAdapter";
 
 export class AppCLI {
-  constructor(private vorpal: Vorpal, private toyCommands: IToyCommands) {
+  constructor(
+    private vorpal: Vorpal,
+    private toyCommands: IToyCommandsAdapter
+  ) {
     this.init();
   }
 

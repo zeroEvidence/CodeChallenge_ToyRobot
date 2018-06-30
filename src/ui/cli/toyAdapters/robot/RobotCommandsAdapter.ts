@@ -1,19 +1,20 @@
-/// <reference path="../../../typings/modules/vorpal/index.d.ts" />
+/// <reference path="../../../../../typings/modules/vorpal/index.d.ts" />
 import Vorpal = require("vorpal");
 import { isString } from "lodash";
-import { ISurface } from "../../entities/surface/interfaces/Surface.interface";
-import { IOrientation } from "../../entities/toy/orientation/interfaces/Orientation";
-import { IPosition } from "../../entities/toy/position/interfaces/Position.interface";
-import { IRobot } from "../../entities/toy/robot/interfaces/Robot.interface";
-import { ParseCardinalDirections } from "../parsers/ParseCardinalDirection";
-import { ParseXYF } from "../parsers/ParseXYF";
-import { ApplicationConfig } from "../strings/ApplicationStrings";
-import { ArgumentAugmenter } from "./helpers/ArgumentAugmenter";
-import { ArgumentValidator } from "./helpers/ArgumentValidator";
-import { IToyCommands } from "./interfaces/ToyCommands";
-import { ToyCommandsBase } from "./ToyCommandsBase";
+import { ISurface } from "../../../../entities/surface/interfaces/Surface.interface";
+import { IOrientation } from "../../../../entities/toy/orientation/interfaces/Orientation";
+import { IPosition } from "../../../../entities/toy/position/interfaces/Position.interface";
+import { IRobot } from "../../../../entities/toy/robot/interfaces/Robot.interface";
+import { ParseCardinalDirections } from "../../../parsers/ParseCardinalDirection";
+import { ParseXYF } from "../../../parsers/ParseXYF";
+import { ArgumentAugmenter } from "../../helpers/ArgumentAugmenter";
+import { ArgumentValidator } from "../../helpers/ArgumentValidator";
+import { ApplicationConfig } from "../../strings/ApplicationStrings";
+import { IToyCommandsAdapter } from "../interfaces/ToyCommandsAdapter";
+import { ToyCommandsBase } from "../ToyCommandsAdapterBase";
 
-export class ToyRobotCommands extends ToyCommandsBase implements IToyCommands {
+export class ToyRobotCommands extends ToyCommandsBase
+  implements IToyCommandsAdapter {
   constructor(vorpal: Vorpal, toy: IRobot, surface: ISurface) {
     super(vorpal, toy, surface);
   }

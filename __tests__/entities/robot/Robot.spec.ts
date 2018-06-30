@@ -1,10 +1,10 @@
-import { RobotConfigStandard } from "../../src/entities/configs/RobotConfigStandard";
-import { EntityFactory } from "../../src/entities/EntityFactory";
-import { IOrientation } from "../../src/entities/toy/orientation/interfaces/Orientation";
-import { IPosition } from "../../src/entities/toy/position/interfaces/Position.interface";
-import { CardinalDirections } from "../../src/entities/toy/robot/behaviours/orientation/CardinalDirections";
-import { IRobot } from "../../src/entities/toy/robot/interfaces/Robot.interface";
-import { RobotFactory } from "../../src/entities/toy/robot/RobotFactory";
+import { RobotConfigStandard } from "../../../src/entities/configs/RobotConfigStandard";
+import { EntityFactory } from "../../../src/entities/EntityFactory";
+import { IOrientation } from "../../../src/entities/toy/orientation/interfaces/Orientation";
+import { IPosition } from "../../../src/entities/toy/position/interfaces/Position.interface";
+import { CardinalDirections } from "../../../src/entities/toy/robot/behaviours/orientation/CardinalDirections";
+import { IRobot } from "../../../src/entities/toy/robot/interfaces/Robot.interface";
+import { RobotFactory } from "../../../src/entities/toy/robot/RobotFactory";
 import { InfiniteEnvironment } from "./mocks/InfiniteEnvironment";
 import { NoEnvironment } from "./mocks/NoEnvironment";
 import { RestrictedEnvironment } from "./mocks/RestrictedEnvironment";

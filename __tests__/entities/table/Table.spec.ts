@@ -1,5 +1,5 @@
-import { ISurface } from "../../src/entities/surface/interfaces/Surface.interface";
-import { TableFactory } from "../../src/entities/surface/table/TableFactory";
+import { ISurface } from "../../../src/entities/surface/interfaces/Surface.interface";
+import { TableFactory } from "../../../src/entities/surface/table/TableFactory";
 
 describe("Table", () => {
   it("Should be able to be instantiated", () => {

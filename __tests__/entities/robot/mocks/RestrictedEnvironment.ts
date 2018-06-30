@@ -1,5 +1,5 @@
-import { Surface } from "../../../src/entities/surface/Surface";
-import { IPosition } from "../../../src/entities/toy/position/interfaces/Position.interface";
+import { Surface } from "../../../../src/entities/surface/Surface";
+import { IPosition } from "../../../../src/entities/toy/position/interfaces/Position.interface";
 
 export class RestrictedEnvironment extends Surface {
   public hasSurfaceAtPos(position: IPosition) {

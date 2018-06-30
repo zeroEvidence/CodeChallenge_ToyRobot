@@ -11,5 +11,8 @@ export const RobotConfigStandard: IToyConfig = {
     ToyRules.isMoveable
   ],
   strings: {
+    invalidPlace: "Boop-boop! Error: invalid place.",
+    missingEnvironment: "Boop-boop! Error: place me first."
+  },
   type: ToyType.StandardRobotV1
 };

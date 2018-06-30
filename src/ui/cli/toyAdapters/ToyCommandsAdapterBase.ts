@@ -1,4 +1,4 @@
-/// <reference path="../../../../typings/modules/vorpal/index.d.ts" />
+/* tslint:disable:ordered-imports */
 import Vorpal = require("vorpal");
 import { isEmpty, isFunction } from "lodash";
 import { ISurface } from "../../../entities/surface/interfaces/Surface.interface";
@@ -30,7 +30,7 @@ export abstract class ToyCommandsBase {
       });
   }
 
-  protected noArgumentsAllowed(args: any) {
+  protected noArgumentsAllowed(args: Vorpal.args) {
     if (isEmpty(args.options) && !args.arguments) {
       return true;
     } else {
@@ -76,7 +76,7 @@ export abstract class ToyCommandsBase {
   }
 
   protected logStringArray(message: string[], cb: () => void) {
-    message.forEach(message => this.vorpal.activeCommand.log(message));
+    message.forEach(line => this.vorpal.activeCommand.log(line));
     cb();
   }
 }

@@ -31,6 +31,7 @@
     "coverage": "jest --coverage",
     "watch": "npm run build -- --watch",
     "watch:test": "jest --watch",
+    "watch:coverage": "jest --coverage --watch",
     "start": "node ./build/index.js"
   },
   "dependencies": {
@@ -70,6 +71,13 @@
       "jsx",
       "json"
     ],
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "coverageReporters": [
+      "html"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ],
+    "coverageDirectory": "<rootDir>/coverage"
   }
 }

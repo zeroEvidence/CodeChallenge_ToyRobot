@@ -78,6 +78,9 @@
     "collectCoverageFrom": [
       "src/**/*.ts"
     ],
-    "coverageDirectory": "<rootDir>/coverage"
+    "coverageDirectory": "<rootDir>/coverage",
+    "coveragePathIgnorePatterns": [
+      "src/index.ts"
+    ]
   }
 }

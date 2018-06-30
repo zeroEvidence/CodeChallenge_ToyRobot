@@ -24,15 +24,18 @@
     "format": "prettier --write \"src/**/*.ts\" --trailing-comma none",
     "lint": "tslint --force --format stylish \"src/**/*.ts\"",
     "prepublish": "npm run build",
+    "postinstall": "cp -r ./@types/* ./node_modules/@types/",
     "prebuild": "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
     "build": "tsc --pretty -p ./src/",
     "test": "jest",
     "coverage": "jest --coverage",
     "watch": "npm run build -- --watch",
-    "watch:test": "jest --watch"
+    "watch:test": "jest --watch",
+    "start": "node ./build/index.js"
   },
   "dependencies": {
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.10",
+    "vorpal": "^1.12.0"
   },
   "devDependencies": {
     "@types/jest": "^22.0.0",

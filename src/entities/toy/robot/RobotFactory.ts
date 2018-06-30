@@ -1,7 +1,7 @@
+import { ToyRules } from "../../configs/rules/ToyRules";
 import { IToyConfig } from "../interfaces/ToyConfig.interface";
 import { IToyFactory } from "../interfaces/ToyFactory.interface";
 import { ToyFactoryBase } from "../ToyFactoryBase";
-import { ToyRules } from "../ToyRules";
 import { RobotBehavioursFactory } from "./behaviours/RobotBehaviorsFactory";
 import { IRobot } from "./interfaces/Robot.interface";
 import { Robot } from "./Robot";
@@ -12,10 +12,10 @@ export class RobotFactory extends ToyFactoryBase
     super();
   }
 
-  public createToy(toyConfig: IToyConfig) {
-    let toy = new Robot(toyConfig.strings);
+  public createToy(toyConfig: IToyConfig): IRobot {
+    const toy: IRobot = new Robot(toyConfig.strings, toyConfig.type);
+    const behaviours = [];
     let i = toyConfig.rules.length;
-    let behaviours = [];
 
     while (i--) {
       switch (toyConfig.rules[i]) {

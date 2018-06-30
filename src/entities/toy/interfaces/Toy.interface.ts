@@ -16,6 +16,8 @@ export interface IToy<
   O extends IOrientation = IOrientation,
   S extends ISurface = ISurface
 > {
+  type: number;
+
   // All toys can be placed on a surface
   surface: S;
   // All toys can have a position

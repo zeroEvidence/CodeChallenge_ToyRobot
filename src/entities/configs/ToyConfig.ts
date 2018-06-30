@@ -4,7 +4,7 @@ import { IToyConfig } from "../toy/interfaces/ToyConfig.interface";
 export const ToyConfig: IToyConfig = {
   rules: [],
   strings: {
-    missingEnvironment: "Environment is not set",
-    invalidPosition: "Position is invalid"
+    invalidPlace: "Position is invalid",
+    missingEnvironment: "Environment is not set"
   }
 };

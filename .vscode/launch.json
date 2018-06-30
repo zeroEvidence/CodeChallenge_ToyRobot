@@ -7,6 +7,17 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Launch Program",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/build/ui/cli/app.js",
+      "cwd": "${workspaceRoot}",
+      "sourceMaps": true,
+      "smartStep": true,
+      "outFiles": ["${workspaceRoot}/build/*.js"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Debug file",
       "program": "${workspaceRoot}/build/${fileBasenameNoExtension}.js",
       "cwd": "${workspaceRoot}",

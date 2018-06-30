@@ -69,6 +69,7 @@ describe("Robot", () => {
       orientation: -1
     };
     const missingEnvironment = RobotConfigStandard.strings.missingEnvironment;
+    const invalidPlace = RobotConfigStandard.strings.invalidPlace;
     let middleOfTableCoords = { x: 2, y: 2 };
 
     describe("Method .place(...)", () => {
@@ -120,49 +121,49 @@ describe("Robot", () => {
         });
 
         it("Should be invalid at position -1,0 N", () => {
-          return expect(robot.place(invalidPlaceA, northOrientation)).toEqual(
-            false
-          );
+          return expect(() => {
+            robot.place(invalidPlaceA, northOrientation);
+          }).toThrowError(invalidPlace);
         });
 
         it("Should be invalid at position 0,-1 N", () => {
-          return expect(robot.place(invalidPlaceB, northOrientation)).toEqual(
-            false
-          );
+          return expect(() => {
+            robot.place(invalidPlaceB, northOrientation);
+          }).toThrowError(invalidPlace);
         });
 
         it("Should be invalid at position 1,1 -1", () => {
-          return expect(
-            robot.place({ x: 1, y: 1 }, invalidOrientation)
-          ).toEqual(false);
+          return expect(() => {
+            robot.place({ x: 1, y: 1 }, invalidOrientation);
+          }).toThrowError(invalidPlace);
         });
 
         it("Should be invalid at position 1,1 -1 with table", () => {
-          return expect(
+          return expect(() => {
             robot.place(
               { x: 1, y: 1 },
               invalidOrientation,
               new EntityFactory().createFiveByFiveTable()
-            )
-          ).toEqual(false);
+            );
+          }).toThrowError(invalidPlace);
         });
 
         it("Should be invalid at position 5,0 S", () => {
-          return expect(
+          return expect(() => {
             robot.place(
               { x: 5, y: 0 },
               { orientation: CardinalDirections.south }
-            )
-          ).toEqual(false);
+            );
+          }).toThrowError(invalidPlace);
         });
 
         it("Should be invalid at position 0,5 W", () => {
-          return expect(
+          return expect(() => {
             robot.place(
               { x: 0, y: 5 },
               { orientation: CardinalDirections.west }
-            )
-          ).toEqual(false);
+            );
+          }).toThrowError(invalidPlace);
         });
       });
     });
@@ -177,19 +178,6 @@ describe("Robot", () => {
           robot.report();
         }).toThrowError(missingEnvironment);
       });
-
-      it(
-        "Should throw an error if the toy had been placed in an " +
-          "invalid area",
-        () => {
-          robot.setSurface(mockNoEnvironment);
-          robot.place({ x: -1, y: -1 }, { orientation: -1 });
-
-          return expect(() => {
-            robot.report();
-          }).toThrowError(missingEnvironment);
-        }
-      );
 
       it("Should give back the current position of the robot", () => {
         const southWestCorner: IPosition & IOrientation = {
@@ -212,17 +200,6 @@ describe("Robot", () => {
       describe("Without placing first", () => {
         it("Should throw an error when moving without placing", () => {
           robot.setSurface(mockNoEnvironment);
-
-          return expect(() => {
-            robot.move();
-          }).toThrowError(missingEnvironment);
-        });
-      });
-
-      describe("Invalid placing", () => {
-        it("Should throw an error", () => {
-          robot.setSurface(mockNoEnvironment);
-          robot.place(invalidPlaceA, northOrientation);
 
           return expect(() => {
             robot.move();
@@ -363,16 +340,6 @@ describe("Robot", () => {
         });
       });
 
-      describe("Invalid placing", () => {
-        it("Should throw an error", () => {
-          robot.place(invalidPlaceB, northOrientation);
-
-          return expect(() => {
-            robot.left();
-          }).toThrowError(missingEnvironment);
-        });
-      });
-
       it("Should orient to west", () => {
         robot.place(middleOfTableCoords, Object.assign(northOrientation));
         robot.left();
@@ -425,16 +392,6 @@ describe("Robot", () => {
 
       describe("Without placing", () => {
         it("Should throw an error", () => {
-          return expect(() => {
-            robot.right();
-          }).toThrowError(missingEnvironment);
-        });
-      });
-
-      describe("Invalid placing", () => {
-        it("Should throw an error", () => {
-          robot.place(middleOfTableCoords, invalidOrientation);
-
           return expect(() => {
             robot.right();
           }).toThrowError(missingEnvironment);

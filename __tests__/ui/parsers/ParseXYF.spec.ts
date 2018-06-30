@@ -13,5 +13,11 @@ describe("ParseXYF", () => {
         orientation: 0
       });
     });
+
+    it("Should convert 1,1,foo to { orientation: -1 }", () => {
+      expect(ParseXYF.toOrientationObject("1,1,foo")).toEqual({
+        orientation: -1
+      });
+    });
   });
 });

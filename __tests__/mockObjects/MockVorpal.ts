@@ -12,6 +12,9 @@ export class MockVorpal {
   validateCalled = 0;
   actionCalled = 0;
   hiddenCalled = 0;
+  helpCalled = 0;
+  catchCalled = 0;
+  showCalled = 0;
   activeCommand = {
     log: function(args: string) {
       return this.log(args);
@@ -55,6 +58,18 @@ export class MockVorpal {
   }
   hidden() {
     this.hiddenCalled++;
+    return this;
+  }
+  help() {
+    this.helpCalled++;
+    return this;
+  }
+  catch() {
+    this.catchCalled++;
+    return this;
+  }
+  show() {
+    this.showCalled++;
     return this;
   }
 }

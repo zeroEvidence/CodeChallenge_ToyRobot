@@ -1,35 +1,37 @@
 // Type definitions for vorpal 1.12.0
 // Project: https://github.com/dthree/vorpal
 // Definitions by: (same author as this project)
-declare module "vorpal" {
-  export = vorpal;
 
-  class vorpal {
-    constructor();
+// declare module "vorpal" {
+export = Vorpal;
 
-    ui: UserInterface;
-    activeCommand: ICommandInstance;
+declare class Vorpal {
+  constructor();
 
-    parse(processArgv: any, options?: any): this;
-    delimiter(delimiter: string): this;
-    show(): this;
-    hide(): this;
-    find(cmdName: string): this;
-    exec(cmdName: string, cb?: any): this;
-    execSync(cmd: string, options?: { fatal: boolean }): this;
-    log(...args: any[]): this;
-    history(id: string): this;
-    localStorage(id: string): this;
-    help(fn: (cmd: string) => string): void;
-    pipe(fn: (stdout: string) => string): this;
-    use(commands: string | Object | Function): this;
-    catch(commandName: string, commandDescription?: string): ICommand;
-    command(commandName: string, commandDescription?: string): ICommand;
-    mode(type: string, description: string): mode;
-    on(event: events, fn: (data: any) => void): this;
-    emit(event: events, data: any): this;
-  }
+  ui: Vorpal.UserInterface;
+  activeCommand: Vorpal.CommandInstance;
 
+  parse(processArgv: any, options?: any): this;
+  delimiter(delimiter: string): this;
+  show(): this;
+  hide(): this;
+  find(cmdName: string): this;
+  exec(cmdName: string, cb?: any): this;
+  execSync(cmd: string, options?: { fatal: boolean }): this;
+  log(...args: any[]): this;
+  history(id: string): this;
+  localStorage(id: string): this;
+  help(fn: (cmd: string) => string): void;
+  pipe(fn: (stdout: string) => string): this;
+  use(commands: string | Object | Function): this;
+  catch(commandName: string, commandDescription?: string): Vorpal.Command;
+  command(commandName: string, commandDescription?: string): Vorpal.Command;
+  mode(type: string, description: string): Vorpal.mode;
+  on(event: Vorpal.events, fn: (data: any) => void): this;
+  emit(event: Vorpal.events, data: any): this;
+}
+
+declare namespace Vorpal {
   interface UserInterface {
     delimiter(delimiter?: string): void;
     input(cmd: string): void;
@@ -49,26 +51,26 @@ declare module "vorpal" {
     action(command: string, cb: () => void): mode;
   }
 
-  interface ICommand {
-    description(description: string): ICommand;
-    alias(...alias: string[]): ICommand;
-    parse(cb: (command: string, args: args) => string): ICommand;
+  interface Command {
+    description(description: string): Command;
+    alias(...alias: string[]): Command;
+    parse(cb: (command: string, args: args) => string): Command;
     option(
       option: string,
       description?: string,
       autocomplete?: string
-    ): ICommand;
-    types(typeCaster: Object): ICommand;
-    hidden(): ICommand;
-    remove(): ICommand;
-    help(override: (args: args) => void): ICommand;
-    validate(validator: (args: args) => boolean): ICommand;
-    autoComplete(arg: string[] | Object | autocompleteFn): ICommand;
+    ): Command;
+    types(typeCaster: Object): Command;
+    hidden(): Command;
+    remove(): Command;
+    help(override: (args: args) => void): Command;
+    validate(validator: (args: args) => boolean): Command;
+    autoComplete(arg: string[] | Object | autocompleteFn): Command;
     action(
-      cb: (this: ICommandInstance, args: args, cb?: () => any) => any
-    ): ICommand;
-    cancel(cb: () => void): ICommand;
-    allowUnknownOptions(): ICommand;
+      cb: (this: CommandInstance, args: args, cb?: () => any) => any
+    ): Command;
+    cancel(cb: () => void): Command;
+    allowUnknownOptions(): Command;
   }
 
   export interface args {
@@ -78,7 +80,7 @@ declare module "vorpal" {
     };
   }
 
-  interface ICommandInstance {
+  interface CommandInstance {
     log(...args: any[]): void;
     prompt(questions: inquirer.question[]): void;
     delimiter(str: any): void;
@@ -125,3 +127,4 @@ declare module "vorpal" {
     }
   }
 }
+// }

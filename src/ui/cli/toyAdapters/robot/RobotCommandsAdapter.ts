@@ -13,7 +13,7 @@ import { IToyCommandsAdapter } from "../interfaces/ToyCommandsAdapter";
 import { ToyCommandsBase } from "../ToyCommandsAdapterBase";
 import { ArgumentValidator } from "./helpers/ArgumentValidator";
 
-export class ToyRobotCommandsAdapter extends ToyCommandsBase
+export class RobotCommandsAdapter extends ToyCommandsBase
   implements IToyCommandsAdapter {
   constructor(
     vorpal: Vorpal,

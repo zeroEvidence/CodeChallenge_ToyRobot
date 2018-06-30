@@ -107,6 +107,16 @@ describe("Robot", () => {
             robot.place({ x: 4, y: 4 }, { orientation: CardinalDirection.west })
           ).toEqual(true);
         });
+
+        it("Should be valid at position 1,1,0 with table", () => {
+          return expect(
+            robot.place(
+              { x: 1, y: 1 },
+              northOrientation,
+              new InfiniteEnvironment()
+            )
+          ).toEqual(true);
+        });
       });
 
       describe("Invalid positions", () => {
@@ -137,7 +147,7 @@ describe("Robot", () => {
             robot.place(
               { x: 1, y: 1 },
               invalidOrientation,
-              new EntityFactory().createFiveByFiveTable()
+              new InfiniteEnvironment()
             );
           }).toThrowError(invalidPlace);
         });

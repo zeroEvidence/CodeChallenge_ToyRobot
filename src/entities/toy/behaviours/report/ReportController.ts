@@ -17,7 +17,9 @@ import { IReportController } from "./interfaces/ReportController.interface";
  * @extends {BaseController}
  */
 export class ReportController<T> implements IReportController<T> {
-  constructor() {}
+  constructor() {
+    //
+  }
 
   // By default toys do not report.
   public report(): T {

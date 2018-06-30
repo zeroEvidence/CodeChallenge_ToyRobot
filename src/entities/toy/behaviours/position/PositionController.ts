@@ -17,7 +17,9 @@ export class PositionController<
   O extends IOrientation = IOrientation,
   S extends ISurface = ISurface
 > implements IPositionController<P, O, S> {
-  constructor() {}
+  constructor() {
+    //
+  }
 
   public place(this: T, position: P, orientation: O, surface?: S) {
     const validPlace =

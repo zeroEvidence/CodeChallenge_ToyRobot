@@ -4,7 +4,9 @@ import { IPosition } from "../../../position/interfaces/Position.interface";
 
 export class ReportPositionController<T extends IToy = IToy>
   implements IReportController<IPosition> {
-  constructor() {}
+  constructor() {
+    //
+  }
 
   public report(this: T) {
     if (this.validatePlacement()) {

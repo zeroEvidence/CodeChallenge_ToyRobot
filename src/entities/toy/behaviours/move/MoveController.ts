@@ -17,7 +17,9 @@ import { IMoveController } from "./interfaces/MoveController.interface";
  * @extends {BaseController}
  */
 export class MoveController implements IMoveController {
-  constructor() {}
+  constructor() {
+    //
+  }
 
   // By default toys do not move by themselves
   public move(): boolean {

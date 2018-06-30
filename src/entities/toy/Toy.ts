@@ -10,7 +10,7 @@ import { Position } from "./position/Position";
 
 export abstract class Toy implements IToy {
   constructor(
-    protected toyStrings: IToyStrings = ToyConfig.strings,
+    public toyStrings: IToyStrings = ToyConfig.strings,
     public type: ToyType = -1,
     public surface: ISurface = void 0,
     public position: IPosition = new Position(),

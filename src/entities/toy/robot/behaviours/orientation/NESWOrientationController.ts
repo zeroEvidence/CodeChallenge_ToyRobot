@@ -4,7 +4,9 @@ import { IRobot } from "../../interfaces/Robot.interface";
 
 export class NESWOrientationController<T extends IRobot = IRobot>
   implements IOrientationController {
-  constructor() {}
+  constructor() {
+    //
+  }
 
   public left(this: T) {
     const newOrientation = this.orientation.orientation - 1;

@@ -13,7 +13,9 @@ export class SurfaceController<
   T extends IToy = IToy,
   S extends ISurface = ISurface
 > implements ISurfaceController<S> {
-  constructor() {}
+  constructor() {
+    //
+  }
 
   public setSurface(this: IToy, surface: S): void {
     this.surface = surface;

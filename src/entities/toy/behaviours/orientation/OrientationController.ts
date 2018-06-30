@@ -19,7 +19,9 @@ import { IOrientationController } from "./interfaces/OrientationController.inter
  */
 export class OrientationController<T extends IOrientation = IOrientation>
   implements IOrientationController {
-  constructor() {}
+  constructor() {
+    //
+  }
 
   public left() {
     throw Error("Method not implemented.");

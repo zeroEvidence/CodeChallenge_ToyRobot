@@ -4,7 +4,9 @@ import { CardinalDirection } from "../orientation/CardinalDirections";
 
 export class MoveOneUnitController<T extends IToy = IToy>
   implements IMoveController {
-  constructor() {}
+  constructor() {
+    //
+  }
 
   public move(this: T) {
     if (this.validatePlacement()) {

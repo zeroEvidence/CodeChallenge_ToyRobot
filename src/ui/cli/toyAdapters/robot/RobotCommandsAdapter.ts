@@ -5,7 +5,7 @@ import { ISurface } from "../../../../entities/surface/interfaces/Surface.interf
 import { IOrientation } from "../../../../entities/toy/orientation/interfaces/Orientation";
 import { IPosition } from "../../../../entities/toy/position/interfaces/Position.interface";
 import { IRobot } from "../../../../entities/toy/robot/interfaces/Robot.interface";
-import { ParseCardinalDirections } from "../../../parsers/ParseCardinalDirection";
+import { ParseCardinalDirection } from "../../../parsers/ParseCardinalDirection";
 import { ParseXYF } from "../../../parsers/ParseXYF";
 import { ArgumentAugmenter } from "../../helpers/ArgumentAugmenter";
 import { IApplicationStrings } from "../../strings/interfaces/ApplicationStrings.interface";
@@ -48,7 +48,7 @@ export class ToyRobotCommandsAdapter extends ToyCommandsBase
       "report",
       (result: IPosition & IOrientation) => {
         this.vorpal.log(
-          `${result.x},${result.y},${ParseCardinalDirections.numberToString(
+          `${result.x},${result.y},${ParseCardinalDirection.numberToString(
             result.orientation
           ).toUpperCase()}`
         );

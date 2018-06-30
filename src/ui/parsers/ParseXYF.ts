@@ -1,5 +1,5 @@
 import { isUndefined } from "lodash";
-import { ParseCardinalDirections } from "./ParseCardinalDirection";
+import { ParseCardinalDirection } from "./ParseCardinalDirection";
 
 export class ParseXYF {
   public static toPositionObject(xyf: string) {
@@ -26,7 +26,7 @@ export class ParseXYF {
     y,
     cardinalDirection
   ]: string[]) {
-    const numericDirection = ParseCardinalDirections.stringToNumber(
+    const numericDirection = ParseCardinalDirection.stringToNumber(
       cardinalDirection
     );
 

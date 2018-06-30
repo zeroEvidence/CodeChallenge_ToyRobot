@@ -12,6 +12,11 @@ export class MockVorpal {
   validateCalled = 0;
   actionCalled = 0;
   hiddenCalled = 0;
+  activeCommand = {
+    log: function(args: string) {
+      return this.log(args);
+    }.bind(this)
+  };
   delimiter(delimiter: string) {
     this.delimiterCalled++;
     this.delimiterString = delimiter;

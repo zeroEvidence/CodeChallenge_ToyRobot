@@ -19,6 +19,7 @@ describe("RobotCommandsAdapter", () => {
 
       expect(JSON.parse(JSON.stringify(mockVorpal))).toEqual({
         actionCalled: 10,
+        activeCommand: {},
         aliasCalled: 30,
         aliasRecorder: [
           "place",
@@ -91,6 +92,7 @@ describe("RobotCommandsAdapter", () => {
 
       expect(JSON.parse(JSON.stringify(mockVorpal))).toEqual({
         actionCalled: 0,
+        activeCommand: {},
         aliasCalled: 0,
         aliasRecorder: [],
         allowUnknownOptionsFlagCalled: 0,

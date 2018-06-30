@@ -3,7 +3,7 @@ import { IToy } from "../../../entities/toy/interfaces/Toy.interface";
 import { IApplicationStrings } from "./interfaces/ApplicationStrings.interface";
 import { RobotApplicationStrings } from "./RobotApplicationStrings";
 
-export class StringsFactory {
+export class ApplicationStringsFactory {
   constructor() {
     //
   }

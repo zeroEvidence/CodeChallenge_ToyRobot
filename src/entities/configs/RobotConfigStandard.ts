@@ -11,6 +11,6 @@ export const RobotConfigStandard: IToyConfig = {
   ],
   strings: {
     missingEnvironment: "Boop-boop! Error: place me first.",
-    invalidPosition: "Boop-boop! Error: invalid place."
+    invalidPlace: "Boop-boop! Error: invalid place."
   }
 };

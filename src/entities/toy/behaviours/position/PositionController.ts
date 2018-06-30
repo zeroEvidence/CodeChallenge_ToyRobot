@@ -34,7 +34,7 @@ export class PositionController<
       return true;
     }
 
-    throw Error(this.toyStrings.invalidPosition);
+    throw Error(this.toyStrings.invalidPlace);
   }
 
   public setPosition(position: P, surface?: S): boolean {

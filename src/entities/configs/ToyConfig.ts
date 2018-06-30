@@ -5,6 +5,6 @@ export const ToyConfig: IToyConfig = {
   rules: [],
   strings: {
     missingEnvironment: "Environment is not set",
-    invalidPosition: "Position is invalid"
+    invalidPlace: "Position is invalid"
   }
 };

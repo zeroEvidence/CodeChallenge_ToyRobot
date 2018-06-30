@@ -8,7 +8,7 @@ describe("ParseXYF", () => {
   });
 
   describe("toOrientationObject", () => {
-    it("Should convert 1,1,north to {orientation: 0}", () => {
+    it("Should convert 1,1,north to { orientation: 0 }", () => {
       expect(ParseXYF.toOrientationObject("1,1,north")).toEqual({
         orientation: 0
       });

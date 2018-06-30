@@ -5,9 +5,9 @@ import { IPosition } from "../../../src/entities/toy/position/interfaces/Positio
 import { CardinalDirection } from "../../../src/entities/toy/robot/behaviours/orientation/CardinalDirections";
 import { IRobot } from "../../../src/entities/toy/robot/interfaces/Robot.interface";
 import { RobotFactory } from "../../../src/entities/toy/robot/RobotFactory";
-import { InfiniteEnvironment } from "./mocks/InfiniteEnvironment";
-import { NoEnvironment } from "./mocks/NoEnvironment";
-import { RestrictedEnvironment } from "./mocks/RestrictedEnvironment";
+import { InfiniteEnvironment } from "../../mockObjects/InfiniteEnvironment";
+import { NoEnvironment } from "../../mockObjects/NoEnvironment";
+import { RestrictedEnvironment } from "../../mockObjects/RestrictedEnvironment";
 
 describe("Robot", () => {
   let robot: IRobot;

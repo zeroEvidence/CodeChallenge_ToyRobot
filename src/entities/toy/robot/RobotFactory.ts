@@ -12,10 +12,10 @@ export class RobotFactory extends ToyFactoryBase
     super();
   }
 
-  public createToy(toyConfig: IToyConfig) {
-    let toy = new Robot(toyConfig.strings);
+  public createToy(toyConfig: IToyConfig): IRobot {
+    const toy: IRobot = new Robot(toyConfig.strings, toyConfig.type);
+    const behaviours = [];
     let i = toyConfig.rules.length;
-    let behaviours = [];
 
     while (i--) {
       switch (toyConfig.rules[i]) {

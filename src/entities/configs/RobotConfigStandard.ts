@@ -1,5 +1,6 @@
 import { IToyConfig } from "../toy/interfaces/ToyConfig.interface";
 import { ToyRules } from "./rules/ToyRules";
+import { ToyType } from "./toyType/ToyType";
 
 export const RobotConfigStandard: IToyConfig = {
   rules: [
@@ -10,7 +11,5 @@ export const RobotConfigStandard: IToyConfig = {
     ToyRules.isMoveable
   ],
   strings: {
-    missingEnvironment: "Boop-boop! Error: place me first.",
-    invalidPlace: "Boop-boop! Error: invalid place."
-  }
+  type: ToyType.StandardRobotV1
 };

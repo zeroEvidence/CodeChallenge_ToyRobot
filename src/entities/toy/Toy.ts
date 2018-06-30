@@ -1,4 +1,5 @@
 import { ToyConfig } from "../configs/ToyConfig";
+import { ToyType } from "../configs/toyType/ToyType";
 import { ISurface } from "../surface/interfaces/Surface.interface";
 import { IToy } from "./interfaces/Toy.interface";
 import { IToyStrings } from "./interfaces/ToyStrings.interface";
@@ -10,6 +11,7 @@ import { Position } from "./position/Position";
 export abstract class Toy implements IToy {
   constructor(
     protected toyStrings: IToyStrings = ToyConfig.strings,
+    public type: ToyType = -1,
     public surface: ISurface = void 0,
     public position: IPosition = new Position(),
     public orientation: IOrientation = new Orientation()

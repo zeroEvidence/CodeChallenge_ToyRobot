@@ -1,3 +1,4 @@
 export interface IToyCommandsAdapter {
-  addCommands(): void;
+  beforeExec(): void;
+  afterExec(): void;
 }

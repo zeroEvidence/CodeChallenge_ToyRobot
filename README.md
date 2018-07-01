@@ -12,6 +12,6 @@ $ `npm start`
 
 ### Docker
 
-$ `npm install`
+$ `docker build -t toy-robot-app .`
 
-$ `docker build`
+$ `docker run -it --rm --name toy-robot-app-running toy-robot-app`

@@ -1,6 +1,6 @@
 {
   "name": "toy-robot",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "toy-robot",
   "license": "NO LICENSE",
   "repository": "",
@@ -24,16 +24,23 @@
     "format": "prettier --write \"src/**/*.ts\" --trailing-comma none",
     "lint": "tslint --force --format stylish \"src/**/*.ts\"",
     "prepublish": "npm run build",
+    "postinstall": "mkdir -p ./node_modules/@types/ && cp -r ./@types/* ./node_modules/@types/",
     "prebuild": "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
     "build": "tsc --pretty -p ./src/",
     "test": "jest",
     "coverage": "jest --coverage",
     "watch": "npm run build -- --watch",
-    "watch:test": "jest --watch"
+    "watch:test": "jest --watch",
+    "watch:coverage": "jest --coverage --watch",
+    "start": "node ./build/index.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.10",
+    "vorpal": "^1.12.0"
+  },
   "devDependencies": {
     "@types/jest": "^22.0.0",
+    "@types/lodash": "^4.14.110",
     "@types/node": "^8.0.0",
     "coveralls": "^3.0.0",
     "jest": "^22.0.0",
@@ -64,6 +71,16 @@
       "jsx",
       "json"
     ],
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "coverageReporters": [
+      "html"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ],
+    "coverageDirectory": "<rootDir>/coverage",
+    "coveragePathIgnorePatterns": [
+      "src/index.ts"
+    ]
   }
 }

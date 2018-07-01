@@ -9,7 +9,7 @@ import { IPositionController } from "./interfaces/PositionController.interface";
  *
  * @export
  * @class PositionController
- * @extends {BaseController}
+ * @implements {IPositionController}
  */
 export class PositionController<
   T extends IToy = IToy,

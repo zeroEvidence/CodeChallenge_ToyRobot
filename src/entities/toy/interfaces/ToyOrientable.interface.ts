@@ -1,7 +1,7 @@
 import { IToy } from "./Toy.interface";
 
 /**
- * IToyOrientable is an interface for toys that are orientable
+ * IToyOrientable is a specification for toys that are orientable
  *
  * @export
  * @interface IToyOrientable

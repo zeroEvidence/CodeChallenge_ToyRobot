@@ -3,6 +3,13 @@ import { IToy } from "../../../entities/toy/interfaces/Toy.interface";
 import { IApplicationStrings } from "./interfaces/ApplicationStrings.interface";
 import { RobotApplicationStrings } from "./RobotApplicationStrings";
 
+/**
+ * ApplicationStringsFactory is a factory that creates the application strings
+ * depending on the type of toy object is passed into it.
+ *
+ * @export
+ * @class ApplicationStringsFactory
+ */
 export class ApplicationStringsFactory {
   constructor() {
     //

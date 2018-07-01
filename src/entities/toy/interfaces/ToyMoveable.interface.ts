@@ -1,7 +1,7 @@
 import { IToy } from "./Toy.interface";
 
 /**
- * IToyMoveable is a interface for moveable toys
+ * IToyMoveable is a specification for moveable toys
  *
  * @export
  * @interface IToyMoveable

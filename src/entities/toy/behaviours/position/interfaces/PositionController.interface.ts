@@ -2,6 +2,16 @@ import { ISurface } from "../../../../surface/interfaces/Surface.interface";
 import { IOrientation } from "../../../orientation/interfaces/Orientation";
 import { IPosition } from "../../../position/interfaces/Position.interface";
 
+/**
+ * IPositionController defines a specification for all PositionController
+ * classes.
+ *
+ * @export
+ * @interface IPositionController
+ * @template P
+ * @template O
+ * @template S
+ */
 export interface IPositionController<
   P extends IPosition = IPosition,
   O extends IOrientation = IOrientation,

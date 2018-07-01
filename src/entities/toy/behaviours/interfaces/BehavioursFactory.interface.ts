@@ -4,6 +4,13 @@ import { IPositionController } from "../position/interfaces/PositionController.i
 import { IReportController } from "../report/interfaces/ReportController.interface";
 import { ISurfaceController } from "../surface/interfaces/SurfaceController.interface";
 
+/**
+ * IBehavioursFactory is an abstract factory used for defining a behaviours
+ * factory for a toy entity.
+ *
+ * @export
+ * @interface IBehavioursFactory
+ */
 export interface IBehavioursFactory {
   createMoveController(): IMoveController;
   createOrientationController(): IOrientationController;

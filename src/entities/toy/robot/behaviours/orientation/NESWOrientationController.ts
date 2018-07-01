@@ -2,6 +2,15 @@ import { IOrientationController } from "../../../behaviours/orientation/interfac
 import { IOrientation } from "../../../orientation/interfaces/Orientation";
 import { IRobot } from "../../interfaces/Robot.interface";
 
+/**
+ * NESWOrientationController gives a toy the ability to rotate left and right at
+ * 90 degree intervals.
+ *
+ * @export
+ * @class NESWOrientationController
+ * @implements {IOrientationController}
+ * @template T
+ */
 export class NESWOrientationController<T extends IRobot = IRobot>
   implements IOrientationController {
   constructor() {

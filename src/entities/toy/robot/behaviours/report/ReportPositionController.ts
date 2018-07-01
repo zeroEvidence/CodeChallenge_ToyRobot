@@ -2,6 +2,15 @@ import { IReportController } from "../../../behaviours/report/interfaces/ReportC
 import { IToy } from "../../../interfaces/Toy.interface";
 import { IPosition } from "../../../position/interfaces/Position.interface";
 
+/**
+ * ReportController give a toy the ability to report it's current position
+ * state.
+ *
+ * @export
+ * @class ReportPositionController
+ * @implements {IReportController<IPosition>}
+ * @template T
+ */
 export class ReportPositionController<T extends IToy = IToy>
   implements IReportController<IPosition> {
   constructor() {

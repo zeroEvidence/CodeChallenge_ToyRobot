@@ -1,7 +1,7 @@
 import { IToy } from "./Toy.interface";
 
 /**
- * IToyReportable is an interface for toys that report something back.
+ * IToyReportable is a specification for toys that report something back.
  *
  * @export
  * @interface IToyReportable

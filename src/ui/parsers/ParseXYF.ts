@@ -1,6 +1,12 @@
 import { isUndefined } from "lodash";
 import { ParseCardinalDirection } from "./ParseCardinalDirection";
 
+/**
+ * Parse XYF converts the x,y,f format into a Positions or Orientation object
+ *
+ * @export
+ * @class ParseXYF
+ */
 export class ParseXYF {
   public static toPositionObject(xyf: string) {
     return this.createPositionObject(this.split(xyf));

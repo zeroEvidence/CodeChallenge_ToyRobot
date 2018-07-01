@@ -1,5 +1,9 @@
 import { IApplicationStrings } from "./interfaces/ApplicationStrings.interface";
 
+/*
+ * RobotApplicationStrings are the strings for a CLI application using the
+ * standard robot.
+ */
 export const RobotApplicationStrings: IApplicationStrings = {
   delimiter: "toy-robot$",
 

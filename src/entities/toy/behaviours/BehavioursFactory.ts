@@ -5,6 +5,17 @@ import { PositionController } from "./position/PositionController";
 import { ReportController } from "./report/ReportController";
 import { SurfaceController } from "./surface/SurfaceController";
 
+/**
+ * BaseBehavioursFactory creates the default behaviours for a toy entity.
+ *
+ * WARNING: There are limited default behaviours, most of these controllers will
+ * throw errors.
+ *
+ * @export
+ * @abstract
+ * @class BaseBehavioursFactory
+ * @implements {IBehavioursFactory}
+ */
 export abstract class BaseBehavioursFactory implements IBehavioursFactory {
   constructor() {
     //

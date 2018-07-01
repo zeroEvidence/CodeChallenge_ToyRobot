@@ -3,6 +3,13 @@ import { ICommand } from "../../interfaces/Command.interface";
 import { IApplicationStrings } from "./strings/interfaces/ApplicationStrings.interface";
 import { IToyCommandsAdapter } from "./toyAdapters/interfaces/ToyCommandsAdapter";
 
+/**
+ * AppCLI is the class that begins the CLI application.
+ *
+ * @export
+ * @class AppCLI
+ * @implements {ICommand}
+ */
 export class AppCLI implements ICommand {
   constructor(
     private vorpal: Vorpal,
@@ -18,6 +25,7 @@ export class AppCLI implements ICommand {
     this.toyCommands.afterExec();
   }
 
+  // initialise
   private init() {
     this.addHelp();
     this.catchInvalidCommands();
@@ -29,6 +37,7 @@ export class AppCLI implements ICommand {
     });
   }
 
+  // in the form of $ foo bar baz, it will log an invalid command message.
   private catchInvalidCommands() {
     this.vorpal.catch("[commands...]").action((args, cb) => {
       this.vorpal.log(

@@ -4,7 +4,7 @@ import { IPosition } from "../position/interfaces/Position.interface";
 import { IToy } from "./Toy.interface";
 
 /**
- * IToyPositional is an interface for toys that are positional
+ * IToyPositional is a specification for toys that are positional
  *
  * @export
  * @interface IToyPositional

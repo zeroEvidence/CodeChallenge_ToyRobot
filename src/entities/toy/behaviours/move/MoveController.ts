@@ -14,7 +14,7 @@ import { IMoveController } from "./interfaces/MoveController.interface";
  *
  * @export
  * @class MoveController
- * @extends {BaseController}
+ * @implements {IMoveController}
  */
 export class MoveController implements IMoveController {
   constructor() {

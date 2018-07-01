@@ -2,6 +2,15 @@ import { IMoveController } from "../../../behaviours/move/interfaces/MoveControl
 import { IToy } from "../../../interfaces/Toy.interface";
 import { CardinalDirection } from "../orientation/CardinalDirections";
 
+/**
+ * MoveOneUnitController give a toy the ability to move one unit at a time in
+ * the direction it is currently facing.
+ *
+ * @export
+ * @class MoveOneUnitController
+ * @implements {IMoveController}
+ * @template T
+ */
 export class MoveOneUnitController<T extends IToy = IToy>
   implements IMoveController {
   constructor() {
@@ -9,8 +18,9 @@ export class MoveOneUnitController<T extends IToy = IToy>
   }
 
   public move(this: T) {
+    // throw an error if it is not in a valid place.
     if (this.validatePlacement()) {
-      // noop
+      // noop, otherwise continue.
     }
 
     const newPosition = { ...this.position };

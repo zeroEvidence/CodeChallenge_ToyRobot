@@ -7,6 +7,13 @@ import { IApplicationStrings } from "../strings/interfaces/ApplicationStrings.in
 import { IToyCommandsAdapter } from "./interfaces/ToyCommandsAdapter";
 import { RobotCommandsAdapter } from "./robot/RobotCommandsAdapter";
 
+/**
+ * ToyAdapterFactory creates the ToyAdapter based on the type of the toy, which
+ * allows vorpal to pass command to the robot API.
+ *
+ * @export
+ * @class ToyAdapterFactory
+ */
 export class ToyAdapterFactory {
   constructor() {
     //

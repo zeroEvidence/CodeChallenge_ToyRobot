@@ -14,7 +14,7 @@ import { IReportController } from "./interfaces/ReportController.interface";
  *
  * @export
  * @class ReportController
- * @extends {BaseController}
+ * @implements {IMoveController}
  */
 export class ReportController<T> implements IReportController<T> {
   constructor() {

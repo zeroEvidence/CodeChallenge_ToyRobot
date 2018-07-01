@@ -7,6 +7,16 @@ import { Toy } from "../Toy";
 import { IRobot } from "./interfaces/Robot.interface";
 
 /* tslint:disable:no-empty */
+
+/**
+ * Robot defines the template for toy robots, each one of these properties are
+ * overridden to give the object behaviours.
+ *
+ * @export
+ * @class Robot
+ * @extends {Toy}
+ * @implements {IRobot}
+ */
 export class Robot extends Toy implements IRobot {
   public place: (
     position: IPosition,

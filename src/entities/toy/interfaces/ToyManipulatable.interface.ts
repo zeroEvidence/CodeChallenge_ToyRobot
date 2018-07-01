@@ -4,12 +4,14 @@ import { IToyOrientable } from "./ToyOrientable.interface";
 import { IToyPlaceable } from "./ToyPlaceable.interface";
 
 /**
- * IToyManipulate is an union interface of IToyPlaceable, and IToyOrientable
+ * IToyManipulate is a union interface of IToyPlaceable, and IToyOrientable.
+ *
+ * it defines a specification for toy entities that can be manipulated relative
+ * to a surface.
  *
  * @export
  * @interface IToyManipulatable
  * @extends {IToyPlaceable<P>}
- * @extends {IToySurfaceMountable<S>}
  * @extends {IToyOrientable}
  * @template P
  * @template S

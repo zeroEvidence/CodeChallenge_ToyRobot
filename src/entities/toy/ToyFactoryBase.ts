@@ -1,3 +1,10 @@
+/**
+ * ToyFactoryBase is the base class that is shared among ToyFactories.
+ *
+ * @export
+ * @abstract
+ * @class ToyFactoryBase
+ */
 export abstract class ToyFactoryBase {
   constructor() {
     //

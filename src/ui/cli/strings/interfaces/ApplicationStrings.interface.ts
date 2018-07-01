@@ -1,3 +1,9 @@
+/**
+ * IApplicationStrings defines a specification for application strings.
+ *
+ * @export
+ * @interface IApplicationStrings
+ */
 export interface IApplicationStrings {
   delimiter: string;
   welcomeMessage: string;

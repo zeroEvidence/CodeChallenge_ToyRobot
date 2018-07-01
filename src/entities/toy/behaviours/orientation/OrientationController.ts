@@ -15,7 +15,7 @@ import { IOrientationController } from "./interfaces/OrientationController.inter
  *
  * @export
  * @class OrientationController
- * @extends {BaseController}
+ * @implements {IOrientationController}
  */
 export class OrientationController<T extends IOrientation = IOrientation>
   implements IOrientationController {

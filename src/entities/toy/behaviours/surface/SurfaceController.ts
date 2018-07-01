@@ -7,7 +7,7 @@ import { ISurfaceController } from "./interfaces/SurfaceController.interface";
  *
  * @export
  * @class SurfaceController
- * @extends {BaseController}
+ * @implements {ISurfaceController}
  */
 export class SurfaceController<
   T extends IToy = IToy,

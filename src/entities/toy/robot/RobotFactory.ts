@@ -6,12 +6,28 @@ import { RobotBehavioursFactory } from "./behaviours/RobotBehaviorsFactory";
 import { IRobot } from "./interfaces/Robot.interface";
 import { Robot } from "./Robot";
 
+/**
+ * RobotFactory produces toy robots from configuration objects.
+ *
+ * @export
+ * @class RobotFactory
+ * @extends {ToyFactoryBase}
+ * @implements {IToyFactory<IRobot>}
+ */
 export class RobotFactory extends ToyFactoryBase
   implements IToyFactory<IRobot> {
   constructor(private toyBehaviours = new RobotBehavioursFactory()) {
     super();
   }
 
+  /**
+   * createToy takes a configuration and applies the respective methods from
+   * the controller objects to a blank Robot.
+   *
+   * @param {IToyConfig} toyConfig
+   * @returns {IRobot}
+   * @memberof RobotFactory
+   */
   public createToy(toyConfig: IToyConfig): IRobot {
     const toy: IRobot = new Robot(toyConfig.strings, toyConfig.type);
     const behaviours = [];

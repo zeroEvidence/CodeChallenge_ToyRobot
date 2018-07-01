@@ -2,6 +2,10 @@ import { IToyConfig } from "../toy/interfaces/ToyConfig.interface";
 import { ToyRules } from "./rules/ToyRules";
 import { ToyType } from "./toyType/ToyType";
 
+/**
+ * RobotConfigStandard is the configuration object that is used to produce the
+ * standard robot.
+ */
 export const RobotConfigStandard: IToyConfig = {
   rules: [
     ToyRules.isSurfaceMountable,

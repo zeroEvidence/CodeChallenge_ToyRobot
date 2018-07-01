@@ -6,9 +6,6 @@ import { IToyStrings } from "./ToyStrings.interface";
 /**
  * IToy is the interface for all generic toys
  *
- * intentionally left blank as to provide default properties or methods for
- * future modifications
- *
  * @export
  * @interface IToy
  */

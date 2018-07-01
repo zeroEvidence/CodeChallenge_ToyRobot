@@ -7,6 +7,12 @@ import { IToyFactory } from "./toy/interfaces/ToyFactory.interface";
 import { IRobot } from "./toy/robot/interfaces/Robot.interface";
 import { RobotFactory } from "./toy/robot/RobotFactory";
 
+/**
+ * EntityFactory produces the available entity objects.
+ *
+ * @export
+ * @class EntityFactory
+ */
 export class EntityFactory {
   constructor(
     private tableFactory: ISurfaceFactory<ISurface> = new TableFactory(),

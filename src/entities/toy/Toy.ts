@@ -8,6 +8,14 @@ import { Orientation } from "./orientation/Orientation";
 import { IPosition } from "./position/interfaces/Position.interface";
 import { Position } from "./position/Position";
 
+/**
+ * Toy is the base class from which all toys are derived from.
+ *
+ * @export
+ * @abstract
+ * @class Toy
+ * @implements {IToy}
+ */
 export abstract class Toy implements IToy {
   constructor(
     public toyStrings: IToyStrings = ToyConfig.strings,
@@ -42,6 +50,7 @@ export abstract class Toy implements IToy {
   }
 
   public validatePlacement() {
+    // position must always be a real number and be relative to a surface.
     if (
       !this.surface ||
       this.position.x < 0 ||

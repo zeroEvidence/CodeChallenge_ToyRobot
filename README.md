@@ -1,5 +1,7 @@
 # Toy Robot
 
+Purposefully over engineered to show SOLID design principles.
+
 ## Run
 
 ### Local machine with node.js installed
